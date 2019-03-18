@@ -1,29 +1,81 @@
 <template>
   <div id="app">
-    <div id="nav">
-      <router-link to="/">Home</router-link> |
-      <router-link to="/about">About</router-link>
-    </div>
-    <router-view/>
+    <header>
+      <div id="header-container">
+        <a id="site-title" href="" @click="reloadMain">{{ this.$siteName }}</a>
+        <nav id="site-navigation">
+          <router-link to="/">Home</router-link>
+          <!-- v-if loggedIn -->
+          <router-link to="/latest">Latest</router-link>
+          <router-link to="/settings">Settings</router-link>
+          <!-- end v-if -->
+          <!-- v-if !loggedIn -->
+          <router-link to="/login">Login</router-link>
+          <router-link to="/register">Register</router-link>
+          <!-- end v-if -->
+          <!-- v-if admin -->
+          <router-link to="/admin">Admin</router-link>
+          <!-- end v-if -->
+        </nav>
+        <div id="site-post">Post</div>
+      </div>
+    </header>
+    <main :key="mainKey">
+      <router-view/>
+    </main>
+    <footer>
+      <div id="site-credits">Copyright (c) 2019</div>
+    </footer>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: 'Avenir', Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-}
-#nav {
-  padding: 30px;
-  a {
-    font-weight: bold;
-    color: #2c3e50;
-    &.router-link-exact-active {
-      color: #42b983;
-    }
+<script lang="ts">
+import { Component, Vue } from 'vue-property-decorator';
+
+@Component({
+  components: {}
+})
+
+export default class App extends Vue {
+  mainKey = 0;
+
+  reloadMain(e: Event) {
+    e.preventDefault();
+    this.mainKey++;
   }
 }
+</script>
+
+<style lang="scss">
+#app {
+    display: grid;
+    font-family: Helvetica, Arial, sans-serif;
+    grid-template-rows: auto 1fr auto;
+    height: 100vh;
+    width: 100vw;
+  }
+
+  header {
+    background-color: $site-bg-color;
+    grid-row: 1;
+    padding: $site-hdrftr-padding;
+
+    #header-container {
+      align-items: center;
+      display: flex;
+      justify-content: space-evenly;
+      margin: 0px auto;
+      max-width: $site-max-width;
+    }
+  }
+
+  main {
+    grid-row: 2;
+  }
+
+  footer {
+    background-color: $site-bg-color;
+    grid-row: 3;
+    padding: $site-hdrftr-padding;
+  }
 </style>

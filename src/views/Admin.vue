@@ -1,5 +1,5 @@
 <template>
-  <div id="home">
+  <div id="login">
     Welcome to {{ this.$siteName }}.
   </div>
 </template>
@@ -11,7 +11,7 @@ import { Component, Vue } from 'vue-property-decorator';
   components: {},
 })
 
-export default class Home extends Vue {}
+export default class Login extends Vue {}
 </script>
 
 <style lang="scss" scoped>
