@@ -17,6 +17,7 @@
           <router-link to="/admin">Admin</router-link>
           <!-- end v-if -->
         </nav>
+        <HeaderSiteSearch/>
         <div id="site-post">Post</div>
       </div>
     </header>
@@ -24,16 +25,19 @@
       <router-view/>
     </main>
     <footer>
-      <div id="site-credits">Copyright (c) 2019</div>
+      <div id="site-credits">Copyright (c) UsefulSoftware.xyz 2019</div>
     </footer>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import HeaderSiteSearch from '@/components/HeaderSiteSearch.vue';
 
 @Component({
-  components: {}
+  components: {
+    HeaderSiteSearch,
+  }
 })
 
 export default class App extends Vue {
@@ -56,26 +60,23 @@ export default class App extends Vue {
   }
 
   header {
-    background-color: $site-bg-color;
+    @include hdrftr;
     grid-row: 1;
-    padding: $site-hdrftr-padding;
 
-    #header-container {
-      align-items: center;
-      display: flex;
-      justify-content: space-evenly;
-      margin: 0px auto;
-      max-width: $site-max-width;
+    #site-title {
+      font-weight: bold;
     }
   }
 
   main {
+    background-color: $dark-site-main-bgcolor;
+    color: $dark-site-main-fontcolor;
     grid-row: 2;
   }
 
   footer {
-    background-color: $site-bg-color;
+    @include hdrftr;
+    background-color: $dark-site-hdrftr-bgcolor;
     grid-row: 3;
-    padding: $site-hdrftr-padding;
   }
 </style>

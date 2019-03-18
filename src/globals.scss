@@ -16,12 +16,11 @@ h1,h2,h3,h4,h5,h6 {
   margin: 0px;
 }
 
-// Variables
-$site-bg-color: #222;
-$site-hdrftr-padding: 14px;
-$site-max-width: 960px;
+// ====== //
+// Mixins //
+// ====== //
 
-// Mixins
+// Disable user select
 @mixin no-select {
   -webkit-touch-callout: none;
   -webkit-user-select: none;
@@ -30,3 +29,45 @@ $site-max-width: 960px;
   -ms-user-select: none;
   user-select: none;
 }
+
+// Uniform header / footer CSS
+@mixin hdrftr {
+  background-color: $dark-site-hdrftr-bgcolor;
+  color: $dark-site-hdrftr-fontcolor;
+  padding: $site-hdrftr-padding;
+
+  & > *:first-child {
+    align-items: center;
+    display: flex;
+    justify-content: space-evenly;
+    margin: 0px auto;
+    max-width: $site-max-width;
+
+    a {
+      color: inherit;
+      padding: 4px 12px;
+      text-decoration: none;
+
+      &:hover {
+        color: $dark-site-active-color;
+      }
+    }
+  }
+}
+
+//========== //
+// Variables //
+//========== //
+
+// Structure
+$site-hdrftr-padding: 10px;
+$site-max-width: 960px;
+
+// Theme-based (dark theme)
+$dark-site-hdrftr-bgcolor: #222;
+$dark-site-hdrftr-fontcolor: #eee;
+
+$dark-site-main-bgcolor: #555;
+$dark-site-main-fontcolor: #fff;
+
+$dark-site-active-color: yellow;

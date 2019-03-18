@@ -4,7 +4,7 @@ import router from './router';
 import store from './store';
 
 Vue.config.productionTip = false;
-Vue.prototype.$siteName = 'Forum';
+Vue.prototype.$siteName = 'Site Title';
 
 new Vue({
   router,
