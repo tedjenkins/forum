@@ -1,6 +1,6 @@
 <template>
   <div id="latest">
-    Welcome to {{ this.$siteName }}.
+    Welcome to {{ this.$siteName }} (latest).
   </div>
 </template>
 

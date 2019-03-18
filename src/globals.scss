@@ -32,9 +32,9 @@ h1,h2,h3,h4,h5,h6 {
 
 // Uniform header / footer CSS
 @mixin hdrftr {
-  background-color: $dark-site-hdrftr-bgcolor;
-  color: $dark-site-hdrftr-fontcolor;
-  padding: $site-hdrftr-padding;
+  background-color: $light-site-hdrftr-bgcolor;
+  color: $light-site-hdrftr-fontcolor;
+  padding: $site-padding;
 
   & > *:first-child {
     align-items: center;
@@ -49,7 +49,7 @@ h1,h2,h3,h4,h5,h6 {
       text-decoration: none;
 
       &:hover {
-        color: $dark-site-active-color;
+        color: $light-site-active-color;
       }
     }
   }
@@ -60,8 +60,17 @@ h1,h2,h3,h4,h5,h6 {
 //========== //
 
 // Structure
-$site-hdrftr-padding: 10px;
-$site-max-width: 960px;
+$site-padding: 10px;
+$site-max-width: 1200px;
+
+// Theme-based (light theme)
+$light-site-hdrftr-bgcolor: #cccf02;
+$light-site-hdrftr-fontcolor: #141414;
+
+$light-site-main-bgcolor: #f0f0f0;
+$light-site-main-fontcolor: #101010;
+
+$light-site-active-color: #adad00;
 
 // Theme-based (dark theme)
 $dark-site-hdrftr-bgcolor: #222;

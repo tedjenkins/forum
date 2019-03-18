@@ -51,7 +51,8 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-#app {
+  #app {
+    background-color: $light-site-main-bgcolor;
     display: grid;
     font-family: Helvetica, Arial, sans-serif;
     grid-template-rows: auto 1fr auto;
@@ -69,14 +70,44 @@ export default class App extends Vue {
   }
 
   main {
-    background-color: $dark-site-main-bgcolor;
-    color: $dark-site-main-fontcolor;
+    color: $light-site-main-fontcolor;
     grid-row: 2;
+    padding: $site-padding;
+    margin: 0px auto;
+    width: $site-max-width;
+
+    & > * {
+      display: grid;
+    }
   }
 
   footer {
     @include hdrftr;
-    background-color: $dark-site-hdrftr-bgcolor;
+    background-color: $light-site-hdrftr-bgcolor;
     grid-row: 3;
+  }
+
+  .site-form {
+    margin: 0px auto;
+    width: 600px;
+
+    .form-section {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      margin: 15px 0px;
+
+      label {
+        flex: 0 1 45%;
+      }
+
+      input {
+        flex: 0 1 55%;
+      }
+
+      button {
+        flex: 0 1 20%;
+      }
+    }
   }
 </style>

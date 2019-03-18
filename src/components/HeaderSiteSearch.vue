@@ -16,10 +16,10 @@ export default class HeaderSiteSearch extends Vue {}
 
 <style lang="scss" scoped>
 #site-search input {
-  background-color: $dark-site-main-bgcolor;
+  background-color: $light-site-main-bgcolor;
   border: 1px solid white;
   border-radius: 8px;
-  color: $dark-site-main-fontcolor;
+  color: $light-site-main-fontcolor;
   font-size: 13px;
   padding: 8px;
   width: 240px;

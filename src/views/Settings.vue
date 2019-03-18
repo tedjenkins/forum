@@ -1,6 +1,6 @@
 <template>
   <div id="settings">
-    Welcome to {{ this.$siteName }}.
+    Welcome to {{ this.$siteName }} (settings).
   </div>
 </template>
 

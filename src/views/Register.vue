@@ -1,6 +1,7 @@
 <template>
   <div id="register">
-    Welcome to {{ this.$siteName }}.
+    <form class="site-form" id="register-form">
+    </form>
   </div>
 </template>
 
