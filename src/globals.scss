@@ -3,6 +3,7 @@
 // * ------------------------------------
 @charset 'UTF-8';
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
+@import url('https://fonts.googleapis.com/css?family=Montserrat:400,500');
 
 html {
   box-sizing: border-box;
@@ -32,9 +33,18 @@ h1,h2,h3,h4,h5,h6 {
 
 // Uniform header / footer CSS
 @mixin hdrftr {
+  $border: 1px solid #444;
+
   background-color: $light-site-hdrftr-bgcolor;
   color: $light-site-hdrftr-fontcolor;
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   padding: $site-padding;
+
+  @if is-superselector('header', &) {
+    border-bottom: $border;
+  } @else {
+    border-top: $border;
+  }
 
   & > *:first-child {
     align-items: center;
@@ -64,7 +74,7 @@ $site-padding: 10px;
 $site-max-width: 1200px;
 
 // Theme-based (light theme)
-$light-site-hdrftr-bgcolor: #cccf02;
+$light-site-hdrftr-bgcolor: #ffffff;
 $light-site-hdrftr-fontcolor: #141414;
 
 $light-site-main-bgcolor: #f0f0f0;

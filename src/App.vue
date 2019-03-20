@@ -54,7 +54,6 @@ export default class App extends Vue {
   #app {
     background-color: $light-site-main-bgcolor;
     display: grid;
-    font-family: Helvetica, Arial, sans-serif;
     grid-template-rows: auto 1fr auto;
     height: 100vh;
     width: 100vw;
@@ -62,10 +61,13 @@ export default class App extends Vue {
 
   header {
     @include hdrftr;
+    font-size: 14px;
     grid-row: 1;
 
     #site-title {
+      font-size: 20px;
       font-weight: bold;
+      letter-spacing: 0.4px;
     }
   }
 
