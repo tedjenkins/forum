@@ -25,7 +25,7 @@
       <router-view/>
     </main>
     <footer>
-      <div id="site-credits">Copyright (c) UsefulSoftware.xyz 2019</div>
+      <div id="site-credits">{{ this.$siteName }} copyright (c) <a href="https://usefulsoftware.xyz">UsefulSoftware.xyz</a> 2019</div>
     </footer>
   </div>
 </template>

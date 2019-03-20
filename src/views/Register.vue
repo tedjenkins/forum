@@ -43,9 +43,15 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { isEmail } from 'validator';
+import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 
 @Component({
-  components: {},
+  components: {
+    LoginRegisterForm
+  },
+  computed: {
+    
+  },
   methods: {
     /**
      * Pre-submit validation. Displays current char length with max length beside input field (e.g. 33/128), adds / removes 'valid' class from field's <label>.
