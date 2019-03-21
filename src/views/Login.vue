@@ -1,34 +1,53 @@
 <template>
   <div id="login">
-    <form class="site-form" id="login-form">
-      <h1>Log in to {{ this.$siteName }}</h1>
-      <div class="form-section">
-        <label for="form-username-email">Username or email address: </label> <input type="text" id="form-username-email"/>
-      </div>
-      <div class="form-section">
-        <label for="form-password">Password: </label> <input type="password" id="form-password"/>
-      </div>
-      <div class="form-section">
-        <button type="submit">Submit</button>
-        <div id="form-remember-me">
-          <input type="checkbox" id="form-remember"/> <label for="form-remember"> Remember me</label>
-        </div>
-        <div id="form-forgot-password">
-          (<a href="#">forgot password?</a>)
-        </div>
-      </div>
-    </form>
+    <LoginRegisterForm formId="login-form" formHeader="Log in to " :inputElements="inputElements" :customElements="customElements"/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
+
+const formElements = [
+  {
+    id: 'form-username-email',
+    label: 'Username or email address',
+    type: 'text'
+  },
+  {
+    id: 'form-password',
+    label: 'Password',
+    type: 'password'
+  },
+  {
+    html:
+      `<button type="submit">Submit</button>
+        <div id="form-remember-me">
+          <input type="checkbox" id="form-remember"/> <label for="form-remember"> Remember me</label>
+        </div>
+        <div id="form-forgot-password">
+          (<a href="#">forgot password?</a>)
+        </div>`
+  }
+];
+
+formElements.forEach((obj, index) => Object.defineProperty(obj, 'index', { value: index }));
 
 @Component({
-  components: {},
+  components: {
+    LoginRegisterForm
+  },
 })
 
-export default class Login extends Vue {}
+export default class Login extends Vue {
+  get customElements() {
+    return formElements.filter(entry => entry.html);
+  }
+
+  get inputElements() {
+    return formElements.filter(entry => !entry.html);
+  }
+}
 </script>
 
 <style lang="scss" scoped>

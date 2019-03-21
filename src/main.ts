@@ -6,7 +6,7 @@ import store from './store';
 Vue.config.productionTip = false;
 Vue.prototype.$siteName = 'Site Title';
 
-new Vue({
+export default new Vue({
   router,
   store,
   render: (h) => h(App),
