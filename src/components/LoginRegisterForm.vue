@@ -1,10 +1,12 @@
 <template>
   <form class="site-form-login-register" :id="formId" @submit.prevent="handleForm">
     <h1>{{ formHeader }} {{ this.$siteName }}</h1>
-    <div class="form-section" v-for="element in inputElements" :key="element.index">
-      <label :for="element.id">{{ element.label }}: </label> <input :type="element.type" minlength="6" maxlength="24" :id="element.id" @input="validateInput"/> <div class="form-input-wordcount"></div>
-    </div>
-    <div class="form-section" v-html="element.html" v-for="element in customElements" :key="element.index"></div>
+    <template v-for="element of elements">
+      <div class="form-section" v-if="element.html" v-html="element.html" :key="element.index"></div>
+      <div class="form-section" v-else-if="!element.html" :key="element.index">
+        <label :for="element.id">{{ element.label }}: </label> <input :type="element.type" minlength="6" maxlength="24" :id="element.id" @input="validateInput"/> <div class="form-input-wordcount"></div>
+      </div>
+    </template>
   </form> 
 </template>
 
@@ -19,8 +21,7 @@ import { isEmail } from 'validator';
 export default class LoginRegisterForm extends Vue {
   @Prop() private formId!: string;
   @Prop() private formHeader!: string;
-  @Prop() private inputElements!: object[];
-  @Prop() private customElements!: object[];
+  @Prop() private elements!: object[];
 
   /**
    * Pre-submit validation. Displays current char length with max length beside input field (e.g. 33/128), adds / removes 'valid' class from field's <label>.
@@ -81,5 +82,26 @@ export default class LoginRegisterForm extends Vue {
 </script>
 
 <style lang="scss" scoped>
+h1 {
+  font-size: 24px;
+  text-align: center;
+}
 
+// Class to add to label elements, for marking input as success / valid.
+.valid-input {
+  color: forestgreen;
+}
+
+.form-section:last-child {
+  justify-content: space-evenly;
+}
+
+#form-profile-type {
+  & > * {
+    border: 1px solid black;
+    cursor: pointer;
+    margin: 10px;
+    padding: 6px;
+  }
+}
 </style>

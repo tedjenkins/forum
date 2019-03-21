@@ -1,6 +1,6 @@
 <template>
   <div id="login">
-    <LoginRegisterForm formId="login-form" formHeader="Log in to " :inputElements="inputElements" :customElements="customElements"/>
+    <LoginRegisterForm formId="login-form" formHeader="Log in to " :elements="formElements"/>
   </div>
 </template>
 
@@ -40,23 +40,12 @@ formElements.forEach((obj, index) => Object.defineProperty(obj, 'index', { value
 })
 
 export default class Login extends Vue {
-  get customElements() {
-    return formElements.filter(entry => entry.html);
-  }
-
-  get inputElements() {
-    return formElements.filter(entry => !entry.html);
+  get formElements() {
+    return formElements;
   }
 }
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  font-size: 24px;
-  text-align: center;
-}
 
-.form-section:last-child {
-  justify-content: space-evenly;
-}
 </style>

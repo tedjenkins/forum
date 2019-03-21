@@ -1,18 +1,17 @@
 <template>
   <div id="register">
-    <LoginRegisterForm formId="register-form" formHeader="Register at " :inputElements="inputElements" :customElements="customElements"/>
+    <LoginRegisterForm formId="register-form" formHeader="Register at " :elements="formElements"/>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
-import * as v from '../main';
 
 const formElements = [
   {
     html:
-    `<h3>Reasons to sign up with ${Vue.prototype.$siteName}:</h3>
+    `<h2>Reasons to sign up with ${Vue.prototype.$siteName}:</h2>
       <ul>
         <li>Stay on top of what's happening in Manchester.</li>
         <li>ijf</li>
@@ -67,37 +66,12 @@ formElements.forEach((obj, index) => Object.defineProperty(obj, 'index', { value
 })
 
 export default class Register extends Vue {
-  get customElements() {
-    return formElements.filter(entry => entry.html);
-  }
-
-  get inputElements() {
-    return formElements.filter(entry => !entry.html);
+  get formElements() {
+    return formElements;
   }
 }
 </script>
 
-<style lang="scss">
-h1 {
-  font-size: 24px;
-  text-align: center;
-}
+<style lang="scss" scoped>
 
-// Class to add to label elements, for marking input as success / valid.
-.valid-input {
-  color: forestgreen;
-}
-
-.form-section:last-child {
-  justify-content: space-evenly;
-}
-
-#form-profile-type {
-  & > * {
-    border: 1px solid black;
-    cursor: pointer;
-    margin: 10px;
-    padding: 6px;
-  }
-}
 </style>

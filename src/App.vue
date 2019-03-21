@@ -17,7 +17,7 @@
           <router-link to="/admin">Admin</router-link>
           <!-- end v-if -->
         </nav>
-        <HeaderSiteSearch/>
+        <SiteSearchBox/>
         <div id="site-post">Post</div>
       </div>
     </header>
@@ -32,11 +32,11 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import HeaderSiteSearch from '@/components/HeaderSiteSearch.vue';
+import SiteSearchBox from '@/components/SiteSearchBox.vue';
 
 @Component({
   components: {
-    HeaderSiteSearch,
+    SiteSearchBox,
   }
 })
 
