@@ -1,10 +1,10 @@
 <template>
-  <form class="site-form-login-register" :id="formId" @submit.prevent="handleForm">
+  <form class="site-form site-form-login-register" :id="formId" @submit.prevent="handleForm">
     <h1>{{ formHeader }} {{ this.$siteName }}</h1>
     <template v-for="element of elements">
-      <div class="form-section" v-if="element.html" v-html="element.html" :key="element.index" :id="element.id"></div>
+      <div class="form-section injected-html" v-if="element.html" v-html="element.html" :key="element.index" :id="element.id"></div>
       <div class="form-section label-input-pairing" v-else-if="!element.html" :key="element.index">
-        <label :for="element.id">{{ element.label }} (<span class="form-input-wordcount"></span>)</label> <input :type="element.type" minlength="6" maxlength="24" :id="element.id" @input="validateInput"/>
+        <label :for="element.id">{{ element.label }} <span class="form-input-wordcount" style="display: none"></span></label> <input :type="element.type" minlength="6" maxlength="24" :id="element.id" @input="validateInput" @focus="validateInputFocus" @blur="validateInputBlur"/>
       </div>
     </template>
   </form> 
@@ -15,7 +15,11 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { isEmail } from 'validator';
 
 @Component({
-  components: {}
+  components: {},
+  mounted() {
+    // Default textContent for each wordcount element is "(0/maxLength of input)"
+    document.querySelectorAll('.form-input-wordcount').forEach(node => node.textContent = `(0/${(node.parentElement!.nextSibling! as HTMLInputElement).maxLength})`);
+  }
 })
 
 export default class LoginRegisterForm extends Vue {
@@ -47,7 +51,7 @@ export default class LoginRegisterForm extends Vue {
     // Valid minimum length, don't check email fields
     if (targ.id !== 'form-email') {
       // Current length / maxLength count
-      targLabel.querySelector('.form-input-wordcount')!.textContent = `${targ.value.length}/${targ.maxLength}`;
+      targLabel.querySelector('.form-input-wordcount')!.textContent = `(${targ.value.length}/${targ.maxLength})`;
 
       if (targ.value.length >= +targ.minLength) {
         targLabel.classList.add('valid-input');
@@ -55,6 +59,28 @@ export default class LoginRegisterForm extends Vue {
         targLabel.classList.remove('valid-input');
       }
     }
+  }
+
+  /**
+   * Makes char length word count appear on input field focus.
+   * @param {Event} e -- focus event.
+   */
+  validateInputFocus = (e: Event) => {
+    const targ = e.target as HTMLInputElement;
+    const targLabel = targ.previousElementSibling!;
+
+    targLabel.querySelector('.form-input-wordcount')!.removeAttribute('style');
+  }
+
+  /**
+   * Makes char length word count disappear on input field blur.
+   * @param {Event} e -- blur event.
+   */
+  validateInputBlur = (e: Event) => {
+    const targ = e.target as HTMLInputElement;
+    const targLabel = targ.previousElementSibling!;
+
+    targLabel.querySelector('.form-input-wordcount')!.setAttribute('style', 'display: none');
   }
 
   /**
@@ -87,6 +113,22 @@ export default class LoginRegisterForm extends Vue {
   color: forestgreen;
 }
 
+.site-form-login-register {
+  display: grid;
+  grid-gap: 6px;
+  max-width: calc($site-max-width / 2);
+
+  h1 {
+    font-size: 20px;
+    margin-top: 10px;
+    text-align: center;
+  }
+
+  /deep/ h2 {
+    font-size: 16px;
+  }
+}
+
 @media all and (min-width: 400px) {
 
 }
@@ -105,27 +147,41 @@ export default class LoginRegisterForm extends Vue {
     text-align: center;
   }
 
-  .form-section {
-    align-items: center;
-    display: flex;
-    justify-content: center;
-    padding: 10px 0px;
-  }
+  .site-form-login-register {
+    .form-section {
+      align-items: center;
+      display: flex;
+      justify-content: center;
+      padding: 10px 0px;
 
-  .label-input-pairing {
-    flex-flow: column;
+      label {
+        flex: 0 1 45%;
+      }
 
-    * {
-      font-size: 22px;
+      input {
+        flex: 0 1 55%;
+      }
+
+      button {
+        flex: 0 1 20%;
+      }
     }
 
-    label {
-      font-weight: bold;
-    }
+    .label-input-pairing {
+      flex-flow: column;
 
-    input {
-      margin-top: 10px;
-      width: 26%;
+      * {
+        font-size: 22px;
+      }
+
+      label {
+        font-weight: bold;
+      }
+
+      input {
+        margin-top: 10px;
+        width: 26%;
+      }
     }
   }
 }

@@ -51,65 +51,84 @@ export default class App extends Vue {
 </script>
 
 <style lang="scss">
-  #app {
-    display: grid;
-    grid-template-rows: auto 1fr auto;
-    height: 100vh;
-    width: 100vw;
-  }
+#app {
+  display: grid;
+  grid-template-rows: auto 1fr auto;
+  height: 100vh;
+  overflow-x: hidden;
+  width: 100vw;
+}
 
-  header {
-    @include hdrftr;
-    font-size: 14px;
-    grid-row: 1;
+header {
+  @include hdrftr;
+  grid-row: 1;
+
+  #header-container {
+    flex-flow: column;
+
+    & > * {
+      font-size: 14px;
+      margin-top: 4px;
+    }
 
     #site-title {
       font-size: 20px;
       font-weight: bold;
-      letter-spacing: 0.4px;
+    }
+
+    #site-navigation {
+      align-items: center;
+      display: flex;
+      flex-flow: row wrap;
+      justify-content: center;
+    }
+  }
+}
+
+main {
+  color: $light-site-main-fontcolor;
+  grid-row: 2;
+
+  & > * {
+    display: grid;
+  }
+}
+
+footer {
+  @include hdrftr;
+  background-color: $light-site-hdrftr-bgcolor;
+  grid-row: 3;
+}
+
+@media all and (min-width: 600px) {
+  header {
+    #header-container {
+      flex-flow: row;
+
+      & > * {
+        margin: 0px 5px;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1200px) {
+  header {
+    #header-container {
+      & > * {
+        font-size: 15px;
+      }
+
+      #site-title {
+        font-size: 22px;
+      }
     }
   }
 
   main {
-    color: $light-site-main-fontcolor;
-    grid-row: 2;
     padding: $site-padding;
     margin: 0px auto;
     width: $site-max-width;
-
-    & > * {
-      display: grid;
-
-    }
   }
-
-  footer {
-    @include hdrftr;
-    background-color: $light-site-hdrftr-bgcolor;
-    grid-row: 3;
-  }
-
-  .site-form {
-    margin: 0px auto;
-    width: 600px;
-
-    .form-section {
-      align-items: center;
-      display: flex;
-      justify-content: center;
-      margin: 15px 0px;
-
-      label {
-        flex: 0 1 45%;
-      }
-
-      input {
-        flex: 0 1 55%;
-      }
-
-      button {
-        flex: 0 1 20%;
-      }
-    }
-  }
+}
 </style>
