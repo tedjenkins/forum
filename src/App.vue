@@ -52,7 +52,6 @@ export default class App extends Vue {
 
 <style lang="scss">
   #app {
-    background-color: $light-site-main-bgcolor;
     display: grid;
     grid-template-rows: auto 1fr auto;
     height: 100vh;
@@ -80,6 +79,7 @@ export default class App extends Vue {
 
     & > * {
       display: grid;
+
     }
   }
 

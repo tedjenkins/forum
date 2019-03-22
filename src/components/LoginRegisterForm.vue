@@ -2,9 +2,9 @@
   <form class="site-form-login-register" :id="formId" @submit.prevent="handleForm">
     <h1>{{ formHeader }} {{ this.$siteName }}</h1>
     <template v-for="element of elements">
-      <div class="form-section" v-if="element.html" v-html="element.html" :key="element.index"></div>
-      <div class="form-section" v-else-if="!element.html" :key="element.index">
-        <label :for="element.id">{{ element.label }}: </label> <input :type="element.type" minlength="6" maxlength="24" :id="element.id" @input="validateInput"/> <div class="form-input-wordcount"></div>
+      <div class="form-section" v-if="element.html" v-html="element.html" :key="element.index" :id="element.id"></div>
+      <div class="form-section label-input-pairing" v-else-if="!element.html" :key="element.index">
+        <label :for="element.id">{{ element.label }} (<span class="form-input-wordcount"></span>)</label> <input :type="element.type" minlength="6" maxlength="24" :id="element.id" @input="validateInput"/>
       </div>
     </template>
   </form> 
@@ -47,7 +47,7 @@ export default class LoginRegisterForm extends Vue {
     // Valid minimum length, don't check email fields
     if (targ.id !== 'form-email') {
       // Current length / maxLength count
-      targ.nextSibling!.textContent = `${targ.value.length}/${targ.maxLength}`;
+      targLabel.querySelector('.form-input-wordcount')!.textContent = `${targ.value.length}/${targ.maxLength}`;
 
       if (targ.value.length >= +targ.minLength) {
         targLabel.classList.add('valid-input');
@@ -82,26 +82,51 @@ export default class LoginRegisterForm extends Vue {
 </script>
 
 <style lang="scss" scoped>
-h1 {
-  font-size: 24px;
-  text-align: center;
-}
-
 // Class to add to label elements, for marking input as success / valid.
 .valid-input {
   color: forestgreen;
 }
 
-.form-section:last-child {
-  justify-content: space-evenly;
+@media all and (min-width: 400px) {
+
 }
 
-#form-profile-type {
-  & > * {
-    border: 1px solid black;
-    cursor: pointer;
-    margin: 10px;
-    padding: 6px;
+@media all and (min-width: 600px) {
+
+}
+
+@media all and (min-width: 800px) {
+
+}
+
+@media all and (min-width: 1200px) {
+  h1 {
+    font-size: 24px;
+    text-align: center;
+  }
+
+  .form-section {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+    padding: 10px 0px;
+  }
+
+  .label-input-pairing {
+    flex-flow: column;
+
+    * {
+      font-size: 22px;
+    }
+
+    label {
+      font-weight: bold;
+    }
+
+    input {
+      margin-top: 10px;
+      width: 26%;
+    }
   }
 }
 </style>

@@ -13,7 +13,7 @@ const formElements = [
     html:
     `<h2>Reasons to sign up with ${Vue.prototype.$siteName}:</h2>
       <ul>
-        <li>Stay on top of what's happening in Manchester.</li>
+        <li>Stay on top of what's happening.</li>
         <li>ijf</li>
         <li>It's cool</li>
       </ul>`

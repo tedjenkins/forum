@@ -5,19 +5,6 @@
 @import url('https://cdnjs.cloudflare.com/ajax/libs/normalize/8.0.1/normalize.min.css');
 @import url('https://fonts.googleapis.com/css?family=Montserrat:400,500');
 
-html {
-  box-sizing: border-box;
-}
-
-*, *:before, *:after {
-  box-sizing: inherit;
-}
-
-h1,h2,h3,h4,h5,h6 {
-  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-  margin: 0px;
-}
-
 // ====== //
 // Mixins //
 // ====== //
@@ -103,3 +90,21 @@ $dark-site-main-bgcolor: #555;
 $dark-site-main-fontcolor: #fff;
 
 $dark-site-active-color: yellow;
+
+// ============== //
+// Misc. rulesets //
+// ============== //
+
+html {
+  background-color: $light-site-main-bgcolor;
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+h1,h2,h3,h4,h5,h6 {
+  font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  margin: 0px;
+}
