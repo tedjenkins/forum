@@ -40,7 +40,7 @@ export default class LoginRegisterForm extends Vue {
     }
 
     // For email field, check if valid email address syntax
-    if (targ.id === 'form-email') {
+    if (targ.id.includes('email')) {
       if (isEmail(targ.value)) {
         targLabel.classList.add('valid-input');
       } else if (!isEmail(targ.value) && targLabel.classList.contains('valid-input')) {
@@ -49,7 +49,7 @@ export default class LoginRegisterForm extends Vue {
     }
 
     // Valid minimum length, don't check email fields
-    if (targ.id !== 'form-email') {
+    if (!targ.id.includes('email')) {
       // Current length / maxLength count
       targLabel.querySelector('.form-input-wordcount')!.textContent = `(${targ.value.length}/${targ.maxLength})`;
 
@@ -91,7 +91,7 @@ export default class LoginRegisterForm extends Vue {
     const targ = e.target as HTMLElement;
     const hdnInput = targ.parentElement!.nextSibling as HTMLInputElement;
 
-    if (targ.id !== 'form-profile-type') {
+    if (!targ.id.includes('form-profile-type')) {
       hdnInput.value = targ.textContent!.toLowerCase();
     }
   }
