@@ -127,6 +127,10 @@ export default class LoginRegisterForm extends Vue {
   /deep/ h2 {
     font-size: 16px;
   }
+
+  label {
+    font-family: 'Montserrat', Helvetica, Arial, sans-serif;
+  }
 }
 
 @media all and (min-width: 400px) {

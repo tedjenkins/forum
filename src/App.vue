@@ -61,7 +61,25 @@ export default class App extends Vue {
 
 header {
   @include hdrftr;
+  border-bottom: $site-border;
   grid-row: 1;
+
+  & > *:first-child {
+    justify-content: space-evenly;
+
+    a {
+      border: 1px solid transparent;
+      color: inherit;
+      padding: 4px 12px;
+      text-decoration: none;
+      transition-duration: 120ms;
+      transition-property: background-color border-color;
+
+      &:hover {
+        border-color: #333;
+      }
+    }
+  }
 
   #header-container {
     flex-flow: column;
@@ -81,6 +99,17 @@ header {
       display: flex;
       flex-flow: row wrap;
       justify-content: center;
+
+      & > * {
+        margin: 3px;
+        text-align: center;
+        width: 90px;
+      }
+
+      .router-link-exact-active {
+        background-color: #eee;
+        border: 1px solid #333;
+      }
     }
   }
 }
@@ -97,7 +126,12 @@ main {
 footer {
   @include hdrftr;
   background-color: $light-site-hdrftr-bgcolor;
+  border-top: $site-border;
   grid-row: 3;
+
+  & > *:first-child {
+    justify-content: flex-end;
+  }
 }
 
 @media all and (min-width: 600px) {

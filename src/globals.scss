@@ -21,8 +21,6 @@
 
 // Uniform header / footer CSS
 @mixin hdrftr {
-  $border: 1px solid #444;
-
   background-color: $light-site-hdrftr-bgcolor;
   color: $light-site-hdrftr-fontcolor;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
@@ -35,34 +33,6 @@
     margin: 0px auto;
     max-width: $site-max-width;
   }
-
-  @if is-superselector('header', &) {
-    border-bottom: $border;
-
-    & > *:first-child {
-      justify-content: space-evenly;
-  
-      a {
-        border: 1px solid transparent;
-        color: inherit;
-        padding: 4px 12px;
-        text-decoration: none;
-        transition-duration: 120ms;
-        transition-property: background-color border-color;
-  
-        &:hover {
-          border-color: #333;
-        }
-      }
-    }
-  } @else {
-    // footer
-    border-top: $border;
-
-    & > *:first-child {
-      justify-content: flex-end;
-    }
-  }
 }
 
 //========== //
@@ -70,6 +40,7 @@
 //========== //
 
 // Structure
+$site-border: 1px solid #444;
 $site-padding: 10px;
 $site-max-width: 1200px;
 
