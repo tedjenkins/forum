@@ -1,6 +1,6 @@
 <template>
-  <div id="admin">
-    Welcome to {{ this.$siteName }} (admin).
+  <div id="search">
+    Welcome to {{ this.$siteName }} (search).
   </div>
 </template>
 
@@ -11,7 +11,7 @@ import { Component, Vue } from 'vue-property-decorator';
   components: {},
 })
 
-export default class Admin extends Vue {}
+export default class Search extends Vue {}
 </script>
 
 <style lang="scss" scoped>

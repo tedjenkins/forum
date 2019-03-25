@@ -24,7 +24,7 @@
   background-color: $light-site-hdrftr-bgcolor;
   color: $light-site-hdrftr-fontcolor;
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
-  padding: $site-padding;
+  padding-top: 10px;
 
   & > *:first-child {
     align-items: center;
@@ -41,17 +41,15 @@
 
 // Structure
 $site-border: 1px solid #444;
-$site-padding: 10px;
+$site-padding: 10px 0px 0px 0px;
 $site-max-width: 1200px;
 
 // Theme-based (light theme)
-$light-site-hdrftr-bgcolor: #ffffff;
+$light-site-hdrftr-bgcolor: rgba(255, 255, 0, 0.6);;
 $light-site-hdrftr-fontcolor: #141414;
 
 $light-site-main-bgcolor: #f0f0f0;
 $light-site-main-fontcolor: #101010;
-
-$light-site-active-color: #fdfd48;
 
 // Theme-based (dark theme)
 $dark-site-hdrftr-bgcolor: #222;

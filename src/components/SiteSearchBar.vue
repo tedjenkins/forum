@@ -1,7 +1,5 @@
 <template>
-  <div class="site-search">
-    <input type="text" placeholder="Search site..."/>
-  </div>
+  <input type="text" class="site-search" placeholder="Search site..."/>
 </template>
 
 <script lang="ts">
@@ -11,16 +9,18 @@ import { Component, Vue } from 'vue-property-decorator';
   components: {},
 })
 
-export default class SiteSearchBox extends Vue {}
+export default class SiteSearchBar extends Vue {}
 </script>
 
 <style lang="scss" scoped>
-.site-search input {
-  background-color: $light-site-main-bgcolor;
-  border: 1px solid white;
+.site-search {
+  background-color: $light-site-hdrftr-bgcolor;
+  border: 1px dotted white;
   border-radius: 8px;
   color: $light-site-main-fontcolor;
+  display: block;
   font-size: 13px;
+  margin: 0px auto;
   padding: 8px;
   width: 240px;
 }
