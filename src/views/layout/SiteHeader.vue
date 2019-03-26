@@ -74,6 +74,10 @@ header {
 
     & > * {
       text-align: center;
+
+      &:hover {
+        background-color: rgba(0, 0, 0, 0.1);
+      }
     }
 
     .router-link-exact-active {

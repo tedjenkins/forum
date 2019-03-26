@@ -24,7 +24,6 @@ main {
 
 @media all and (min-width: 1200px) {
   main {
-    padding: $site-padding;
     margin: 0px auto;
     width: $site-max-width;
   }

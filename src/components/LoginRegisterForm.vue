@@ -1,5 +1,5 @@
 <template>
-  <form class="site-form site-form-login-register" :id="formId" @submit.prevent="handleForm">
+  <form class="site-form" :id="formId" @submit.prevent="handleForm">
     <h1>{{ formHeader }} {{ this.$siteName }}</h1>
     <template v-for="element of elements">
       <div class="form-section injected-html" v-if="element.html" v-html="element.html" :key="element.index" :id="element.id"></div>
