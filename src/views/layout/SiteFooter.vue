@@ -1,6 +1,6 @@
 <template>
   <footer>
-    <div id="site-credits">{{ this.$siteName }} © <a href="https://usefulsoftware.xyz">UsefulSoftware.xyz</a> 2019</div>
+    <div id="site-credits" aria-label="site credits">{{ this.$siteName }} © <a href="https://usefulsoftware.xyz">UsefulSoftware.xyz</a> 2019</div>
   </footer>
 </template>
 

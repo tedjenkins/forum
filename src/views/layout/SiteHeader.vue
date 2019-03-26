@@ -1,7 +1,7 @@
 <template>
   <header>
     <a id="site-title" href="#" @click="handleEmit">{{ this.$siteName }}</a>
-    <nav id="site-navigation">
+    <nav id="site-navigation" aria-label="site navigation">
       <router-link to="/">Home</router-link>
       <router-link to="/latest">Latest</router-link>
       <router-link to="/settings">Settings</router-link>

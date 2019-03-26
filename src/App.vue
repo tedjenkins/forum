@@ -1,8 +1,8 @@
 <template>
-  <div id="app">
-    <SiteHeader v-on:emitReloadMain="reloadMain"/>
-    <SiteMain :key="mainKey"/>
-    <SiteFooter/>
+  <div id="app" aria-label="app">
+    <SiteHeader v-on:emitReloadMain="reloadMain" aria-label="header section"/>
+    <SiteMain :key="mainKey" aria-label="main section"/>
+    <SiteFooter aria-label="footer section"/>
   </div>
 </template>
 
