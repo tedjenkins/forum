@@ -18,10 +18,35 @@ footer {
   border-top: $site-border;
   grid-row: 3;
   padding: 10px;
-  text-align: right;
 
   #site-credits {
-    display: inline-block;
+    font-size: 13px;
+    text-align: center;
+  }
+}
+
+@media all and (min-width: 400px) {
+  footer {
+    #site-credits {
+      font-size: 14px;
+    }
+  }
+}
+
+@media all and (min-width: 600px) {
+  footer {
+    #site-credits {
+      font-size: 15px;
+    }
+  }
+}
+
+@media all and (min-width: 800px) {
+  footer {
+    #site-credits {
+      font-size: 16px;
+      text-align: right;
+    }
   }
 }
 </style>
