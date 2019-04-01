@@ -24,6 +24,7 @@ main {
 
 @media all and (min-width: 1200px) {
   main {
+    font-family: Arial, Helvetica, sans-serif;
     margin: 0px auto;
     width: $site-max-width;
   }

@@ -3,54 +3,54 @@
     <section id="login-register" v-if="!loggedIn">
       <ul id="login-register-select" @click="handleSelect">
         <li class="li-selected" id="login-select">Login</li>
-        <li id="register-select">Register</li>
+        <li id="register-select">Sign up</li>
       </ul>
-        <form class="site-form" id="login-form" v-if="showLogin" @submit.prevent="handleForm">
-          <div class="form-section">
-            <label for="login-email">Email address</label>
-            <input type="text" id="login-email" minlength="6" maxlength="24"/>
+      <form class="site-form" id="login-form" v-if="showLogin" @submit.prevent="handleForm">
+        <div class="form-section">
+          <label for="login-email">Email address</label>
+          <input type="text" id="login-email" minlength="6" maxlength="24"/>
+        </div>
+        <div class="form-section">
+          <label for="login-password">Password</label>
+          <input type="password" id="login-password"/>
+        </div>
+        <div class="form-section" id="login-extra">
+          <button type="submit">Submit</button>
+          <div id="form-remember-me">
+            <input type="checkbox" id="form-remember"/> <label for="form-remember">Remember me</label>
           </div>
-          <div class="form-section">
-            <label for="login-password">Password</label>
-            <input type="password" id="login-password"/>
+          <div id="form-forgot-password">
+            (<a href="#">forgot password?</a>)
           </div>
-          <div class="form-section">
-            <button type="submit">Submit</button>
-            <div id="form-remember-me">
-              <input type="checkbox" id="form-remember"/> <label for="form-remember">Remember me</label>
-            </div>
-            <div id="form-forgot-password">
-              (<a href="#">forgot password?</a>)
-            </div>
-          </div>
-        </form>
-        <form class="site-form" id="register-form" v-if="!showLogin" @submit.prevent="handleForm">
-          <div class="form-section">
-            Intro text
-          </div>
-          <div class="form-section">
-            <label for="register-username">Username</label>
-            <input type="text" id="register-username" minlength="6" maxlength="24"/>
-          </div>
-          <div class="form-section">
-            <label for="register-password">Password</label>
-            <input type="password" id="register-password"/>
-          </div>
-          <div class="form-section">
-            <label for="register-password-repeat">Repeat password</label>
-            <input type="password" id="register-password-repeat"/>
-          </div>
-          <div class="form-section">
-            <label for="register-email">Email address</label>
-            <input type="text" id="register-email" minlength="6" maxlength="24"/>
-          </div>
-          <div class="form-section" id="form-info">
-            By signing up you agree to our <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a> and our <a href="#">usage of cookies</a>. You must also be aged 13 or over to register.
-          </div>
-          <div class="form-section">
-            <button type="submit">Submit</button>
-          </div>
-        </form>
+        </div>
+      </form>
+      <form class="site-form" id="register-form" v-if="!showLogin" @submit.prevent="handleForm">
+        <div class="form-section">
+          Signing up with {{ this.$siteName }} is quick and easy.
+        </div>
+        <div class="form-section">
+          <label for="register-username">Username</label>
+          <input type="text" id="register-username" minlength="6" maxlength="24"/>
+        </div>
+        <div class="form-section">
+          <label for="register-password">Password</label>
+          <input type="password" id="register-password"/>
+        </div>
+        <div class="form-section">
+          <label for="register-password-repeat">Repeat password</label>
+          <input type="password" id="register-password-repeat"/>
+        </div>
+        <div class="form-section">
+          <label for="register-email">Email address</label>
+          <input type="text" id="register-email" minlength="6" maxlength="24"/>
+        </div>
+        <div class="form-section" id="register-info">
+          By signing up you agree to our <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a> and our <a href="#">usage of cookies</a>. You must also be aged 13 or over to register.
+        </div>
+        <div class="form-section">
+          <button type="submit">Submit</button>
+        </div>
+      </form>
     </section>
     <section id="display-posts">
       here is where posts are displayed
@@ -70,7 +70,7 @@ import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 
 export default class Home extends Vue {
   loggedIn: boolean = false;
-  showLogin: boolean = false;
+  showLogin: boolean = true;
 
   /**
    * Handle select of 'login' and 'register' in their part of the page.
@@ -99,9 +99,14 @@ export default class Home extends Vue {
 }
 
 #login-register {
+  margin: 0px auto;
+  width: 640px;
 
   #login-register-select {
+    border: 1px solid #ccc;
+    display: inline-block;
     padding-left: 0px;
+    width: auto;
 
     & > * {
       @include no-select;
@@ -115,5 +120,45 @@ export default class Home extends Vue {
     }
   }
 
+  .site-form {
+    background-color: #fafafa;
+    border: 1px solid #ccc;
+    padding: 10px;
+
+    .form-section {
+      padding: 4px;
+
+      & > * {
+        display: block;
+        font-size: 18px;
+      }
+
+      label {
+        font-weight: bold;
+        padding: 10px;
+        text-align: center;
+      }
+
+      input {
+        margin: 0px auto;
+      }
+
+      button {
+        margin: 10px auto;
+      }
+
+      a {
+        display: inline;
+      }
+
+      div {
+        text-align: center;
+      }
+    }
+
+    #register-info {
+      text-align: center;
+    }
+  }
 }
 </style>
