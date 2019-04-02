@@ -9,8 +9,25 @@ const app = express();
 
 app.set('port', 3010);
 app.use(express.json());
-app.use(express.urlencoded({ extended: false }));
-app.use(express.static(path.join(__dirname, '../public')));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.static(path.join(__dirname, (process.env.NODE_ENV === 'production') ? '../dist' : '../public')));
+
+// Error handling
+// app.all('*', (req: express.Request, res: express.Response) => {
+//   res.type('html');
+//   res.sendFile(path.join(__dirname, 'error.html'));
+// });
+
+// ================ //
+// POST app routes. //
+// ================ //
+app.all('/register', (req: express.Request, res: express.Response) => {
+  res.type('application/json');
+  res.setHeader('Access-Control-Allow-Origin', 'http://localhost:3000');
+  res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+  res.setHeader('Access-Control-Allow-Methods', 'POST');
+  res.send(req.body);
+});
 
 const server = http.createServer(app).listen(app.get('port'));
 server.on('error', err => { throw err; });

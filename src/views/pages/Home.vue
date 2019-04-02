@@ -5,7 +5,7 @@
         <li class="li-selected" id="login-select">Login</li>
         <li id="register-select">Sign up</li>
       </ul>
-      <form class="site-form" id="login-form" v-if="showLogin" @submit.prevent="handleForm">
+      <form class="site-form" id="login-form" v-if="showLogin" @submit="handleForm">
         <div class="form-section">
           <label for="login-email">Email address</label>
           <input type="text" id="login-email" minlength="6" maxlength="24"/>
@@ -24,7 +24,7 @@
           </div>
         </div>
       </form>
-      <form class="site-form" id="register-form" v-if="!showLogin" @submit.prevent="handleForm">
+      <form class="site-form" id="register-form" v-if="!showLogin" @submit="handleForm">
         <div class="form-section">
           Signing up with {{ this.$siteName }} is quick and easy.
         </div>
@@ -86,9 +86,43 @@ export default class Home extends Vue {
     Array.from(targ.parentElement!.children).forEach(el => {
       el.classList.remove('li-selected');
     });
+
     targ.classList.add('li-selected');
 
     this.showLogin = (targ.textContent!.toLowerCase().includes('login')) ? true : false;
+  }
+
+  /**
+   * Handle login / register form.
+   * @param {Event} e -- submit event.
+   */
+  handleForm(e: Event) {
+    e.preventDefault();
+
+    const targ = e.target as HTMLFormElement;
+    const vals: string[] = [];
+    targ.querySelectorAll('input').forEach(el => {
+      if (el.type === 'password') {
+        const encrypted = btoa(el.value);
+        vals.push(encrypted);
+        return true;
+      }
+      if (el.value.length < 6) {
+        //
+      }
+      vals.push(el.value);
+    });
+
+    fetch(`${Vue.prototype.$siteHost}/register`, {
+      method: 'POST',
+      body: JSON.stringify(vals),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(json => console.log(json))
+      .catch(err => console.log(err));
   }
 }
 </script>
@@ -149,6 +183,10 @@ export default class Home extends Vue {
 
       a {
         display: inline;
+        
+        &:active {
+          outline-color: transparent;
+        }
       }
 
       div {
