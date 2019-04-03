@@ -14,11 +14,6 @@ export default new Router({
       component: Home
     },
     {
-      path: '/latest',
-      name: 'latest',
-      component: () => import(/* webpackChunkName: "latest" */ './views/pages/Latest.vue')
-    },
-    {
       path: '/settings',
       name: 'settings',
       component: () => import(/* webpackChunkName: "settings" */ './views/pages/Settings.vue')
@@ -27,11 +22,6 @@ export default new Router({
       path: '/post',
       name: 'post',
       component: () => import(/* webpackChunkName: "post" */ './views/pages/Post.vue')
-    },
-    {
-      path: '/search',
-      name: 'search',
-      component: () => import(/* webpackChunkName: "search" */ './views/pages/Search.vue')
     }
-  ],
+  ]
 });

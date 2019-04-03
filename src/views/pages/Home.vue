@@ -8,6 +8,12 @@
       <LoginRegisterForm formId="login-form" :elements="loginElements" v-if="showLogin"/>
       <LoginRegisterForm formId="register-form" :elements="registerElements" v-if="!showLogin"/>
     </section>
+    <section id="unknown">
+      here is where TBDs are displayed (genre list?)
+    </section>
+    <section id="posts-navigation">
+      here is where post navigation is displayed (latest, search)
+    </section>
     <section id="display-posts">
       here is where posts are displayed
     </section>
@@ -18,7 +24,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 
-type formEls = Array<{ id: string|undefined, html: string }>;
+type formEls = Array<{ id?: string, html: string }>;
 
 @Component({
   components: {
@@ -29,11 +35,9 @@ type formEls = Array<{ id: string|undefined, html: string }>;
 export default class Home extends Vue {
   loginElements: formEls = [
     {
-      id: '',
-      html: `<label for="login-email">Email address</label> <input type="text" id="login-email" minlength="6" maxlength="24"/>`
+      html: `<label for="login-email">Email address</label> <input type="text" id="login-email"/>`
     },
     {
-      id: '',
       html: `<label for="login-password">Password</label> <input type="password" id="login-password"/>`
     },
     {
@@ -44,23 +48,18 @@ export default class Home extends Vue {
 
   registerElements: formEls = [
     {
-      id: '',
       html: `Signing up with ${Vue.prototype.$siteName} is quick and easy.`
     },
     {
-      id: '',
       html: `<label for="register-username">Username</label> <input type="text" id="register-username" minlength="6" maxlength="24"/>`
     },
     {
-      id: '',
       html: `<label for="register-password">Password</label> <input type="password" id="register-password"/>`
     },
     {
-      id: '',
       html: `<label for="register-password-repeat">Repeat password</label> <input type="password" id="register-password-repeat"/>`
     },
     {
-      id: '',
       html: `<label for="register-email">Email address</label> <input type="text" id="register-email" minlength="6" maxlength="24"/>`
     },
     {
@@ -68,7 +67,6 @@ export default class Home extends Vue {
       html: `By signing up you agree to our <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a> and our <a href="#">usage of cookies</a>. You must also be aged 13 or over to register.`
     },
     {
-      id: '',
       html: `<button type="submit">Submit</button>`
     }
   ];
@@ -98,30 +96,56 @@ export default class Home extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.li-selected {
-  background-color: white;
-}
+#home {
+  display: grid;
+  grid-gap: 5px;
+  grid-template-areas:
+    "stats topbar topbar"
+    "stats view view"
+    "stats view view"
+    "other view view"
+    "other view view"
+    "other view view";
 
-#login-register {
-  margin: 0px auto;
-  width: 640px;
+  #login-register {
+    grid-area: stats;
+    margin: 0px auto;
+    width: 640px;
 
-  #login-register-select {
-    border: 1px solid #ccc;
-    display: inline-block;
-    padding-left: 0px;
-    width: auto;
+    .li-selected {
+      background-color: white;
+    }
 
-    & > * {
-      @include no-select;
-      cursor: pointer;
+    #login-register-select {
+      border: 1px solid #ccc;
       display: inline-block;
-      padding: 8px;
+      padding-left: 0px;
+      width: auto;
 
-      &:hover {
-        background-color: white;
+      & > * {
+        @include no-select;
+        cursor: pointer;
+        display: inline-block;
+        padding: 8px;
+
+        &:hover {
+          background-color: white;
+        }
       }
     }
+  }
+
+  #unknown {
+    grid-area: other;
+  }
+
+  #posts-navigation {
+    background-color: #afafaf;
+    grid-area: topbar;
+  }
+
+  #display-posts {
+    grid-area: view;
   }
 }
 </style>

@@ -3,10 +3,8 @@
     <a id="site-title" href="#" @click="handleEmit">{{ this.$siteName }}</a>
     <nav id="site-navigation" aria-label="site navigation">
       <router-link to="/">Home</router-link>
-      <router-link to="/latest">Latest</router-link>
       <router-link to="/settings">Settings</router-link>
       <router-link to="/post">Post</router-link>
-      <router-link to="/search">Search</router-link>
     </nav>
   </header>
 </template>

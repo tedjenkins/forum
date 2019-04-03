@@ -1,6 +1,6 @@
 <template>
   <form class="site-form" :id="formId" @submit="handleForm">
-    <div class="form-section" v-for="element of elements" :key="elements.indexOf(element)" v-html="element.html"></div>
+    <div class="form-section" v-for="element of elements" :key="elements.indexOf(element)" :id="element.id" v-html="element.html"></div>
   </form>
 </template>
 
@@ -24,13 +24,14 @@ export default class LoginRegisterForm extends Vue {
     const vals: string[] = [];
     targ.querySelectorAll('input').forEach(el => {
       if (el.type === 'password') {
-        const encrypted = btoa(el.value);
-        vals.push(encrypted);
+        vals.push(btoa(el.value));
         return true;
       }
-      if (el.value.length < 6) {
-        //
+
+      if (el.value.length < +el.minLength) {
+        throw Error('Invalid length');
       }
+
       vals.push(el.value);
     });
 

@@ -14,19 +14,16 @@ export default class SiteMain extends Vue {}
 
 <style lang="scss" scoped>
 main {
+  background-color: $light-site-main-bgcolor;
   color: $light-site-main-fontcolor;
   grid-row: 2;
-
-  & > * {
-    display: grid;
-  }
 }
 
 @media all and (min-width: 1200px) {
   main {
     font-family: Arial, Helvetica, sans-serif;
     margin: 0px auto;
-    width: $site-max-width;
+    width: 100vw;
   }
 }
 </style>
