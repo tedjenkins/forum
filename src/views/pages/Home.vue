@@ -98,7 +98,6 @@ export default class Home extends Vue {
 <style lang="scss" scoped>
 #home {
   display: grid;
-  grid-gap: 5px;
   grid-template-areas:
     "stats topbar topbar"
     "stats view view"
@@ -106,11 +105,11 @@ export default class Home extends Vue {
     "other view view"
     "other view view"
     "other view view";
+  height: 100%;
 
   #login-register {
+    background-color: lightblue;
     grid-area: stats;
-    margin: 0px auto;
-    width: 640px;
 
     .li-selected {
       background-color: white;
@@ -136,6 +135,7 @@ export default class Home extends Vue {
   }
 
   #unknown {
+    background-color: pink;
     grid-area: other;
   }
 
@@ -145,6 +145,7 @@ export default class Home extends Vue {
   }
 
   #display-posts {
+    background-color: lightgreen;
     grid-area: view;
   }
 }
