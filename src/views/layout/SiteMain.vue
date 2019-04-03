@@ -16,14 +16,7 @@ export default class SiteMain extends Vue {}
 main {
   background-color: $light-site-main-bgcolor;
   color: $light-site-main-fontcolor;
+  font-family: Arial, Helvetica, sans-serif;
   grid-row: 2;
-}
-
-@media all and (min-width: 1200px) {
-  main {
-    font-family: Arial, Helvetica, sans-serif;
-    margin: 0px auto;
-    width: 100vw;
-  }
 }
 </style>

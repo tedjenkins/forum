@@ -41,7 +41,7 @@ export default class Home extends Vue {
       html: `<label for="login-password">Password</label> <input type="password" id="login-password"/>`
     },
     {
-      id: 'form-extra',
+      id: 'login-extra',
       html: `<button type="submit">Submit</button> <div id="form-remember-me"> <input type="checkbox" id="form-remember"/> <label for="form-remember">Remember me</label></div> <div id="form-forgot-password">(<a href="#">forgot password?</a>)</div>`
     }
   ];
@@ -99,12 +99,10 @@ export default class Home extends Vue {
 #home {
   display: grid;
   grid-template-areas:
-    "stats topbar topbar"
-    "stats view view"
-    "stats view view"
-    "other view view"
-    "other view view"
-    "other view view";
+    "stats"
+    "topbar"
+    "view"
+    "other";
   height: 100%;
 
   #login-register {
@@ -122,10 +120,10 @@ export default class Home extends Vue {
       width: auto;
 
       & > * {
-        @include no-select;
         cursor: pointer;
         display: inline-block;
         padding: 8px;
+        user-select: none;
 
         &:hover {
           background-color: white;
@@ -147,6 +145,16 @@ export default class Home extends Vue {
   #display-posts {
     background-color: lightgreen;
     grid-area: view;
+  }
+}
+
+@media all and (min-width: 1200px) {
+  #home {
+    grid-template-areas:
+      "stats topbar topbar"
+      "stats view view"
+      "other view view";
+    grid-template-rows: 0.2fr 0.8fr 1fr;
   }
 }
 </style>

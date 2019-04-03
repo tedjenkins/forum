@@ -56,11 +56,14 @@ export default class LoginRegisterForm extends Vue {
   padding: 10px;
 
   .form-section {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
     padding: 4px;
 
     & > * {
-      display: block;
-      font-size: 18px;
+      flex: 0 1 50%;
+      font-size: 13px;
     }
 
     label {
@@ -74,7 +77,7 @@ export default class LoginRegisterForm extends Vue {
     }
 
     button {
-      margin: 10px auto;
+      margin: 6px auto;
     }
 
     a {
@@ -90,8 +93,32 @@ export default class LoginRegisterForm extends Vue {
     }
   }
 
+  #login-extra {
+    flex-direction: column;
+  }
+
   #register-info {
     text-align: center;
+  }
+}
+
+@media all and (min-width: 600px) {
+  .site-form {
+    .form-section {
+      & > * {
+        font-size: 15px;
+      }
+    }
+  }
+}
+
+@media all and (min-width: 1200px) {
+  .site-form {
+    .form-section {
+      & > * {
+        font-size: 18px;
+      }
+    }
   }
 }
 </style>
