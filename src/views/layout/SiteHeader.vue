@@ -39,15 +39,12 @@ export default class SiteHeader extends Vue {
 <style lang="scss" scoped>
 header {
   @include hdrftr;
-  border-bottom: $site-border;
   flex-direction: column;
   grid-row: 1;
 
   a {
-    border: 1px solid transparent;
-    border-bottom: 0px;
     color: inherit;
-    padding: 4px 12px;
+    padding: 4px 20px;
     text-decoration: none;
     transition-duration: 120ms;
     transition-property: background-color;
@@ -59,16 +56,16 @@ header {
     font-weight: bold;
     margin: 0px auto;
     text-align: center;
+    width: 100%;
   }
 
   #site-navigation {
     align-items: center;
     display: flex;
-    flex-flow: row wrap;
+    flex-flow: row nowrap;
     font-size: 14px;
     justify-content: center;
     margin-top: 4px;
-    width: 100%;
 
     & > * {
       text-align: center;
@@ -80,16 +77,7 @@ header {
 
     .router-link-exact-active {
       background-color: rgba(0, 0, 0, 0.1);
-      border: 1px solid #333;
-      border-bottom: 0px;
-
-      &:first-of-type {
-        border-left: 0px;
-      }
-
-      &:last-of-type {
-        border-right: 0px;
-      }
+      font-weight: bold;
     }
   }
 }
@@ -129,28 +117,19 @@ header {
       align-content: center;
       display: flex;
       height: 100%;
-      justify-content: center;
-      width: 30%;
+      text-align: left;
     }
 
     #site-navigation {
       height: 100%;
       margin-top: 0px;
-      width: 70%;
+      width: 50%;
 
       & > * {
         align-items: center;
         display: flex;
         height: 100%;
         justify-content: center;
-      }
-
-      .router-link-exact-active {
-        border-top: 0px;
-
-        &:first-of-type {
-          border-left: 1px solid #333;
-        }
       }
     }
   }

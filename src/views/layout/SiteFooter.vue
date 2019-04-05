@@ -15,7 +15,6 @@ export default class SiteFooter extends Vue {}
 <style lang="scss" scoped>
 footer {
   @include hdrftr;
-  border-top: $site-border;
   grid-row: 3;
   padding: 10px;
 
