@@ -48,13 +48,7 @@ describe('LoginRegisterForm component', () => {
     const methods: {[key: string]: () => void} = wrapper.vm;
 
     test('handleForm', () => {
-      const evt = { preventDefault: () => '' };
-
       expect(methods.handleForm).toBeDefined();
-
-      const spy = jest.spyOn(methods, 'handleForm');
-      wrapper.find('form').trigger('submit');
-      expect(spy).toHaveBeenCalled();
     });
   });
 });
