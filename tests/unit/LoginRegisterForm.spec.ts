@@ -1,67 +1,60 @@
 import { shallowMount } from '@vue/test-utils';
+import { formEls } from '@/types';
 import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 
 describe('LoginRegisterForm component', () => {
+  const mockEls: formEls = [
+    {
+      html: '<h3>This is a test form.</h3>'
+    },
+    {
+      html: `<label for="name-input">Enter your name: </label> <input type="text" id="name-input"/>`
+    },
+    {
+      html: `<label for="location-input">Enter your location: </label> <input type="text" id="location-input"/>`
+    },
+    {
+      html: `<label for="date-input">Enter your date of birth: </label> <input type="date" id="date-input"/>`
+    },
+    {
+      id: 'test-form-extras',
+      html: `<label for="confirm-input">Confirm...</label> <input type="checkbox" id="confirm-input"/>`
+    },
+    {
+      id: 'test-form-submit',
+      html: `<button type="submit">Submit</button>`
+    }
+  ];
+
   const wrapper = shallowMount(LoginRegisterForm, {
     propsData: {
-      elements: [
-        {
-          html: '<marquee>hello</marquee>'
-        },
-        {
-          id: 'test-text-input',
-          label: 'Test text input',
-          type: 'text'
-        },
-        {
-          id: 'test-email-input',
-          label: 'Test email input',
-          type: 'text'
-        }
-      ]
+      formId: 'test-form',
+      elements: mockEls
     }
   });
-  const methods: {[key: string]: () => void} = wrapper.vm.$data;
 
-  test('it is a form and has the "site-form" class', () => {
+  test('it is a form, has the "site-form" class and renders correctly', () => {
     expect(wrapper.contains('form')).toBe(true);
+    expect(wrapper.contains('label')).toBe(true);
+    expect(wrapper.contains('input')).toBe(true);
+    expect(wrapper.contains('button')).toBe(true);
     expect(wrapper.classes()).toContain('site-form');
+
+    expect(wrapper.isVueInstance()).toBe(true);
+    expect(wrapper.html().match(/"form-section"/g)).toHaveLength(mockEls.length);
   });
 
-  test('validateInput', () => {
-    expect(methods.validateInput).toBeDefined();
+  describe('methods', () => {
+    const methods: {[key: string]: () => void} = wrapper.vm;
 
-    // Basic input triggers method
-    const spy = jest.spyOn(methods, 'validateInput');
-    wrapper.find('input').trigger('input');
-    expect(spy).toHaveBeenCalled();
+    test('handleForm', () => {
+      const evt = { preventDefault: () => '' };
 
-    // Valid email input
-    wrapper.find('#test-email-input').setValue('hello@abc.com');
-    expect(wrapper.find('label[for=test-email-input]').classes()).toContain('valid-input');
-    wrapper.find('#test-email-input').setValue('hello');
-    expect(wrapper.find('label[for=test-email-input]').classes()).not.toContain('valid-input');
+      expect(methods.handleForm).toBeDefined();
 
-    // Minimum length
-    wrapper.find('#test-text-input').setValue('abcdefg');
-    expect(wrapper.find('label[for=test-text-input]').classes()).toContain('valid-input');
-    wrapper.find('#test-text-input').setValue('abc');
-    expect(wrapper.find('label[for=test-text-input]').classes()).not.toContain('valid-input');
-  });
-
-  test('validateInputFocus', () => {
-    expect(methods.validateInputFocus).toBeDefined();
-
-    const spy = jest.spyOn(methods, 'validateInputFocus');
-    wrapper.find('input').trigger('focus');
-    expect(spy).toHaveBeenCalled();
-  });
-
-  test('validateInputBlur', () => {
-    expect(methods.validateInputBlur).toBeDefined();
-
-    const spy = jest.spyOn(methods, 'validateInputBlur');
-    wrapper.find('input').trigger('blur');
-    expect(spy).toHaveBeenCalled();
+      const spy = jest.spyOn(methods, 'handleForm');
+      wrapper.find('form').trigger('submit');
+      expect(spy).toHaveBeenCalled();
+    });
   });
 });

@@ -6,12 +6,13 @@
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
+import { formEls } from '@/types';
 
 @Component({})
 
 export default class LoginRegisterForm extends Vue {
   @Prop() formId!: string;
-  @Prop() elements!: Array<{ id: string|undefined, html: string }>;
+  @Prop() elements!: formEls;
 
   /**
    * Handle login / register form.

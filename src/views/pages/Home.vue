@@ -22,9 +22,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { formEls } from '@/types';
 import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
-
-type formEls = Array<{ id?: string, html: string }>;
 
 @Component({
   components: {
