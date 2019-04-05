@@ -1,3 +1,5 @@
 module.exports = {
-  tabWidth: 2
-}
+  allowParens: 'always',
+  endOfLine: 'lf',
+  singleQuote: true
+};
