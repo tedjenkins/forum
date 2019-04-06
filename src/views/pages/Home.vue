@@ -2,18 +2,17 @@
   <div id="home">
     <section id="user-stats">
       <div id="user-stats-box" v-if="loggedIn">
-        <h3>User dashboard</h3>
-      </div>
-      <div id="user-not-logged-in" v-else-if="!loggedIn">
-        <h3>Anonymous user</h3>
-        <div id="user-not-logged-in-notice">Please <router-link to="/login">log in</router-link> or <router-link to="/register">sign up</router-link> to view your dashboard.</div>
-        <div class="user-dashboard" id="user-not-logged-in-dashboard">
+        <div id="user-dashboard">
           <h4>Dashboard</h4>
           <div class="dashboard-row">Post count: <span id="dashboard-post-count">0</span></div>
           <div class="dashboard-row">Last posted in: <a id="dashboard-last-posted-in" href="#">Hello world...</a></div>
           <div class="dashboard-row">Awards given: <span id="dashboard-awards-given">0</span></div>
           <div class="dashboard-row">Awards received: <span id="dashboard-awards-received">0</span></div>
         </div>
+      </div>
+      <div id="user-not-logged-in" v-else-if="!loggedIn">
+        <h3>Anonymous user</h3>
+        <div id="user-not-logged-in-notice">Please <router-link to="/login">log in</router-link> or <router-link to="/register">sign up</router-link> to view your dashboard.</div>
       </div>
     </section>
     <section id="unknown">
@@ -40,7 +39,7 @@ import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 })
 
 export default class Home extends Vue {
-  loggedIn: boolean = false;
+  loggedIn: boolean = true;
 
   toggleLoggedIn() {
     this.loggedIn = !this.loggedIn;
@@ -67,9 +66,11 @@ export default class Home extends Vue {
       text-align: center;
     }
 
-    .user-dashboard {
-      padding: 10px 0px;
+    #user-stats-box {
+      grid-template-rows: auto auto 0.8fr;
+    }
 
+    #user-dashboard {
       & > * {
         padding: 4px;
       }
@@ -86,10 +87,6 @@ export default class Home extends Vue {
       .dashboard-row:nth-of-type(2n) {
         background-color: lightgrey;
       }
-    }
-
-    #user-not-logged-in {
-      grid-template-rows: auto auto 0.8fr;
     }
   }
 
@@ -120,7 +117,7 @@ export default class Home extends Vue {
 
     #user-stats {
       & > * {
-        .user-dashboard {
+        #user-dashboard {
           h4 {
             font-size: 20px;
           }
