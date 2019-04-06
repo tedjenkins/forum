@@ -19,7 +19,10 @@
       here is where TBDs are displayed (genre list?)
     </section>
     <section id="posts-navigation">
-      here is where post navigation is displayed (latest, search)
+      <div id="posts-navigation-links">
+        <div id="posts-navigation-latest">Latest</div>
+        <div id="posts-navigation-search">Search</div>
+      </div>
     </section>
     <section id="display-posts">
       here is where posts are displayed <u @click="toggleLoggedIn">(Toggle loggedIn variable)</u>
@@ -48,26 +51,22 @@ export default class Home extends Vue {
 </script>
 
 <style lang="scss" scoped>
+@mixin h4-styling {
+  background-color: lightblue;
+  font-size: 15px;
+  text-align: center;
+
+  @media all and (min-width: 1200px) {
+    font-size: 20px;
+  }
+}
+
 #home {
-  display: grid;
-  grid-template-areas:
-    "stats"
-    "topbar"
-    "view"
-    "other";
   height: 100%;
 
   #user-stats {
-    grid-area: stats;
-
     & > * {
-      display: grid;
-      height: 100%;
       text-align: center;
-    }
-
-    #user-stats-box {
-      grid-template-rows: auto auto 0.8fr;
     }
 
     #user-dashboard {
@@ -76,8 +75,7 @@ export default class Home extends Vue {
       }
 
       h4 {
-        background-color: lightblue;
-        font-size: 15px;
+        @include h4-styling;
       }
 
       .dashboard-row {
@@ -92,41 +90,74 @@ export default class Home extends Vue {
 
   #unknown {
     background-color: pink;
-    grid-area: other;
   }
 
   #posts-navigation {
-    background-color: #afafaf;
-    grid-area: topbar;
+    background-color: darkslategrey;
+    color: white;
+
+    #posts-navigation-links {
+      display: flex;
+      height: 100%;
+      padding: 4px;
+
+      & > * {
+        align-items: center;
+        cursor: pointer;
+        display: flex;
+        flex: 0 1 50%;
+        font-size: 13px;
+        justify-content: center;
+        user-select: none;
+      }
+    }
   }
 
   #display-posts {
     background-color: lightgreen;
-    grid-area: view;
   }
 }
 
 @media all and (min-width: 1200px) {
   #home {
+    display: grid;
     grid-template-areas:
       "stats topbar"
       "stats view"
       "other view";
     grid-template-columns: 0.3fr 0.7fr;
-    grid-template-rows: 0.2fr 0.8fr 1fr;
+    grid-template-rows: 31px 0.9fr 1fr;
 
     #user-stats {
+      border-right: 1px solid black;
+      grid-area: stats;
+
       & > * {
         #user-dashboard {
-          h4 {
-            font-size: 20px;
-          }
-
           .dashboard-row {
             font-size: 16px;
           }
         }
       }
+    }
+
+    #unknown {
+      border-right: 1px solid black;
+      grid-area: other;
+    }
+
+    #posts-navigation {
+      grid-area: topbar;
+
+      #posts-navigation-links {
+        & > * {
+          font-size: 15px;
+        }
+      }
+    }
+
+    #display-posts {
+      grid-area: view;
     }
   }
 }
