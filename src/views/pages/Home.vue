@@ -1,12 +1,20 @@
 <template>
   <div id="home">
-    <section id="login-register" v-if="!loggedIn">
-      <ul id="login-register-select" @click="handleSelect">
-        <li class="li-selected" id="login-select">Login</li>
-        <li id="register-select">Sign up</li>
-      </ul>
-      <LoginRegisterForm formId="login-form" :elements="loginElements" v-if="showLogin"/>
-      <LoginRegisterForm formId="register-form" :elements="registerElements" v-if="!showLogin"/>
+    <section id="user-stats">
+      <div id="user-stats-box" v-if="loggedIn">
+        <h3>User dashboard</h3>
+      </div>
+      <div id="user-not-logged-in" v-else-if="!loggedIn">
+        <h3>Anonymous user</h3>
+        <div id="user-not-logged-in-notice">Please <router-link to="/login">log in</router-link> or <router-link to="/register">sign up</router-link> to view your dashboard.</div>
+        <div class="user-dashboard" id="user-not-logged-in-dashboard">
+          <h4>Dashboard</h4>
+          <div class="dashboard-row">Post count: <span id="dashboard-post-count">0</span></div>
+          <div class="dashboard-row">Last posted in: <a id="dashboard-last-posted-in" href="#">Hello world...</a></div>
+          <div class="dashboard-row">Awards given: <span id="dashboard-awards-given">0</span></div>
+          <div class="dashboard-row">Awards received: <span id="dashboard-awards-received">0</span></div>
+        </div>
+      </div>
     </section>
     <section id="unknown">
       here is where TBDs are displayed (genre list?)
@@ -15,7 +23,7 @@
       here is where post navigation is displayed (latest, search)
     </section>
     <section id="display-posts">
-      here is where posts are displayed
+      here is where posts are displayed <u @click="toggleLoggedIn">(Toggle loggedIn variable)</u>
     </section>
   </div>
 </template>
@@ -32,66 +40,12 @@ import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 })
 
 export default class Home extends Vue {
-  loginElements: formEls = [
-    {
-      html: `<label for="login-email">Email address</label> <input type="text" id="login-email"/>`
-    },
-    {
-      html: `<label for="login-password">Password</label> <input type="password" id="login-password"/>`
-    },
-    {
-      id: 'login-extra',
-      html: `<button type="submit">Submit</button> <div id="form-remember-me"> <input type="checkbox" id="form-remember"/> <label for="form-remember">Remember me</label></div> <div id="form-forgot-password">(<a href="#">forgot password?</a>)</div>`
-    }
-  ];
-
-  registerElements: formEls = [
-    {
-      html: `Signing up with ${Vue.prototype.$siteName} is quick and easy.`
-    },
-    {
-      html: `<label for="register-username">Username</label> <input type="text" id="register-username" minlength="6" maxlength="24"/>`
-    },
-    {
-      html: `<label for="register-password">Password</label> <input type="password" id="register-password"/>`
-    },
-    {
-      html: `<label for="register-password-repeat">Repeat password</label> <input type="password" id="register-password-repeat"/>`
-    },
-    {
-      html: `<label for="register-email">Email address</label> <input type="text" id="register-email" minlength="6" maxlength="24"/>`
-    },
-    {
-      id: 'register-info',
-      html: `By signing up you agree to our <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a> and our <a href="#">usage of cookies</a>. You must also be aged 13 or over to register.`
-    },
-    {
-      html: `<button type="submit">Submit</button>`
-    }
-  ];
-
   loggedIn: boolean = false;
-  showLogin: boolean = true;
 
-  /**
-   * Handle select of 'login' and 'register' in their part of the page.
-   * @param {MouseEvent} e -- mouse click event.
-   */
-  handleSelect(e: MouseEvent) {
-    const targ = e.target as HTMLElement;
-
-    if ((targ.nodeName !== 'LI') || targ.classList.contains('li-selected')) {
-      return;
-    }
-
-    Array.from(targ.parentElement!.children).forEach(el => {
-      el.classList.remove('li-selected');
-    });
-
-    targ.classList.add('li-selected');
-
-    this.showLogin = (targ.textContent!.toLowerCase().includes('login')) ? true : false;
-  }}
+  toggleLoggedIn() {
+    this.loggedIn = !this.loggedIn;
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -104,30 +58,38 @@ export default class Home extends Vue {
     "other";
   height: 100%;
 
-  #login-register {
-    background-color: lightblue;
+  #user-stats {
     grid-area: stats;
 
-    .li-selected {
-      background-color: white;
+    & > * {
+      display: grid;
+      height: 100%;
+      text-align: center;
     }
 
-    #login-register-select {
-      border: 1px solid #ccc;
-      display: inline-block;
-      padding-left: 0px;
-      width: auto;
+    .user-dashboard {
+      padding: 10px 0px;
 
       & > * {
-        cursor: pointer;
-        display: inline-block;
-        padding: 8px;
-        user-select: none;
-
-        &:hover {
-          background-color: white;
-        }
+        padding: 4px;
       }
+
+      h4 {
+        background-color: lightblue;
+        font-size: 15px;
+      }
+
+      .dashboard-row {
+        font-size: 14px;
+      }
+
+      .dashboard-row:nth-of-type(2n) {
+        background-color: lightgrey;
+      }
+    }
+
+    #user-not-logged-in {
+      grid-template-rows: auto auto 0.8fr;
     }
   }
 
@@ -150,10 +112,25 @@ export default class Home extends Vue {
 @media all and (min-width: 1200px) {
   #home {
     grid-template-areas:
-      "stats topbar topbar"
-      "stats view view"
-      "other view view";
+      "stats topbar"
+      "stats view"
+      "other view";
+    grid-template-columns: 0.3fr 0.7fr;
     grid-template-rows: 0.2fr 0.8fr 1fr;
+
+    #user-stats {
+      & > * {
+        .user-dashboard {
+          h4 {
+            font-size: 20px;
+          }
+
+          .dashboard-row {
+            font-size: 16px;
+          }
+        }
+      }
+    }
   }
 }
 </style>

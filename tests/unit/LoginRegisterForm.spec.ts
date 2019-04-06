@@ -45,7 +45,8 @@ describe('LoginRegisterForm component', () => {
   });
 
   describe('methods', () => {
-    const methods: {[key: string]: () => void} = wrapper.vm;
+    // tslint:disable-next-line
+    const methods: any = wrapper.vm;
 
     test('handleForm', () => {
       expect(methods.handleForm).toBeDefined();

@@ -52,8 +52,6 @@ export default class LoginRegisterForm extends Vue {
 
 <style lang="scss">
 .site-form {
-  background-color: #fafafa;
-  border: 1px solid #ccc;
   padding: 10px;
 
   .form-section {
