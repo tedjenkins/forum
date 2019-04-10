@@ -4,43 +4,43 @@ import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 export default class Users {
 
     @PrimaryGeneratedColumn({
-        type: 'int',
-        name: 'id'
+      type: 'int',
+      name: 'id'
     })
     public id!: number;
 
     @Column('varchar', {
-        nullable: false,
-        length: 64,
-        name: 'name'
+      nullable: false,
+      length: 64,
+      name: 'name'
     })
     public name!: string;
 
     @Column('varchar', {
-        nullable: false,
-        length: 64,
-        name: 'password'
+      nullable: false,
+      length: 64,
+      name: 'password'
     })
     public password!: string;
 
     @Column('varchar', {
-        nullable: false,
-        length: 64,
-        name: 'email'
+      nullable: false,
+      length: 64,
+      name: 'email'
     })
     public email!: string;
 
     @Column('datetime', {
-        nullable: false,
-        default: () => 'CURRENT_TIMESTAMP',
-        name: 'dateRegistered'
+      nullable: false,
+      default: () => 'CURRENT_TIMESTAMP',
+      name: 'dateRegistered'
     })
     public dateRegistered!: string;
 
     @Column({
-        type: 'tinyint',
-        nullable: false,
-        name: 'role'
+      type: 'tinyint',
+      nullable: false,
+      name: 'role'
     })
     public role!: number;
 }

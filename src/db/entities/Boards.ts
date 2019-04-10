@@ -6,20 +6,20 @@ export default class Boards {
     @PrimaryGeneratedColumn({
         type: 'int',
         name: 'id'
-        })
+      })
     public id!: number;
 
     @Column('varchar', {
         nullable: false,
         length: 64,
-        name: 'name'
+        name: 'title'
       })
-    public name!: string;
+    public title!: string;
 
     @Column('varchar', {
         nullable: false,
         length: 255,
         name: 'desc'
       })
-    public desc!: number;
+    public desc!: string;
 }
