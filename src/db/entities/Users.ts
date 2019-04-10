@@ -33,7 +33,7 @@ export default class Users {
     @Column('datetime', {
       nullable: false,
       default: () => 'CURRENT_TIMESTAMP',
-      name: 'dateRegistered'
+      name: 'date_registered'
     })
     public dateRegistered!: string;
 

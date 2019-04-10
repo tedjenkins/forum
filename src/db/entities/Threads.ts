@@ -26,14 +26,14 @@ export default class Threads {
     @Column({
       type: 'int',
       nullable: false,
-      name: 'board_id'
+      name: 'genre_id'
     })
-    public boardId!: number;
+    public genreId!: number;
 
     @Column({
       type: 'tinyint',
       nullable: false,
-      name: 'isPromoted'
+      name: 'is_promoted'
     })
     public isPromoted!: number;
 }

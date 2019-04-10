@@ -1,7 +1,7 @@
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export default class Boards {
+export default class Genres {
 
     @PrimaryGeneratedColumn({
         type: 'int',
@@ -12,14 +12,7 @@ export default class Boards {
     @Column('varchar', {
         nullable: false,
         length: 64,
-        name: 'title'
+        name: 'name'
       })
-    public title!: string;
-
-    @Column('varchar', {
-        nullable: false,
-        length: 255,
-        name: 'desc'
-      })
-    public desc!: string;
+    public name!: string;
 }

@@ -25,7 +25,7 @@
       </div>
     </section>
     <section id="display-posts">
-      here is where posts are displayed <u @click="toggleLoggedIn">(Toggle loggedIn variable)</u>
+      here is where threads are displayed <u @click="toggleLoggedIn">(Toggle loggedIn variable)</u>
     </section>
   </div>
 </template>
