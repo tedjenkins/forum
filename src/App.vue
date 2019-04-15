@@ -1,7 +1,7 @@
 <template>
-  <div id="app" aria-label="app">
-    <SiteHeader v-on:emitReloadMain="reloadMain" aria-label="header section"/>
-    <SiteMain :key="mainKey" aria-label="main section"/>
+  <div id="app" aria-label="app" @click="handleFocusOnApp">
+    <SiteHeader aria-label="header section"/>
+    <SiteMain aria-label="main section"/>
     <SiteFooter aria-label="footer section"/>
   </div>
 </template>
@@ -19,14 +19,25 @@ import SiteFooter from './views/layout/SiteFooter.vue';
     SiteFooter
   }
 })
-
 export default class App extends Vue {
-  mainKey: number = 0;
   /**
-   * Reload Main component by changing (incrementing) its key.
+   * Focus on app when user clicks away from a popup box / modal.
+   * @param {MouseEvent} e -- click event.
    */
-  reloadMain() {
-    this.mainKey++;
+  handleFocusOnApp(e: MouseEvent): void {
+    const targ = e.target as HTMLElement;
+
+    if (!targ.dataset.isModal && Vue.prototype.$modalIsDisplaying) {
+      Array.from(document.querySelectorAll('[data-is-modal="true"]')).forEach(
+        el => {
+          if (el.nodeName === 'A') {
+            return;
+          }
+          (el as HTMLElement).style.opacity = '0';
+        }
+      );
+      Vue.prototype.$modalIsDisplaying = false;
+    }
   }
 }
 </script>
@@ -36,7 +47,7 @@ export default class App extends Vue {
   display: grid;
   grid-template-rows: auto 1fr auto;
   height: 100vh;
-  overflow-x: hidden;
+  overflow: auto;
   width: 100vw;
 }
 </style>

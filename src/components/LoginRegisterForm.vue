@@ -1,6 +1,12 @@
 <template>
   <form class="site-form" :id="formId" @submit="handleForm">
-    <div class="form-section" v-for="element of elements" :key="elements.indexOf(element)" :id="element.id" v-html="element.html"></div>
+    <div
+      class="form-section"
+      v-for="element of elements"
+      :key="elements.indexOf(element)"
+      :id="element.id"
+      v-html="element.html"
+    ></div>
   </form>
 </template>
 
@@ -9,10 +15,16 @@ import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 import { formEls } from '@/types';
 
 @Component({})
-
 export default class LoginRegisterForm extends Vue {
   @Prop() formId!: string;
   @Prop() elements!: formEls;
+
+  /**
+   * Add data attribute to element and all children on mount for easy selection and manipulation of all elements within form.
+   */
+  mounted() {
+    Vue.prototype.$addModalAttr(this.$el.parentElement as HTMLElement);
+  }
 
   /**
    * Handle login / register form.
@@ -81,7 +93,7 @@ export default class LoginRegisterForm extends Vue {
 
     a {
       display: inline;
-      
+
       &:active {
         outline-color: transparent;
       }

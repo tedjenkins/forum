@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a id="site-title" href="#" @click="handleEmit">{{ this.$siteName }}</a>
+    <a id="site-title" href="#">{{ this.$siteName }}</a>
     <nav id="site-navigation" aria-label="site navigation">
       <router-link to="/">Home</router-link>
       <router-link to="/settings">Settings</router-link>
@@ -20,20 +20,12 @@ import SiteSearchBar from '@/components/SiteSearchBar.vue';
   mounted() {
     // Add fixed width to nav menu elements depending on how many of them there are (100 / <number of elements>).
     const els = document.querySelectorAll('#site-navigation > *');
-    els.forEach(el => el.setAttribute('style', `min-width: ${100 / els.length}%`));
+    els.forEach(el =>
+      el.setAttribute('style', `min-width: ${100 / els.length}%`)
+    );
   }
 })
-
-export default class SiteHeader extends Vue {
-  /**
-   * Emit to App.vue from click of site-title, to trigger event which reloads Main component by changing its key.
-   * @param {MouseEvent} e -- mouse click event.
-   */
-  @Emit('emitReloadMain')
-  handleEmit(e: MouseEvent) {
-    e.preventDefault();
-  }
-}
+export default class SiteHeader extends Vue {}
 </script>
 
 <style lang="scss" scoped>
