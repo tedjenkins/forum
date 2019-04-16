@@ -3,10 +3,10 @@
     <form id="post-form" @submit="handleForm">
       <h2>Demo posting form</h2>
       <span>
-        Logged in as
-        <b>{{ credentials.username }}</b>,
-        posting in
-        <b>{{ credentials.board }}.</b>
+        Logged in as user with ID
+        <b>{{ credentials.userId }}</b>,
+        posting in board with ID
+        <b>{{ credentials.boardId }}.</b>
       </span>
       <div class="form-section">
         <label for="post-form-title">Title:</label>
@@ -28,8 +28,8 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component({})
 export default class Post extends Vue {
   credentials = {
-    username: 'testuser123',
-    board: 'General Discussion',
+    userId: Math.floor(Math.random() * 10) + 1,
+    boardId: Math.floor(Math.random() * 10) + 1,
     threadTitle: 'Title',
     threadContent: 'Hello world'
   };
@@ -38,29 +38,24 @@ export default class Post extends Vue {
    * Temporary method to fill form with dummy content.
    */
   fillWithDummyContent() {
-    // Username
-    const firstNames = [
-      'Steve',
-      'Fred',
-      'Carol',
-      'Alice',
-      'Bob',
-      'Llewellyn',
-      'Bryn',
-      'Sophie',
-      'Abigail'
-    ];
-    const lastNames = ['Smith', 'Jones', 'Jackson', 'Taylor'];
-    this.credentials.username = `${firstNames[
-      Math.floor(Math.random() * firstNames.length)
-    ].toLowerCase()}${lastNames[
-      Math.floor(Math.random() * lastNames.length)
-    ].toLowerCase()}${Math.floor(Math.random() * 30) + 1}`;
+    // User id
+    this.credentials.userId = Math.floor(Math.random() * 10) + 1;
+
+    // Board id
+    this.credentials.boardId = Math.floor(Math.random() * 10) + 1;
 
     // Post title
-    const sentenceStarters = ['You are a ', 'I am a ', 'He is a ', 'She is a ', 'It is a '];
+    const sentenceStarters = [
+      'You are a ',
+      'I am a ',
+      'He is a ',
+      'She is a ',
+      'It is a '
+    ];
     const animals = ['cat', 'dog', 'fish', 'pigeon', 'snake'];
-    this.credentials.threadTitle = `${sentenceStarters[Math.floor(Math.random() * sentenceStarters.length)]}${animals[Math.floor(Math.random() * animals.length)]}`;
+    this.credentials.threadTitle = `${
+      sentenceStarters[Math.floor(Math.random() * sentenceStarters.length)]
+    }${animals[Math.floor(Math.random() * animals.length)]}`;
 
     // Post content
     this.credentials.threadContent = `Lorem ipsum etc etc`;

@@ -1,10 +1,10 @@
-// * ------------------------------------
-// * Regular forum posts database entity.
-// * ------------------------------------
+// * ------------------------------------------------
+// * A user can join a group. They are like factions.
+// * ------------------------------------------------
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export default class Posts {
+export default class Groups {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id'
@@ -14,23 +14,23 @@ export default class Posts {
   @Column({
     type: 'int',
     nullable: false,
-    name: 'author_id'
+    name: 'user_id'
   })
-  public authorId!: number;
+  public userId!: number;
 
-  @Column({
-    type: 'int',
+  @Column('varchar', {
     nullable: false,
-    name: 'thread_id'
+    length: 64,
+    name: 'name'
   })
-  public threadId!: number;
+  public name!: string;
 
-  @Column({
-    type: 'text',
+  @Column('varchar', {
     nullable: false,
-    name: 'content'
+    length: 128,
+    name: 'description'
   })
-  public content!: string;
+  public description!: string;
 
   @Column('datetime', {
     nullable: false,

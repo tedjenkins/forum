@@ -2,6 +2,8 @@
 // * File to run with pm2, 'forever' etc for serving files and other server-side operations.
 // * ---------------------------------------------------------------------------------------
 import { createConnection } from 'typeorm';
+import Posts from '../src/db/entities/Posts';
+import Threads from '../src/db/entities/Threads';
 import express from 'express';
 import http from 'http';
 import path from 'path';
@@ -59,6 +61,29 @@ createConnection()
         res.setHeader('Access-Control-Allow-Origin', app.get('host'));
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.setHeader('Access-Control-Allow-Methods', 'POST');
+
+        connection
+          .createQueryBuilder()
+          .insert()
+          .into(Threads)
+          .values({
+            title: req.body.threadTitle,
+            authorId: req.body.userId,
+            genreId: req.body.boardId,
+            isPromoted: 0
+          })
+          // .insert()
+          // .into(Posts)
+          // .values({
+          //   authorId: req.body.userId,
+          //   threadId: req.body
+          // })
+          .execute();
+
+        // req.body.userId: number; -> threads.author_id & posts.author_id
+        // req.body.boardId: number; -> threads.genre_id
+        // req.body.threadTitle: string; -> threads.title
+        // req.body.threadContent: string; -> posts.content
         res.send(req.body);
       });
 
