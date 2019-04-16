@@ -40,8 +40,17 @@ export default class Threads {
   public dateCreated!: string;
 
   @Column({
+    type: 'int',
+    nullable: false,
+    default: 0,
+    name: 'num_posts'
+  })
+  public numPosts!: number;
+
+  @Column({
     type: 'tinyint',
     nullable: false,
+    default: 0,
     name: 'is_promoted'
   })
   public isPromoted!: number;

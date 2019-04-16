@@ -19,46 +19,84 @@
       <button type="button" @click="fillWithDummyContent">Fill with dummy content</button>
       <button type="submit">Submit</button>
     </form>
+    <section id="post-display">
+      <BoardThreadListing
+        v-for="thread of threads"
+        :key="thread.id"
+        :threadTitle="thread.title"
+        :threadAuthorId="thread.authorId"
+        :threadDateCreated="thread.dateCreated"
+        :threadNumberOfPosts="thread.num_posts"
+      />
+    </section>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import BoardThreadListing from '@/components/BoardThreadListing.vue';
 
-@Component({})
+@Component({
+  components: {
+    BoardThreadListing
+  }
+})
 export default class Post extends Vue {
   credentials = {
     userId: Math.floor(Math.random() * 10) + 1,
     boardId: Math.floor(Math.random() * 10) + 1,
-    threadTitle: 'Title',
-    threadContent: 'Hello world'
+    threadTitle: '',
+    threadContent: ''
   };
+
+  threads = [
+    {
+      id: 0,
+      title: 'Hello world',
+      authorId: 0,
+      dateCreated: 'Yesterday',
+      num_posts: 0
+    }
+  ];
+
+  /**
+   * Temporary mixin to regenerate userId and boardId.
+   */
+  regenerateIdsMixin() {
+    this.credentials.userId = Math.floor(Math.random() * 10) + 1;
+    this.credentials.boardId = Math.floor(Math.random() * 10) + 1;
+  }
 
   /**
    * Temporary method to fill form with dummy content.
    */
   fillWithDummyContent() {
-    // User id
-    this.credentials.userId = Math.floor(Math.random() * 10) + 1;
+    this.regenerateIdsMixin();
 
-    // Board id
-    this.credentials.boardId = Math.floor(Math.random() * 10) + 1;
+    // Post title and content
+    const chars =
+      'ABCDEFGHIJKLMNOPQRSTUVWXYZabcefghijklmnoqrstuvwxyzáéóíú0123456789-`¬<>{}][;@#\\/?!"£$%^&*()';
+    const MIN_LENGTH = 6;
 
-    // Post title
-    const sentenceStarters = [
-      'You are a ',
-      'I am a ',
-      'He is a ',
-      'She is a ',
-      'It is a '
-    ];
-    const animals = ['cat', 'dog', 'fish', 'pigeon', 'snake'];
-    this.credentials.threadTitle = `${
-      sentenceStarters[Math.floor(Math.random() * sentenceStarters.length)]
-    }${animals[Math.floor(Math.random() * animals.length)]}`;
+    let threadTitle = '';
+    for (
+      let i = 0;
+      i < Math.floor(Math.random() * chars.length) + MIN_LENGTH;
+      i++
+    ) {
+      threadTitle += chars[Math.floor(Math.random() * chars.length)];
+    }
+    this.credentials.threadTitle = threadTitle;
 
-    // Post content
-    this.credentials.threadContent = `Lorem ipsum etc etc`;
+    let threadContent = '';
+    for (
+      let i = 0;
+      i < Math.floor(Math.random() * chars.length) + MIN_LENGTH;
+      i++
+    ) {
+      threadContent += chars[Math.floor(Math.random() * chars.length)];
+    }
+    this.credentials.threadContent = threadContent;
   }
 
   /**
@@ -76,7 +114,15 @@ export default class Post extends Vue {
       headers: {
         'Content-Type': 'application/json'
       }
-    });
+    })
+      .then(() =>
+        targ
+          .querySelectorAll('input, textarea')
+          .forEach(el => ((el as HTMLInputElement).value = ''))
+      )
+      .catch(err => console.log(err));
+
+    this.regenerateIdsMixin();
   }
 }
 </script>
