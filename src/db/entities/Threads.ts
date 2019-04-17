@@ -43,9 +43,9 @@ export default class Threads {
     type: 'int',
     nullable: false,
     default: 0,
-    name: 'num_posts'
+    name: 'num_replies'
   })
-  public numPosts!: number;
+  public numReplies!: number;
 
   @Column({
     type: 'tinyint',

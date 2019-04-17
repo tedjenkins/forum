@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a id="site-title" href="#">{{ this.$siteName }}</a>
+    <a id="site-title" href="/">{{ this.$siteName }}</a>
     <nav id="site-navigation" aria-label="site navigation">
       <router-link to="/">Home</router-link>
       <router-link to="/settings">Settings</router-link>

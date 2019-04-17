@@ -134,7 +134,9 @@ export default class Home extends Vue {
     }
 
     popup.style.left = `${e.pageX}px`;
-    document.querySelectorAll('[data-is-modal="true"]').forEach(el => (el as HTMLElement).style.opacity = '1');
+    document
+      .querySelectorAll('[data-is-modal="true"]')
+      .forEach(el => ((el as HTMLElement).style.opacity = '1'));
 
     Vue.prototype.$modalIsDisplaying = true;
   }

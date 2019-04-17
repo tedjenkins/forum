@@ -25,11 +25,23 @@ createConnection()
       )
     );
 
-    // Error handling
-    app.get('*', (req: express.Request, res: express.Response) => {
-      res.type('html');
-      res.sendFile(path.join(__dirname, 'error.html'));
-    });
+    // =============== //
+    // GET app routes. //
+    // =============== //
+    app
+      .route('/get-threads')
+      .options((req: express.Request, res: express.Response) => {
+        res.setHeader('Access-Control-Allow-Origin', app.get('host'));
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.status(200).end();
+      })
+      .get((req: express.Request, res: express.Response) => {
+        res.type('application/json');
+        res.setHeader('Access-Control-Allow-Origin', app.get('host'));
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+        res.send(connection.getRepository(Threads).find());
+      });
 
     // ================ //
     // POST app routes. //

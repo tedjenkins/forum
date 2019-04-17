@@ -26,7 +26,7 @@
         :threadTitle="thread.title"
         :threadAuthorId="thread.authorId"
         :threadDateCreated="thread.dateCreated"
-        :threadNumberOfPosts="thread.num_posts"
+        :threadNumberOfReplies="thread.numReplies"
       />
     </section>
   </div>
@@ -35,6 +35,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import BoardThreadListing from '@/components/BoardThreadListing.vue';
+import { format } from 'date-fns';
 
 @Component({
   components: {
@@ -49,15 +50,28 @@ export default class Post extends Vue {
     threadContent: ''
   };
 
+  // temp auto-incrementing id variable
+  autoId = 0;
+
   threads = [
     {
-      id: 0,
-      title: 'Hello world',
+      id: this.autoId,
+      title: 'Hello world!',
       authorId: 0,
-      dateCreated: 'Yesterday',
-      num_posts: 0
+      dateCreated: format(new Date(), 'hh:mma, ddd Do MMM YYYY'),
+      numReplies: 0
     }
   ];
+
+  created() {
+    fetch(`${Vue.prototype.$siteHost}/get-threads`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then(json => console.log(json));
+  }
 
   /**
    * Temporary mixin to regenerate userId and boardId.
@@ -115,11 +129,23 @@ export default class Post extends Vue {
         'Content-Type': 'application/json'
       }
     })
-      .then(() =>
+      .then(() => {
+        this.autoId++;
+
+        // Update display
+        this.threads.unshift({
+          id: this.autoId,
+          title: (targ.querySelector('input') as HTMLInputElement).value,
+          authorId: this.credentials.userId,
+          dateCreated: new Date().toLocaleTimeString(),
+          numReplies: 0
+        });
+
+        // Clear fields
         targ
           .querySelectorAll('input, textarea')
-          .forEach(el => ((el as HTMLInputElement).value = ''))
-      )
+          .forEach(el => ((el as HTMLInputElement).value = ''));
+      })
       .catch(err => console.log(err));
 
     this.regenerateIdsMixin();

@@ -5,8 +5,8 @@
       Posted by
       <a :href="getAuthorUrl()">user</a>
     </div>
-    <div class="thread-date-created">{{ threadDateCreated }}</div>
-    <div class="thread-num-posts">{{ threadNumberOfPosts }}</div>
+    <div class="thread-date-created">Posted at {{ threadDateCreated }}</div>
+    <div class="thread-num-replies">{{ threadNumberOfReplies }} replies</div>
   </div>
 </template>
 
@@ -18,7 +18,7 @@ export default class BoardThreadListing extends Vue {
   @Prop() private threadTitle!: string;
   @Prop() private threadAuthorId!: number;
   @Prop() private threadDateCreated!: string;
-  @Prop() private threadNumberOfPosts!: number;
+  @Prop() private threadNumberOfReplies!: number;
 
   /**
    * Get URL of thread author's profile page.
@@ -30,6 +30,16 @@ export default class BoardThreadListing extends Vue {
 }
 </script>
 
-<style lang="sass" scoped>
+<style lang="scss" scoped>
+.thread-listing-box {
+  align-items: center;
+  border: 1px solid black;
+  display: flex;
+  justify-content: space-around;
+  padding: 4px;
 
+  .thread-title {
+    font-weight: bold;
+  }
+}
 </style>
