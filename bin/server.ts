@@ -35,12 +35,13 @@ createConnection()
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.status(200).end();
       })
-      .get((req: express.Request, res: express.Response) => {
+      .get(async (req: express.Request, res: express.Response) => {
         res.type('application/json');
         res.setHeader('Access-Control-Allow-Origin', app.get('host'));
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
-        res.send(connection.getRepository(Threads).find());
+        const result = await connection.getRepository(Threads).find();
+        res.send(result);
       });
 
     // ================ //

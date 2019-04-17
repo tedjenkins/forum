@@ -70,7 +70,7 @@ export default class Post extends Vue {
       }
     })
       .then(res => res.json())
-      .then(json => console.log(json));
+      .then(json => (this.threads = json));
   }
 
   /**
