@@ -11,6 +11,7 @@ import { Component, Vue } from 'vue-property-decorator';
 import SiteHeader from './views/layout/SiteHeader.vue';
 import SiteMain from './views/layout/SiteMain.vue';
 import SiteFooter from './views/layout/SiteFooter.vue';
+import store from '@/store';
 
 @Component({
   components: {
@@ -27,7 +28,7 @@ export default class App extends Vue {
   handleFocusOnApp(e: MouseEvent): void {
     const targ = e.target as HTMLElement;
 
-    if (!targ.dataset.isModal && Vue.prototype.$modalIsDisplaying) {
+    if (!targ.dataset.isModal && store.state.modalIsDisplaying) {
       Array.from(document.querySelectorAll('[data-is-modal="true"]')).forEach(
         el => {
           if (el.nodeName === 'A') {
@@ -36,7 +37,7 @@ export default class App extends Vue {
           (el as HTMLElement).style.opacity = '0';
         }
       );
-      Vue.prototype.$modalIsDisplaying = false;
+      store.commit('toggleModal');
     }
   }
 }

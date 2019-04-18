@@ -64,6 +64,7 @@
 <script lang="ts">
 import { Component, Emit, Vue } from 'vue-property-decorator';
 import { formEls } from '@/types';
+import store from '@/store';
 import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 
 @Component({
@@ -125,7 +126,7 @@ export default class Home extends Vue {
       return;
     }
 
-    Vue.prototype.$addModalAttr(targ);
+    store.commit('setModalAttr', targ);
 
     if (targ.textContent!.toLowerCase().includes('log')) {
       this.userClickedLogin = true;
@@ -138,7 +139,7 @@ export default class Home extends Vue {
       .querySelectorAll('[data-is-modal="true"]')
       .forEach(el => ((el as HTMLElement).style.opacity = '1'));
 
-    Vue.prototype.$modalIsDisplaying = true;
+    store.commit('toggleModal');
   }
 }
 </script>

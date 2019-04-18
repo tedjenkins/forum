@@ -13,6 +13,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 import { formEls } from '@/types';
+import utils from '@/utils';
 
 @Component({})
 export default class LoginRegisterForm extends Vue {
@@ -21,7 +22,7 @@ export default class LoginRegisterForm extends Vue {
 
   mounted() {
     // Add data attribute to element and all children on mount for easy selection and manipulation of all elements within form.
-    Vue.prototype.$addModalAttr(this.$el.parentElement as HTMLElement);
+    utils.recursiveSetModalAttr(this.$el.parentElement as HTMLElement);
   }
 
   /**
