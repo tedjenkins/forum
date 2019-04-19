@@ -1,28 +1,16 @@
 import { shallowMount } from '@vue/test-utils';
 import { formEls } from '@/types';
+import Home from '@/views/pages/Home.vue';
 import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 
 describe('LoginRegisterForm component', () => {
   const mockEls: formEls = [
     {
-      html: '<h3>This is a test form.</h3>'
+      html: `<label for="login-email">Email address</label> <input type="text" id="login-email"/>`
     },
     {
-      html: `<label for="name-input">Enter your name: </label> <input type="text" id="name-input"/>`
-    },
-    {
-      html: `<label for="location-input">Enter your location: </label> <input type="text" id="location-input"/>`
-    },
-    {
-      html: `<label for="date-input">Enter your date of birth: </label> <input type="date" id="date-input"/>`
-    },
-    {
-      id: 'test-form-extras',
-      html: `<label for="confirm-input">Confirm...</label> <input type="checkbox" id="confirm-input"/>`
-    },
-    {
-      id: 'test-form-submit',
-      html: `<button type="submit">Submit</button>`
+      id: 'login-extra',
+      html: `<button type="submit">Submit</button> <div id="form-remember-me"> <input type="checkbox" id="form-remember"/> <label for="form-remember">Remember me</label></div> <div id="form-forgot-password">(<a href="#">forgot password?</a>)</div>`
     }
   ];
 
@@ -34,6 +22,7 @@ describe('LoginRegisterForm component', () => {
   });
 
   test('it is a form, has the "site-form" class and renders correctly', () => {
+    expect(wrapper.exists()).toBe(true);
     expect(wrapper.contains('form')).toBe(true);
     expect(wrapper.contains('label')).toBe(true);
     expect(wrapper.contains('input')).toBe(true);
@@ -41,15 +30,17 @@ describe('LoginRegisterForm component', () => {
     expect(wrapper.classes()).toContain('site-form');
 
     expect(wrapper.isVueInstance()).toBe(true);
-    expect(wrapper.html().match(/"form-section"/g)).toHaveLength(mockEls.length);
+    expect(wrapper.html().match(/"form-section"/g)).toHaveLength(
+      mockEls.length
+    );
   });
 
-  describe('methods', () => {
-    // tslint:disable-next-line
-    const methods: any = wrapper.vm;
+  test('the appropriate event handling method is called on submit', () => {
+    let flag = false;
+    const stub = () => (flag = true);
+    wrapper.setMethods({ handleForm: stub });
 
-    test('handleForm', () => {
-      expect(methods.handleForm).toBeDefined();
-    });
+    wrapper.find('form').trigger('submit');
+    expect(flag).toBe(true);
   });
 });

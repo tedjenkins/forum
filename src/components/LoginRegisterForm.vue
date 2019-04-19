@@ -21,8 +21,10 @@ export default class LoginRegisterForm extends Vue {
   @Prop() elements!: formEls;
 
   mounted() {
-    // Add data attribute to element and all children on mount for easy selection and manipulation of all elements within form.
-    utils.recursiveSetModalAttr(this.$el.parentElement as HTMLElement);
+    // Add modal data attribute to element and all children for easy selection and manipulation of all elements within form.
+    if (this.$el.parentElement) {
+      utils.recursiveSetModalAttr(this.$el.parentElement as HTMLElement);
+    }
   }
 
   /**
