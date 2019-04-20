@@ -49,10 +49,7 @@
     </section>
     <section id="unknown">here is where TBDs are displayed (genre list?)</section>
     <section id="posts-navigation">
-      <div id="posts-navigation-links">
-        <div id="posts-navigation-latest">Latest</div>
-        <div id="posts-navigation-search">Search</div>
-      </div>
+      <LiveSearchBar inputId="posts-navigation-search" placeholder="Search posts..."/>
     </section>
     <section id="display-posts">
       here is where threads are displayed
@@ -65,10 +62,12 @@
 import { Component, Emit, Vue } from 'vue-property-decorator';
 import { formEls } from '@/types';
 import store from '@/store';
+import LiveSearchBar from '@/components/LiveSearchBar.vue';
 import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 
 @Component({
   components: {
+    LiveSearchBar,
     LoginRegisterForm
   }
 })
@@ -198,22 +197,6 @@ export default class Home extends Vue {
   #posts-navigation {
     background-color: darkslategrey;
     color: white;
-
-    #posts-navigation-links {
-      display: flex;
-      height: 100%;
-      padding: 4px;
-
-      & > * {
-        align-items: center;
-        cursor: pointer;
-        display: flex;
-        flex: 0 1 50%;
-        font-size: 13px;
-        justify-content: center;
-        user-select: none;
-      }
-    }
   }
 
   #display-posts {
@@ -251,12 +234,6 @@ export default class Home extends Vue {
 
     #posts-navigation {
       grid-area: topbar;
-
-      #posts-navigation-links {
-        & > * {
-          font-size: 15px;
-        }
-      }
     }
 
     #display-posts {

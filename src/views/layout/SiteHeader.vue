@@ -11,12 +11,9 @@
 
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
-import SiteSearchBar from '@/components/SiteSearchBar.vue';
 
 @Component({
-  components: {
-    SiteSearchBar
-  },
+  components: {},
   mounted() {
     // Add fixed width to nav menu elements depending on how many of them there are (100 / <number of elements>).
     const els = document.querySelectorAll('#site-navigation > *');

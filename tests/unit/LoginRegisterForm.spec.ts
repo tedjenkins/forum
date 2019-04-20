@@ -1,6 +1,5 @@
 import { shallowMount } from '@vue/test-utils';
 import { formEls } from '@/types';
-import Home from '@/views/pages/Home.vue';
 import LoginRegisterForm from '@/components/LoginRegisterForm.vue';
 
 describe('LoginRegisterForm component', () => {
