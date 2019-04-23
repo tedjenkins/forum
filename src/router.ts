@@ -16,22 +16,14 @@ export default new Router({
     {
       path: '/settings',
       name: 'settings',
-      component: () => import(/* webpackChunkName: "settings" */ './views/pages/Settings.vue')
+      component: () =>
+        import(/* webpackChunkName: "settings" */ './views/pages/Settings.vue')
     },
     {
       path: '/post',
       name: 'post',
-      component: () => import(/* webpackChunkName: "post" */ './views/pages/Post.vue')
-    },
-    {
-      path: '/login',
-      name: 'login',
-      component: () => import(/* webpackChunkName: "login" */ './views/pages/Login.vue')
-    },
-    {
-      path: '/register',
-      name: 'register',
-      component: () => import(/* webpackChunkName: "register" */ './views/pages/Register.vue')
+      component: () =>
+        import(/* webpackChunkName: "post" */ './views/pages/Post.vue')
     }
   ]
 });
