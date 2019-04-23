@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:e2e": "ts-node ./tests/e2e/init.ts",
+    "test:e2e": "echo Please use either \"test:e2e-chrome\" or \"test:e2e-firefox\" commands.",
     "test:e2e-chrome": "testcafe chrome ./tests/e2e",
     "test:e2e-firefox": "testcafe firefox ./tests/e2e",
     "test:unit": "vue-cli-service test:unit",
