@@ -22,14 +22,10 @@
           </div>
         </div>
       </div>
-      <div id="user-not-logged-in" v-else-if="!loggedIn">
-        <h3>Anonymous user</h3>
-        <div id="user-not-logged-in-notice" @click="handleLoginRegisterClick">
-          Please
-          <a href="#">log in</a> or
-          <a href="#">sign up</a> to view your dashboard.
-        </div>
-        <div id="hidden-box" style="left: 0px; opacity: 0;">
+      <div id="user-not-logged-in" v-else-if="!loggedIn" @click="handleLoginRegisterClick">
+        <a href="#" class="site-btn" id="log-in">Log in</a>
+        <a href="#" class="site-btn" id="sign-up">Sign up</a>
+        <!--<div id="hidden-box" style="left: 0px; opacity: 0;">
           <keep-alive>
             <LoginRegisterForm
               formId="login-form"
@@ -44,7 +40,7 @@
               v-if="!userClickedLogin"
             />
           </keep-alive>
-        </div>
+        </div>-->
       </div>
     </section>
     <section id="unknown">here is where TBDs are displayed (board list?)</section>
@@ -118,6 +114,10 @@ export default class Home extends Vue {
   }
 
   handleLoginRegisterClick(e: MouseEvent) {
+    // =================== //
+    // Off-limits for now. //
+    // =================== //
+    return;
     const targ = e.target as HTMLElement;
     const popup = document.getElementById('hidden-box')!;
 
@@ -181,6 +181,17 @@ export default class Home extends Vue {
     }
 
     #user-not-logged-in {
+      height: 100%;
+      align-items: center;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-evenly;
+
+      a {
+        color: inherit;
+        text-decoration: none;
+      }
+
       #hidden-box {
         border: 1px solid black;
         padding: 10px;
