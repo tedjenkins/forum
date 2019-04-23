@@ -6,7 +6,7 @@
     "serve": "vue-cli-service serve",
     "build": "vue-cli-service build",
     "lint": "vue-cli-service lint",
-    "test:e2e": "echo End-to-end testing from npm script not yet integrated. Refer to testcafe online documentation on commands for now.",
+    "test:e2e": "ts-node ./tests/e2e/init.ts",
     "test:unit": "vue-cli-service test:unit",
     "serve:express": "ts-node ./bin/server.ts",
     "serve:express-dev": "nodemon -e js,json,ts --exec npm run serve:express"
