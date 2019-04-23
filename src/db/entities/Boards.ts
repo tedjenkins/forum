@@ -1,10 +1,10 @@
-// * ------------------------------------
-// * The name for 'boards', at this time.
-// * ------------------------------------
+// * -----------------------
+// * Boards database schema.
+// * -----------------------
 import { Entity, PrimaryGeneratedColumn, Column } from 'typeorm';
 
 @Entity()
-export default class Genres {
+export default class Boards {
   @PrimaryGeneratedColumn({
     type: 'int',
     name: 'id'

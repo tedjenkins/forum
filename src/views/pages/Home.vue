@@ -47,7 +47,7 @@
         </div>
       </div>
     </section>
-    <section id="unknown">here is where TBDs are displayed (genre list?)</section>
+    <section id="unknown">here is where TBDs are displayed (board list?)</section>
     <section id="posts-navigation">
       <LiveSearchBar inputId="posts-navigation-search" placeholder="Search posts..."/>
     </section>

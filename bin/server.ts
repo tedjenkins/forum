@@ -82,7 +82,7 @@ createConnection()
           .values({
             title: req.body.threadTitle,
             authorId: req.body.userId,
-            genreId: req.body.boardId,
+            boardId: req.body.boardId,
             isPromoted: 0
           })
           // .insert()
@@ -94,7 +94,7 @@ createConnection()
           .execute();
 
         // req.body.userId: number; -> threads.author_id & posts.author_id
-        // req.body.boardId: number; -> threads.genre_id
+        // req.body.boardId: number; -> threads.board_id
         // req.body.threadTitle: string; -> threads.title
         // req.body.threadContent: string; -> posts.content
         res.send(req.body);

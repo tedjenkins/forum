@@ -28,9 +28,9 @@ export default class Threads {
   @Column({
     type: 'int',
     nullable: false,
-    name: 'genre_id'
+    name: 'board_id'
   })
-  public genreId!: number;
+  public boardId!: number;
 
   @Column('datetime', {
     nullable: false,
