@@ -8,7 +8,8 @@ type StoreState = {
 };
 
 const state: StoreState = {
-  modalIsDisplaying: false
+  modalIsDisplaying: false,
+  loggedIn: false
 };
 
 export const mutations = {

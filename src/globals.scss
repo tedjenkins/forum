@@ -26,7 +26,7 @@ $site-padding: 10px 0px 0px 0px;
 $site-max-width: 1200px;
 
 // Theme-based (light theme)
-$light-site-hdrftr-bgcolor: rgba(255, 255, 0, 0.6);
+$light-site-hdrftr-bgcolor: #fff;
 $light-site-hdrftr-fontcolor: #141414;
 
 $light-site-main-bgcolor: #f0f0f0;
@@ -65,9 +65,14 @@ h6 {
   margin: 0px;
 }
 
-.site-btn {
-  border: 1px solid black;
-  border-radius: 10px;
-  cursor: pointer;
-  padding: 10px;
+// Headers of each sub-section in <main>
+.site-main-header {
+  background-color: lightblue;
+  font-size: 15px;
+  padding: 4px;
+  text-align: center;
+
+  @media all and (min-width: 1200px) {
+    font-size: 20px;
+  }
 }

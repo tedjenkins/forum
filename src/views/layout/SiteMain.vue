@@ -1,15 +1,83 @@
 <template>
   <main>
-    <router-view/>
+    <SiteDashboard/>
+    <SiteBoardList :boards="boardList"/>
+    <SiteNavigation/>
+    <section id="display">
+      <router-view/>
+    </section>
   </main>
 </template>
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { formEls } from '@/types';
 
-@Component({})
+import SiteDashboard from '@/views/layout/main/SiteDashboard.vue';
+import SiteBoardList from '@/views/layout/main/SiteBoardList.vue';
+import SiteNavigation from '@/views/layout/main/SiteNavigation.vue';
 
-export default class SiteMain extends Vue {}
+@Component({
+  components: {
+    SiteDashboard,
+    SiteBoardList,
+    SiteNavigation
+  }
+})
+export default class SiteMain extends Vue {
+  boardList = [
+    {
+      title: 'Hello World',
+      path: '/hello'
+    },
+    {
+      title: 'Foo',
+      path: '/foo'
+    },
+    {
+      title: 'Bar',
+      path: '/bar'
+    }
+  ];
+
+  loginFormEls: formEls = [
+    {
+      html: `<label for="login-email">Email address</label> <input type="text" id="login-email"/>`
+    },
+    {
+      html: `<label for="login-password">Password</label> <input type="password" id="login-password"/>`
+    },
+    {
+      id: 'login-extra',
+      html: `<button type="submit">Submit</button> <div id="form-remember-me"> <input type="checkbox" id="form-remember"/> <label for="form-remember">Remember me</label></div> <div id="form-forgot-password">(<a href="#">forgot password?</a>)</div>`
+    }
+  ];
+
+  registerFormEls: formEls = [
+    {
+      html: `Signing up with ${Vue.prototype.$siteName} is quick and easy.`
+    },
+    {
+      html: `<label for="register-username">Username</label> <input type="text" id="register-username" minlength="6" maxlength="24"/>`
+    },
+    {
+      html: `<label for="register-password">Password</label> <input type="password" id="register-password"/>`
+    },
+    {
+      html: `<label for="register-password-repeat">Repeat password</label> <input type="password" id="register-password-repeat"/>`
+    },
+    {
+      html: `<label for="register-email">Email address</label> <input type="text" id="register-email" minlength="6" maxlength="24"/>`
+    },
+    {
+      id: 'register-info',
+      html: `By signing up you agree to our <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a> and our <a href="#">usage of cookies</a>. You must also be aged 13 or over to register.`
+    },
+    {
+      html: `<button type="submit">Submit</button>`
+    }
+  ];
+}
 </script>
 
 <style lang="scss" scoped>
@@ -18,5 +86,22 @@ main {
   color: $light-site-main-fontcolor;
   font-family: Arial, Helvetica, sans-serif;
   grid-row: 2;
+  height: 100%;
+}
+
+@media all and (min-width: 1200px) {
+  main {
+    display: grid;
+    grid-template-areas:
+      'stats topbar'
+      'stats view'
+      'board-list view';
+    grid-template-columns: 0.3fr 0.7fr;
+    grid-template-rows: 31px 0.5fr 1fr;
+
+    #display {
+      grid-area: view;
+    }
+  }
 }
 </style>

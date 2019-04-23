@@ -15,10 +15,10 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 
 @Component({})
 export default class BoardThreadListing extends Vue {
-  @Prop() private threadTitle!: string;
-  @Prop() private threadAuthorId!: number;
-  @Prop() private threadDateCreated!: string;
-  @Prop() private threadNumberOfReplies!: number;
+  @Prop() threadTitle!: string;
+  @Prop() threadAuthorId!: number;
+  @Prop() threadDateCreated!: string;
+  @Prop() threadNumberOfReplies!: number;
 
   /**
    * Get URL of thread author's profile page.

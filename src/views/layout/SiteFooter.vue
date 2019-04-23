@@ -1,6 +1,10 @@
 <template>
   <footer>
-    <div id="site-credits" aria-label="site credits">{{ this.$siteName }} © <a href="https://usefulsoftware.xyz">UsefulSoftware.xyz</a> 2019</div>
+    <u @click="toggleLoggedIn">Toggle logged in</u>
+    <div id="site-credits" aria-label="site credits">
+      {{ this.$siteName }} ©
+      <a href="https://usefulsoftware.xyz">UsefulSoftware.xyz</a> 2019
+    </div>
   </footer>
 </template>
 
@@ -8,8 +12,11 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-
-export default class SiteFooter extends Vue {}
+export default class SiteFooter extends Vue {
+  toggleLoggedIn() {
+    this.$store.state.loggedIn = !this.$store.state.loggedIn;
+  }
+}
 </script>
 
 <style lang="scss" scoped>
@@ -17,6 +24,11 @@ footer {
   @include hdrftr;
   grid-row: 3;
   padding: 10px;
+
+  u {
+    cursor: pointer;
+    user-select: none;
+  }
 
   #site-credits {
     font-size: 13px;
@@ -42,6 +54,10 @@ footer {
 
 @media all and (min-width: 800px) {
   footer {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
     #site-credits {
       font-size: 16px;
       text-align: right;
