@@ -5,7 +5,6 @@
         <SiteDashboard/>
         <SiteBoardList :boards="boardList"/>
       </div>
-      <div id="side-interface-bar" @click="handleSideInterface"></div>
     </aside>
     <SiteNavigation/>
     <section id="display">
@@ -82,14 +81,6 @@ export default class SiteMain extends Vue {
       html: `<button type="submit">Submit</button>`
     }
   ];
-
-  handleSideInterface(e: MouseEvent) {
-    const sideInterface = document.getElementById('side-interface-components')!;
-    sideInterface.setAttribute('style', 'width: 0%; z-index: -1;');
-    document
-      .querySelector('main')!
-      .setAttribute('style', 'grid-template-columns: 5px auto');
-  }
 }
 </script>
 
@@ -109,13 +100,6 @@ main {
 
   #side-interface {
     grid-area: aside;
-
-    #side-interface-bar {
-      background-color: #000;
-      cursor: pointer;
-      height: 5px;
-      width: 100%;
-    }
   }
 
   #display {
@@ -135,11 +119,6 @@ main {
       align-items: flex-start;
       display: flex;
       justify-content: space-between;
-
-      #side-interface-bar {
-        height: 100%;
-        width: 5px;
-      }
 
       #side-interface-components {
         width: 100%;

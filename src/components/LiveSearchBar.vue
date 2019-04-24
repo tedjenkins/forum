@@ -29,6 +29,7 @@ export default class LiveSearchBar extends Vue {
   display: flex;
   height: 100%;
   justify-content: center;
+  width: 100%;
 
   input {
     background-color: inherit;
