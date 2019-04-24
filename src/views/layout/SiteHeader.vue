@@ -52,10 +52,13 @@ header {
 @media all and (min-width: 1200px) {
   header {
     padding: 5px;
+    text-align: center;
 
     #site-title {
+      display: inline-block;
       height: 100%;
-      text-align: center;
+      margin: 0px auto;
+      width: auto;
     }
   }
 }

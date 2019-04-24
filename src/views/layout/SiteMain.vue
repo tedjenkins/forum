@@ -85,7 +85,10 @@ export default class SiteMain extends Vue {
 
   handleSideInterface(e: MouseEvent) {
     const sideInterface = document.getElementById('side-interface-components')!;
-    sideInterface.setAttribute('style', 'margin-left: -100%');
+    sideInterface.setAttribute('style', 'width: 0%; z-index: -1;');
+    document
+      .querySelector('main')!
+      .setAttribute('style', 'grid-template-columns: 5px auto');
   }
 }
 </script>
@@ -99,13 +102,20 @@ main {
   grid-row: 2;
   grid-template-areas:
     'topbar'
-    'interface'
+    'aside'
     'view';
   grid-template-rows: auto auto 1fr;
   height: 100%;
 
   #side-interface {
-    grid-area: interface;
+    grid-area: aside;
+
+    #side-interface-bar {
+      background-color: #000;
+      cursor: pointer;
+      height: 5px;
+      width: 100%;
+    }
   }
 
   #display {
@@ -116,9 +126,9 @@ main {
 @media all and (min-width: 1200px) {
   main {
     grid-template-areas:
-      'interface topbar'
-      'interface view';
-    grid-template-columns: 0.2fr 0.8fr;
+      'aside topbar'
+      'aside view';
+    grid-template-columns: 0.2fr auto;
     grid-template-rows: auto 1fr;
 
     #side-interface {
@@ -126,15 +136,13 @@ main {
       display: flex;
       justify-content: space-between;
 
-      #side-interface-components {
-        width: 100%;
-      }
-
       #side-interface-bar {
-        background-color: lightgreen;
-        cursor: pointer;
         height: 100%;
         width: 5px;
+      }
+
+      #side-interface-components {
+        width: 100%;
       }
     }
   }

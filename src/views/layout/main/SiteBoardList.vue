@@ -20,13 +20,10 @@ export default class HomeBoardList extends Vue {
 
 <style lang="scss" scoped>
 #board-list {
-  & > * {
-    padding: 4px;
-  }
-
   a {
     display: block;
     height: 100%;
+    padding: 4px;
 
     &:nth-child(2n) {
       background-color: #ddd;
