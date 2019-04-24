@@ -18,13 +18,8 @@ export default class SiteNavigation extends Vue {}
 
 <style lang="scss" scoped>
 #posts-navigation {
-  background-color: darkslategrey;
-  color: white;
-}
-
-@media all and (min-width: 1200px) {
-  #posts-navigation {
-    grid-area: topbar;
-  }
+  background-color: $light-site-tertiary-bgcolor;
+  color: $light-site-tertiary-fontcolor;
+  grid-area: topbar;
 }
 </style>

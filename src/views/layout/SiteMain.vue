@@ -1,7 +1,12 @@
 <template>
   <main>
-    <SiteDashboard/>
-    <SiteBoardList :boards="boardList"/>
+    <aside id="side-interface">
+      <div id="side-interface-components">
+        <SiteDashboard/>
+        <SiteBoardList :boards="boardList"/>
+      </div>
+      <div id="side-interface-bar" @click="handleSideInterface"></div>
+    </aside>
     <SiteNavigation/>
     <section id="display">
       <router-view/>
@@ -77,6 +82,11 @@ export default class SiteMain extends Vue {
       html: `<button type="submit">Submit</button>`
     }
   ];
+
+  handleSideInterface(e: MouseEvent) {
+    const sideInterface = document.getElementById('side-interface-components')!;
+    sideInterface.setAttribute('style', 'margin-left: -100%');
+  }
 }
 </script>
 
@@ -84,23 +94,48 @@ export default class SiteMain extends Vue {
 main {
   background-color: $light-site-main-bgcolor;
   color: $light-site-main-fontcolor;
+  display: grid;
   font-family: Arial, Helvetica, sans-serif;
   grid-row: 2;
+  grid-template-areas:
+    'topbar'
+    'interface'
+    'view';
+  grid-template-rows: auto auto 1fr;
   height: 100%;
+
+  #side-interface {
+    grid-area: interface;
+  }
+
+  #display {
+    grid-area: view;
+  }
 }
 
 @media all and (min-width: 1200px) {
   main {
-    display: grid;
     grid-template-areas:
-      'stats topbar'
-      'stats view'
-      'board-list view';
-    grid-template-columns: 0.3fr 0.7fr;
-    grid-template-rows: 31px 0.5fr 1fr;
+      'interface topbar'
+      'interface view';
+    grid-template-columns: 0.2fr 0.8fr;
+    grid-template-rows: auto 1fr;
 
-    #display {
-      grid-area: view;
+    #side-interface {
+      align-items: flex-start;
+      display: flex;
+      justify-content: space-between;
+
+      #side-interface-components {
+        width: 100%;
+      }
+
+      #side-interface-bar {
+        background-color: lightgreen;
+        cursor: pointer;
+        height: 100%;
+        width: 5px;
+      }
     }
   }
 }

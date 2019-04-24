@@ -51,6 +51,8 @@ header {
 
 @media all and (min-width: 1200px) {
   header {
+    padding: 5px;
+
     #site-title {
       height: 100%;
       text-align: center;

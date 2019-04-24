@@ -20,8 +20,6 @@ export default class HomeBoardList extends Vue {
 
 <style lang="scss" scoped>
 #board-list {
-  height: 100%;
-
   & > * {
     padding: 4px;
   }
@@ -38,7 +36,7 @@ export default class HomeBoardList extends Vue {
 
 @media all and (min-width: 1200px) {
   #board-list {
-    grid-area: board-list;
+    background-color: $light-site-secondary-bgcolor;
   }
 }
 </style>
