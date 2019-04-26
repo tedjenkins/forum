@@ -2,7 +2,12 @@ import Vue from 'vue';
 import App from './App.vue';
 import router from './router';
 import store from './store';
+import Unicon from 'vue-unicons';
+import { uniHome, uniBuilding } from 'vue-unicons/src/icons';
 import 'reflect-metadata';
+
+Unicon.add([uniHome, uniBuilding]);
+Vue.use(Unicon);
 
 Vue.config.productionTip = false;
 Vue.prototype.$siteName = 'Site Title';

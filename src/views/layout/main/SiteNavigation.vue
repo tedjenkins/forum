@@ -1,8 +1,12 @@
 <template>
   <section id="site-navigation">
     <div id="site-navigation-links" @click="handleLinks">
-      <span id="site-navigation-links-dashboard">Dashboard</span>
-      <span id="site-navigation-links-board-list">Board list</span>
+      <span id="site-navigation-links-home">
+        <unicon name="home" fill="#ccc"/>
+      </span>
+      <span id="site-navigation-links-profile">
+        <unicon name="building" fill="#ccc"/>
+      </span>
     </div>
     <LiveSearchBar inputId="site-navigation-search" placeholder="Search site..."/>
   </section>
@@ -18,14 +22,16 @@ import LiveSearchBar from '@/components/LiveSearchBar.vue';
   }
 })
 export default class SiteNavigation extends Vue {
+  /**
+   * Handle site navigation links.
+   * @param {MouseEvent} e -- mouse click event.
+   */
   handleLinks(e: MouseEvent) {
     const targ = e.target as HTMLElement;
 
     if (targ.nodeName !== 'SPAN') {
       return;
     }
-
-    console.log(targ.textContent);
   }
 }
 </script>
@@ -40,6 +46,10 @@ export default class SiteNavigation extends Vue {
   justify-content: flex-start;
 
   #site-navigation-links {
+    align-items: center;
+    display: flex;
+    justify-content: center;
+
     & > * {
       cursor: pointer;
       user-select: none;
