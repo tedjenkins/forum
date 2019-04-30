@@ -1,11 +1,15 @@
 <template>
   <section id="site-navigation">
     <div id="site-navigation-links" @click="handleLinks">
-      <span id="site-navigation-links-home">
-        <unicon name="home" fill="#ccc"/>
+      <span id="site-navigation-links-home" title="Home">
+        <router-link to="/">
+          <unicon name="home" fill="#ccc"/>
+        </router-link>
       </span>
-      <span id="site-navigation-links-profile">
-        <unicon name="building" fill="#ccc"/>
+      <span id="site-navigation-links-profile" title="Profile">
+        <router-link to="/profile">
+          <unicon name="diary-alt" fill="#ccc"/>
+        </router-link>
       </span>
     </div>
     <LiveSearchBar inputId="site-navigation-search" placeholder="Search site..."/>
