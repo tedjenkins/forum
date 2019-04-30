@@ -1,9 +1,17 @@
 <template>
   <main>
-    <aside id="side-interface">
+    <aside
+      :class="{'side-interface-hidden': sidebarIsHidden}"
+      id="side-interface"
+      @click="handleSidebarExpandCollapse"
+    >
       <div id="side-interface-components">
         <SiteDashboard/>
         <SiteBoardList :boards="boardList"/>
+      </div>
+      <div id="side-interface-bar">
+        <template v-if="sidebarIsHidden()">expand</template>
+        <template v-else>collapse</template> info
       </div>
     </aside>
     <SiteNavigation/>
@@ -81,6 +89,42 @@ export default class SiteMain extends Vue {
       html: `<button type="submit">Submit</button>`
     }
   ];
+
+  // key of localStorage entry
+  lsEntry = `${Vue.prototype.$siteName
+    .toLowerCase()
+    .split(' ')
+    .join('-')}-sidebar-is-hidden`;
+
+  /**
+   * Set state in localStorage collapsing or expanding the sidebar (mobile only).
+   * @param {MouseEvent} e -- mouse click event.
+   */
+  handleSidebarExpandCollapse(e: MouseEvent) {
+    const targ = e.target as HTMLElement;
+
+    if (targ.id !== 'side-interface-bar') {
+      return;
+    }
+
+    document
+      .getElementById('side-interface-components')!
+      .classList.toggle('side-interface-hidden');
+
+    localStorage.setItem(this.lsEntry, `${!this.sidebarIsHidden()}`);
+  }
+
+  /**
+   * Get state from localStorage determining if sidebar is collapsed or expanded.
+   * @returns {boolean} true if hidden (collapsed), false if not.
+   */
+  sidebarIsHidden() {
+    if (localStorage.getItem(this.lsEntry) === null) {
+      localStorage.setItem(this.lsEntry, 'false');
+    }
+
+    return Boolean(localStorage.getItem(this.lsEntry));
+  }
 }
 </script>
 
@@ -100,6 +144,25 @@ main {
 
   #side-interface {
     grid-area: aside;
+
+    .side-interface-hidden {
+      display: none;
+    }
+
+    #side-interface-bar {
+      align-items: center;
+      background-color: green;
+      border: 1px solid black;
+      border-left: 0px;
+      border-right: 0px;
+      color: white;
+      cursor: pointer;
+      display: flex;
+      font-size: 12px;
+      height: 20px;
+      justify-content: center;
+      text-transform: uppercase;
+    }
   }
 
   #display {
@@ -127,6 +190,10 @@ main {
         & > * {
           height: 50%;
         }
+      }
+
+      #side-interface-bar {
+        display: none;
       }
     }
   }
