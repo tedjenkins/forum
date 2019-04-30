@@ -33,7 +33,7 @@
             <label for="login-form-password">Password</label>
             <input type="password" id="login-form-password" required>
           </div>
-          <div class="form-section">
+          <div class="form-section-btn">
             <button type="submit" id="login-form-btn">Submit</button>
           </div>
         </form>
@@ -88,6 +88,27 @@ export default class SiteDashboard extends Vue {
 
     .dashboard-row:nth-of-type(2n) {
       background-color: lightgreen;
+    }
+  }
+
+  #user-not-logged-in {
+    #log-in-sign-up-box {
+      font-size: 14px;
+
+      #login-form {
+        .form-section {
+          align-items: center;
+          display: flex;
+          justify-content: space-between;
+          padding: 5px;
+
+          label {
+            font-weight: bold;
+            text-align: center;
+            width: 100%;
+          }
+        }
+      }
     }
   }
 }
