@@ -48,7 +48,7 @@ createConnection()
     // POST app routes. //
     // ================ //
     app
-      .route('/register')
+      .route('/login')
       .options((req: express.Request, res: express.Response) => {
         res.setHeader('Access-Control-Allow-Origin', app.get('host'));
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -59,7 +59,7 @@ createConnection()
         res.setHeader('Access-Control-Allow-Origin', app.get('host'));
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.setHeader('Access-Control-Allow-Methods', 'POST');
-        res.send(req.body);
+        // res.send(req.body); // TODO: replace with database queries
       });
 
     app

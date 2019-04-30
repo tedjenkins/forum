@@ -20,6 +20,8 @@ export default class HomeBoardList extends Vue {
 
 <style lang="scss" scoped>
 #board-list {
+  background-color: $light-site-secondary-bgcolor;
+
   a {
     color: inherit;
     display: block;
@@ -30,12 +32,6 @@ export default class HomeBoardList extends Vue {
     &:nth-child(2n) {
       background-color: lightgreen;
     }
-  }
-}
-
-@media all and (min-width: 1200px) {
-  #board-list {
-    background-color: $light-site-secondary-bgcolor;
   }
 }
 </style>

@@ -22,8 +22,21 @@
     <div id="user-not-logged-in" v-else-if="!this.$store.state.loggedIn">
       <h4 class="site-main-header">Dashboard (guest)</h4>
       <div id="log-in-sign-up-box">
-        <router-link to="/login">Log in</router-link>
-        <router-link to="/signup">Sign up</router-link>
+        You are not currently logged in. Please use the form below to log in or
+        <router-link to="/signup">sign up</router-link>.
+        <form id="login-form" @submit="handleLoginForm">
+          <div class="form-section">
+            <label for="login-form-username">Username</label>
+            <input type="text" id="login-form-username" required>
+          </div>
+          <div class="form-section">
+            <label for="login-form-password">Password</label>
+            <input type="password" id="login-form-password" required>
+          </div>
+          <div class="form-section">
+            <button type="submit" id="login-form-btn">Submit</button>
+          </div>
+        </form>
       </div>
     </div>
   </section>
@@ -33,11 +46,33 @@
 import { Component, Vue } from 'vue-property-decorator';
 
 @Component({})
-export default class SiteDashboard extends Vue {}
+export default class SiteDashboard extends Vue {
+  /**
+   * Handle login form on submit.
+   * @param {Event} e -- form submit event.
+   */
+  handleLoginForm(e: Event) {
+    e.preventDefault();
+    const targ = e.target as HTMLFormElement;
+    const vals: string[] = [];
+
+    targ.querySelectorAll('input').forEach(child => vals.push(child.value));
+
+    fetch(`${Vue.prototype.$siteHost}/login`, {
+      method: 'POST',
+      body: JSON.stringify(vals),
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    }).catch(err => console.log(err));
+  }
+}
 </script>
 
 <style lang="scss" scoped>
 #site-dashboard {
+  background-color: $light-site-secondary-bgcolor;
+
   & > * {
     text-align: center;
   }
@@ -55,23 +90,10 @@ export default class SiteDashboard extends Vue {}
       background-color: lightgreen;
     }
   }
-
-  #user-not-logged-in {
-    #log-in-sign-up-box {
-      & > * {
-        color: inherit;
-        display: block;
-        padding: 5px;
-        text-decoration: none;
-      }
-    }
-  }
 }
 
 @media all and (min-width: 1200px) {
   #site-dashboard {
-    background-color: $light-site-secondary-bgcolor;
-
     & > * {
       #user-dashboard {
         .dashboard-row {
