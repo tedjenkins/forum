@@ -22,8 +22,8 @@
     <div id="user-not-logged-in" v-else-if="!this.$store.state.loggedIn">
       <h4 class="site-main-header">Dashboard (guest)</h4>
       <div id="log-in-sign-up-box">
-        <router-link to="/login" id="log-in-link">Log in</router-link>
-        <router-link to="/signup" id="sign-up-link">Sign up</router-link>
+        <router-link to="/login">Log in</router-link>
+        <router-link to="/signup">Sign up</router-link>
       </div>
     </div>
   </section>
@@ -52,7 +52,7 @@ export default class SiteDashboard extends Vue {}
     }
 
     .dashboard-row:nth-of-type(2n) {
-      background-color: lightgrey;
+      background-color: lightgreen;
     }
   }
 
@@ -63,14 +63,6 @@ export default class SiteDashboard extends Vue {}
         display: block;
         padding: 5px;
         text-decoration: none;
-      }
-
-      #log-in-link {
-        background-color: rgba(10, 255, 10, 0.2);
-      }
-
-      #sign-up-link {
-        background-color: rgba(255, 210, 10, 0.2);
       }
     }
   }

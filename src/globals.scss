@@ -29,10 +29,10 @@ $site-max-width: 1200px;
 $light-site-main-bgcolor: #f0f0f0;
 $light-site-main-fontcolor: #101010;
 
-$light-site-secondary-bgcolor: #aaa;
+$light-site-secondary-bgcolor: #51da63;
 $light-site-secondary-fontcolor: #141414;
 
-$light-site-tertiary-bgcolor: #555;
+$light-site-tertiary-bgcolor: #666;
 $light-site-tertiary-fontcolor: #f0f0f0;
 
 // Theme-based (dark theme)
@@ -70,9 +70,8 @@ h6 {
 
 // Headers of each sub-section in <main>
 .site-main-header {
-  background-color: lightblue;
   font-size: 15px;
-  padding: 4px;
+  padding: 8px 4px;
   text-align: center;
 
   @media all and (min-width: 1200px) {

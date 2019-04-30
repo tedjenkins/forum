@@ -21,12 +21,14 @@ export default class HomeBoardList extends Vue {
 <style lang="scss" scoped>
 #board-list {
   a {
+    color: inherit;
     display: block;
     height: 100%;
     padding: 4px;
+    text-decoration: none;
 
     &:nth-child(2n) {
-      background-color: #ddd;
+      background-color: lightgreen;
     }
   }
 }

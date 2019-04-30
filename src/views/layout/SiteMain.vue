@@ -31,16 +31,16 @@ import SiteNavigation from '@/views/layout/main/SiteNavigation.vue';
 export default class SiteMain extends Vue {
   boardList = [
     {
-      title: 'Hello World',
-      path: '/hello'
+      title: 'Board 1',
+      path: '/board1'
     },
     {
-      title: 'Foo',
-      path: '/foo'
+      title: 'Board 2',
+      path: '/board2'
     },
     {
-      title: 'Bar',
-      path: '/bar'
+      title: 'Board 3',
+      path: '/board3'
     }
   ];
 
@@ -121,7 +121,12 @@ main {
       justify-content: space-between;
 
       #side-interface-components {
+        height: 100%;
         width: 100%;
+
+        & > * {
+          height: 50%;
+        }
       }
     }
   }
