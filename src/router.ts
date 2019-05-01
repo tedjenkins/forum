@@ -26,6 +26,18 @@ export default new Router({
         import(/* webpackChunkName: "signup" */ './views/pages/Signup.vue')
     },
     {
+      path: '/board/:boardName',
+      name: 'board',
+      component: () =>
+        import(/* webpackChunkName: "board" */ './views/pages/dynamic/Board.vue')
+    },
+    {
+      path: '/user/:userId',
+      name: 'user',
+      component: () =>
+        import(/* webpackChunkName: "user" */ './views/pages/dynamic/User.vue')
+    },
+    {
       path: '/settings',
       name: 'settings',
       component: () =>
