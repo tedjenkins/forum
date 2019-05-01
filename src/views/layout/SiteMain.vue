@@ -1,18 +1,11 @@
 <template>
   <main>
-    <aside
-      :class="{'side-interface-hidden': sidebarIsHidden}"
-      id="side-interface"
-      @click="handleSidebarExpandCollapse"
-    >
-      <div id="side-interface-components">
+    <aside id="side-interface" @click="handleSidebarExpandCollapse">
+      <div id="side-interface-components" :class="{'side-interface-hidden': sidebarIsHidden()}">
         <SiteDashboard/>
         <SiteBoardList :boards="boardList"/>
       </div>
-      <div id="side-interface-bar">
-        <template v-if="sidebarIsHidden()">expand</template>
-        <template v-else>collapse</template> info
-      </div>
+      <div id="side-interface-bar">{{ showOrHide }} info</div>
     </aside>
     <SiteNavigation/>
     <section id="display">
@@ -90,11 +83,14 @@ export default class SiteMain extends Vue {
     }
   ];
 
-  // key of localStorage entry
+  // Key of localStorage entry
   lsEntry = `${Vue.prototype.$siteName
     .toLowerCase()
     .split(' ')
     .join('-')}-sidebar-is-hidden`;
+
+  // Either the string 'show' or the string 'hide'
+  showOrHide: string = 'hide';
 
   /**
    * Set state in localStorage collapsing or expanding the sidebar (mobile only).
@@ -111,6 +107,8 @@ export default class SiteMain extends Vue {
       .getElementById('side-interface-components')!
       .classList.toggle('side-interface-hidden');
 
+    this.showOrHide = this.showOrHide === 'show' ? 'hide' : 'show';
+
     localStorage.setItem(this.lsEntry, `${!this.sidebarIsHidden()}`);
   }
 
@@ -123,7 +121,11 @@ export default class SiteMain extends Vue {
       localStorage.setItem(this.lsEntry, 'false');
     }
 
-    return Boolean(localStorage.getItem(this.lsEntry));
+    if (localStorage.getItem(this.lsEntry) === 'true') {
+      return true;
+    } else {
+      return false;
+    }
   }
 }
 </script>
