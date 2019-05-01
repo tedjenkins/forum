@@ -1,7 +1,7 @@
 <template>
   <section id="board-list">
     <h4 class="site-main-header">Board list</h4>
-    <div id="board-list-boards">
+    <div class="side-interface-box" id="board-list-boards">
       <template v-for="(board, index) of boards">
         <router-link :to="`/board${board.path}`" :key="index">{{ board.title }}</router-link>
       </template>
@@ -11,6 +11,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
+import { utils } from '@/utils';
 
 @Component({})
 export default class SiteBoardList extends Vue {

@@ -1,27 +1,29 @@
 <template>
   <section id="site-dashboard">
-    <div id="user-dashboard" v-if="this.$store.state.loggedIn">
+    <div id="user-dashboard-logged-in" v-if="this.$store.state.loggedIn">
       <h4 class="site-main-header">Dashboard</h4>
-      <div class="dashboard-row">
-        Post count:
-        <span id="dashboard-post-count">0</span>
-      </div>
-      <div class="dashboard-row">
-        Last posted in:
-        <a id="dashboard-last-posted-in" href="#">Hello world...</a>
-      </div>
-      <div class="dashboard-row">
-        Awards given:
-        <span id="dashboard-awards-given">0</span>
-      </div>
-      <div class="dashboard-row">
-        Awards received:
-        <span id="dashboard-awards-received">0</span>
+      <div class="side-interface-box" id="dashboard-wrapper">
+        <div class="dashboard-row">
+          Post count:
+          <span id="dashboard-post-count">0</span>
+        </div>
+        <div class="dashboard-row">
+          Last posted in:
+          <a id="dashboard-last-posted-in" href="#">Hello world...</a>
+        </div>
+        <div class="dashboard-row">
+          Awards given:
+          <span id="dashboard-awards-given">0</span>
+        </div>
+        <div class="dashboard-row">
+          Awards received:
+          <span id="dashboard-awards-received">0</span>
+        </div>
       </div>
     </div>
-    <div id="user-not-logged-in" v-else-if="!this.$store.state.loggedIn">
+    <div id="user-dashboard-not-logged-in" v-else-if="!this.$store.state.loggedIn">
       <h4 class="site-main-header">Dashboard (guest)</h4>
-      <div id="log-in-sign-up-box">
+      <div class="side-interface-box" id="log-in-sign-up-box">
         You are not currently logged in. Please use the form below to log in or
         <router-link to="/signup">sign up</router-link>.
         <form id="login-form" @submit="handleLoginForm">
@@ -44,6 +46,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { utils } from '@/utils';
 
 @Component({})
 export default class SiteDashboard extends Vue {
@@ -77,21 +80,23 @@ export default class SiteDashboard extends Vue {
     text-align: center;
   }
 
-  #user-dashboard {
-    & > * {
-      padding: 4px;
-    }
+  #user-dashboard-logged-in {
+    #dashboard-wrapper {
+      & > * {
+        padding: 4px;
+      }
 
-    .dashboard-row {
-      font-size: 14px;
-    }
+      .dashboard-row {
+        font-size: 14px;
+      }
 
-    .dashboard-row:nth-of-type(2n) {
-      background-color: lightgreen;
+      .dashboard-row:nth-of-type(2n) {
+        background-color: lightgreen;
+      }
     }
   }
 
-  #user-not-logged-in {
+  #user-dashboard-not-logged-in {
     #log-in-sign-up-box {
       font-size: 14px;
 
@@ -116,9 +121,11 @@ export default class SiteDashboard extends Vue {
 @media all and (min-width: 1200px) {
   #site-dashboard {
     & > * {
-      #user-dashboard {
-        .dashboard-row {
-          font-size: 16px;
+      #user-dashboard-logged-in {
+        #dashboard-wrapper {
+          .dashboard-row {
+            font-size: 16px;
+          }
         }
       }
     }

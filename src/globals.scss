@@ -68,6 +68,11 @@ h6 {
   margin: 0px;
 }
 
+// Class added to each section in the side interface on collapse
+.side-interface-hidden {
+  display: none;
+}
+
 // Headers of each sub-section in <main>
 .site-main-header {
   font-size: 15px;

@@ -1,11 +1,10 @@
 <template>
   <main>
-    <aside id="side-interface" @click="handleSidebarExpandCollapse">
-      <div id="side-interface-components" :class="{'side-interface-hidden': sidebarIsHidden()}">
+    <aside id="side-interface">
+      <div id="side-interface-components" @click="handleExpandCollapse">
         <SiteDashboard/>
         <SiteBoardList :boards="boardList"/>
       </div>
-      <div id="side-interface-bar">{{ showOrHide }} info</div>
     </aside>
     <SiteNavigation/>
     <section id="display">
@@ -17,6 +16,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { formEls } from '@/types';
+import { props, utils } from '@/utils';
 
 import SiteDashboard from '@/views/layout/main/SiteDashboard.vue';
 import SiteBoardList from '@/views/layout/main/SiteBoardList.vue';
@@ -45,87 +45,22 @@ export default class SiteMain extends Vue {
     }
   ];
 
-  loginFormEls: formEls = [
-    {
-      html: `<label for="login-email">Email address</label> <input type="text" id="login-email"/>`
-    },
-    {
-      html: `<label for="login-password">Password</label> <input type="password" id="login-password"/>`
-    },
-    {
-      id: 'login-extra',
-      html: `<button type="submit">Submit</button> <div id="form-remember-me"> <input type="checkbox" id="form-remember"/> <label for="form-remember">Remember me</label></div> <div id="form-forgot-password">(<a href="#">forgot password?</a>)</div>`
-    }
-  ];
-
-  registerFormEls: formEls = [
-    {
-      html: `Signing up with ${Vue.prototype.$siteName} is quick and easy.`
-    },
-    {
-      html: `<label for="register-username">Username</label> <input type="text" id="register-username" minlength="6" maxlength="24"/>`
-    },
-    {
-      html: `<label for="register-password">Password</label> <input type="password" id="register-password"/>`
-    },
-    {
-      html: `<label for="register-password-repeat">Repeat password</label> <input type="password" id="register-password-repeat"/>`
-    },
-    {
-      html: `<label for="register-email">Email address</label> <input type="text" id="register-email" minlength="6" maxlength="24"/>`
-    },
-    {
-      id: 'register-info',
-      html: `By signing up you agree to our <a href="#">Terms of Service</a>, <a href="#">Privacy Policy</a> and our <a href="#">usage of cookies</a>. You must also be aged 13 or over to register.`
-    },
-    {
-      html: `<button type="submit">Submit</button>`
-    }
-  ];
-
-  // Key of localStorage entry
-  lsEntry = `${Vue.prototype.$siteName
-    .toLowerCase()
-    .split(' ')
-    .join('-')}-sidebar-is-hidden`;
-
-  // Either the string 'show' or the string 'hide'
-  showOrHide: string = 'hide';
-
   /**
-   * Set state in localStorage collapsing or expanding the sidebar (mobile only).
+   * Handle expand / collapse of section.
    * @param {MouseEvent} e -- mouse click event.
    */
-  handleSidebarExpandCollapse(e: MouseEvent) {
+  handleExpandCollapse(e: MouseEvent) {
     const targ = e.target as HTMLElement;
 
-    if (targ.id !== 'side-interface-bar') {
-      return;
-    }
-
-    document
-      .getElementById('side-interface-components')!
-      .classList.toggle('side-interface-hidden');
-
-    this.showOrHide = this.showOrHide === 'show' ? 'hide' : 'show';
-
-    localStorage.setItem(this.lsEntry, `${!this.sidebarIsHidden()}`);
+    utils.expandCollapseSection(targ, targ.nextElementSibling as HTMLElement);
   }
 
-  /**
-   * Get state from localStorage determining if sidebar is collapsed or expanded.
-   * @returns {boolean} true if hidden (collapsed), false if not.
-   */
-  sidebarIsHidden() {
-    if (localStorage.getItem(this.lsEntry) === null) {
-      localStorage.setItem(this.lsEntry, 'false');
-    }
-
-    if (localStorage.getItem(this.lsEntry) === 'true') {
-      return true;
-    } else {
-      return false;
-    }
+  mounted() {
+    Array.from(document.querySelectorAll('.side-interface-box')).forEach(el => {
+      if (utils.isSectionHidden(el as HTMLElement)) {
+        el.classList.add('side-interface-hidden');
+      }
+    });
   }
 }
 </script>
@@ -147,8 +82,8 @@ main {
   #side-interface {
     grid-area: aside;
 
-    .side-interface-hidden {
-      display: none;
+    /deep/ h4 {
+      cursor: pointer;
     }
 
     #side-interface-bar {
