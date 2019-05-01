@@ -80,6 +80,7 @@ main {
   height: 100%;
 
   #side-interface {
+    background-color: lightgreen;
     grid-area: aside;
 
     /deep/ h4 {

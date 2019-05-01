@@ -74,8 +74,6 @@ export default class SiteDashboard extends Vue {
 
 <style lang="scss" scoped>
 #site-dashboard {
-  background-color: $light-site-secondary-bgcolor;
-
   & > * {
     text-align: center;
   }

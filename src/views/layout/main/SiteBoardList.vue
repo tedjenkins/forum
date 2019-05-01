@@ -21,17 +21,33 @@ export default class SiteBoardList extends Vue {
 
 <style lang="scss" scoped>
 #board-list {
-  background-color: $light-site-secondary-bgcolor;
-
   a {
+    border: 1px solid transparent;
+    border-left: 0px;
+    border-right: 0px;
     color: inherit;
     display: block;
     height: 100%;
     padding: 4px;
     text-decoration: none;
+  }
 
-    &:nth-child(2n) {
-      background-color: lightgreen;
+  a:hover {
+    background-color: rgba(0, 0, 0, 0.2);
+    border-color: #fff;
+  }
+
+  a:active {
+    background-color: rgba(0, 0, 0, 0.3);
+  }
+}
+
+@media all and (min-width: 1200px) {
+  #board-list {
+    a {
+      font-size: 17px;
+      padding: 10px;
+      text-align: center;
     }
   }
 }
