@@ -57,9 +57,15 @@ export default class SiteDashboard extends Vue {
   handleLoginForm(e: Event) {
     e.preventDefault();
     const targ = e.target as HTMLFormElement;
-    const vals: string[] = [];
+    const vals: { [key: string]: string } = {};
 
-    targ.querySelectorAll('input').forEach(child => vals.push(child.value));
+    targ.querySelectorAll('input').forEach(child => {
+      if (child.id.includes('username')) {
+        vals.username = child.value;
+      } else if (child.id.includes('password')) {
+        vals.password = child.value;
+      }
+    });
 
     fetch(`${Vue.prototype.$siteHost}/login`, {
       method: 'POST',

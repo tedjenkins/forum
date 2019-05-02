@@ -1,12 +1,13 @@
 // * ---------------------------------------------------------------------------------------
 // * File to run with pm2, 'forever' etc for serving files and other server-side operations.
 // * ---------------------------------------------------------------------------------------
-import { createConnection } from 'typeorm';
+import { createConnection, PromiseUtils } from 'typeorm';
 import Posts from '../src/db/entities/Posts';
 import Threads from '../src/db/entities/Threads';
 import express from 'express';
 import http from 'http';
 import path from 'path';
+import { utils } from '../src/utils';
 
 createConnection()
   .then(connection => {
@@ -59,7 +60,13 @@ createConnection()
         res.setHeader('Access-Control-Allow-Origin', app.get('host'));
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.setHeader('Access-Control-Allow-Methods', 'POST');
-        // res.send(req.body); // TODO: replace with database queries
+
+        if (
+          utils.inputIsValid(req.body.username) &&
+          utils.passwordIsValid(req.body.password)
+        ) {
+          // handle login
+        }
       });
 
     app

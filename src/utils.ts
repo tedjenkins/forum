@@ -75,5 +75,32 @@ export const utils = {
     } else {
       return false;
     }
+  },
+
+  /**
+   * Checks user input to ensure validity.
+   * @param input -- input value to check for validity.
+   * @returns {boolean} true if valid, false if not.
+   */
+  inputIsValid: (input: string) => {
+    if (!/^.{4,24}$/gi.test(input)) {
+      return false;
+    }
+
+    return true;
+  },
+
+  /**
+   * Checks user password to ensure it conforms to rules on length etc.
+   * @param input -- input value to check for validity.
+   * @returns {boolean} true if valid, false if not.
+   */
+  passwordIsValid: (input: string) => {
+    // 4 to 8 character password requiring numbers and both lowercase and uppercase letters
+    if (!/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{4,8}$/g.test(input)) {
+      return false;
+    }
+
+    return true;
   }
 };

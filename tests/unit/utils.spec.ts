@@ -88,4 +88,19 @@ describe('utils', () => {
       expect(localStorage.getItem(props.lsEntry)).toEqual(null);
     });
   });
+
+  describe('inputIsValid', () => {
+    expect(utils.inputIsValid('hi')).toEqual(false);
+    expect(utils.inputIsValid('this is a message')).toEqual(true);
+  });
+
+  describe('passwordIsValid', () => {
+    expect(utils.passwordIsValid('123')).toEqual(false);
+    expect(utils.passwordIsValid('password')).toEqual(false);
+    expect(utils.passwordIsValid('hello1')).toEqual(false);
+    expect(utils.passwordIsValid('&^%£^')).toEqual(false);
+
+    expect(utils.passwordIsValid('hELLo1')).toEqual(true);
+    expect(utils.passwordIsValid('HE2ll&')).toEqual(true);
+  });
 });
