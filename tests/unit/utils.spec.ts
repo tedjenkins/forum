@@ -4,6 +4,16 @@ describe('utils', () => {
   describe('expandCollapseSection', () => {
     let testHeader: HTMLElement;
 
+    window.matchMedia = jest.fn().mockImplementation(query => {
+      return {
+        matches: false,
+        media: query,
+        onchange: null,
+        addListener: jest.fn(),
+        removeListener: jest.fn()
+      };
+    });
+
     beforeEach(() => {
       document.body.innerHTML =
         '<section id="test-section"><h4 id="test-header">Test header</h4><div id="test-section-box">This is test box</div><h2 id="fake-header">This is not the header</h2></section>';

@@ -23,7 +23,10 @@ export const utils = {
    * @param {HTMLElement} sect -- element to show / hide.
    */
   expandCollapseSection: (targ: HTMLElement, sect: HTMLElement) => {
-    if (targ.nodeName !== 'H4') {
+    if (
+      targ.nodeName !== 'H4' ||
+      window.matchMedia('(min-width: 1200px').matches
+    ) {
       return;
     }
 

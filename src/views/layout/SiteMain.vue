@@ -84,22 +84,10 @@ main {
     grid-area: aside;
 
     /deep/ h4 {
+      background-color: #64b164;
+      border-bottom: 1px solid #fff;
       cursor: pointer;
-    }
-
-    #side-interface-bar {
-      align-items: center;
-      background-color: green;
-      border: 1px solid black;
-      border-left: 0px;
-      border-right: 0px;
-      color: white;
-      cursor: pointer;
-      display: flex;
-      font-size: 12px;
-      height: 20px;
-      justify-content: center;
-      text-transform: uppercase;
+      user-select: none;
     }
   }
 
@@ -121,6 +109,13 @@ main {
       display: flex;
       justify-content: space-between;
 
+      /deep/ h4 {
+        background-color: inherit;
+        border-bottom: 0px;
+        cursor: text;
+        user-select: initial;
+      }
+
       #side-interface-components {
         height: 100%;
         width: 100%;
@@ -128,10 +123,6 @@ main {
         & > * {
           height: 50%;
         }
-      }
-
-      #side-interface-bar {
-        display: none;
       }
     }
   }

@@ -27,18 +27,24 @@ export default class SiteBoardList extends Vue {
     border-right: 0px;
     color: inherit;
     display: block;
+    font-size: 15px;
     height: 100%;
-    padding: 4px;
+    padding: 8px;
+    text-align: center;
     text-decoration: none;
-  }
 
-  a:hover {
-    background-color: rgba(0, 0, 0, 0.2);
-    border-color: #fff;
-  }
+    &:hover {
+      background-color: rgba(0, 0, 0, 0.2);
+      border-color: #fff;
+    }
 
-  a:active {
-    background-color: rgba(0, 0, 0, 0.3);
+    &:first-of-type:hover {
+      border-top-color: transparent;
+    }
+
+    &:active {
+      background-color: rgba(0, 0, 0, 0.3);
+    }
   }
 }
 
@@ -47,7 +53,10 @@ export default class SiteBoardList extends Vue {
     a {
       font-size: 17px;
       padding: 10px;
-      text-align: center;
+
+      &:first-of-type:hover {
+        border-top-color: #fff;
+      }
     }
   }
 }

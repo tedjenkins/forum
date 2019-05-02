@@ -78,6 +78,10 @@ export default class SiteDashboard extends Vue {
     text-align: center;
   }
 
+  .side-interface-box {
+    padding: 10px 0px;
+  }
+
   #user-dashboard-logged-in {
     #dashboard-wrapper {
       & > * {
