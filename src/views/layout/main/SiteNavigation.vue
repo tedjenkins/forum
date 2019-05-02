@@ -25,19 +25,7 @@ import LiveSearchBar from '@/components/LiveSearchBar.vue';
     LiveSearchBar
   }
 })
-export default class SiteNavigation extends Vue {
-  /**
-   * Handle site navigation links.
-   * @param {MouseEvent} e -- mouse click event.
-   */
-  handleLinks(e: MouseEvent) {
-    const targ = e.target as HTMLElement;
-
-    if (targ.nodeName !== 'SPAN') {
-      return;
-    }
-  }
-}
+export default class SiteNavigation extends Vue {}
 </script>
 
 <style lang="scss" scoped>
