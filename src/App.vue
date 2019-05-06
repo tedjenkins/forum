@@ -19,27 +19,7 @@ import SiteFooter from './views/layout/SiteFooter.vue';
     SiteFooter
   }
 })
-export default class App extends Vue {
-  /**
-   * Focus on app when user clicks away from a popup box / modal.
-   * @param {MouseEvent} e -- click event.
-   */
-  handleFocusOnApp(e: MouseEvent): void {
-    const targ = e.target as HTMLElement;
-
-    if (!targ.dataset.isModal && this.$store.state.modalIsDisplaying) {
-      Array.from(document.querySelectorAll('[data-is-modal="true"]')).forEach(
-        el => {
-          if (el.nodeName === 'A') {
-            return;
-          }
-          (el as HTMLElement).style.opacity = '0';
-        }
-      );
-      this.$store.commit('toggleModal');
-    }
-  }
-}
+export default class App extends Vue {}
 </script>
 
 <style lang="scss">

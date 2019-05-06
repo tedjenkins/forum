@@ -8,18 +8,10 @@ type StoreState = {
 };
 
 const state: StoreState = {
-  modalIsDisplaying: false,
   loggedIn: false
 };
 
-export const mutations = {
-  setModalAttr(st: StoreState, el: HTMLElement) {
-    el.dataset.isModal = 'true';
-  },
-  toggleModal(st: StoreState) {
-    st.modalIsDisplaying = !st.modalIsDisplaying;
-  }
-};
+export const mutations = {};
 
 export const actions = {};
 
