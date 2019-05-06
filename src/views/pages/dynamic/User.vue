@@ -1,5 +1,5 @@
 <template>
-  <div id="user"></div>
+  <div id="user">User page for user with id {{ this.$route.params.userId }}</div>
 </template>
 
 <script lang="ts">

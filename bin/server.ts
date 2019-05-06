@@ -1,13 +1,13 @@
 // * ---------------------------------------------------------------------------------------
 // * File to run with pm2, 'forever' etc for serving files and other server-side operations.
 // * ---------------------------------------------------------------------------------------
-import { createConnection, PromiseUtils } from 'typeorm';
-import Posts from '../src/db/entities/Posts';
-import Threads from '../src/db/entities/Threads';
+import { createConnection } from 'typeorm';
+import Posts from '@db/entities/Posts';
+import Threads from '@db/entities/Threads';
 import express from 'express';
 import http from 'http';
 import path from 'path';
-import { utils } from '../src/utils';
+import { utils } from '@/utils';
 
 createConnection()
   .then(connection => {
