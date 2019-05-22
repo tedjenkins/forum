@@ -8,6 +8,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { props } from '@/utils';
 import SiteHeader from './views/layout/SiteHeader.vue';
 import SiteMain from './views/layout/SiteMain.vue';
 import SiteFooter from './views/layout/SiteFooter.vue';
@@ -19,7 +20,11 @@ import SiteFooter from './views/layout/SiteFooter.vue';
     SiteFooter
   }
 })
-export default class App extends Vue {}
+export default class App extends Vue {
+  created() {
+    document.title = props.siteName;
+  }
+}
 </script>
 
 <style lang="scss">
