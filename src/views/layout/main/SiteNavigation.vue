@@ -1,6 +1,6 @@
 <template>
   <section id="site-navigation">
-    <div id="site-navigation-links" @click="handleLinks">
+    <div id="site-navigation-links">
       <span id="site-navigation-links-home" title="Home">
         <router-link to="/">
           <unicon name="home" fill="#ccc"/>

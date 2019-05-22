@@ -1,5 +1,5 @@
 <template>
-  <div id="app" aria-label="app" @click="handleFocusOnApp">
+  <div id="app" aria-label="app">
     <SiteHeader aria-label="header section"/>
     <SiteMain aria-label="main section"/>
     <SiteFooter aria-label="footer section"/>
