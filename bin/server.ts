@@ -41,6 +41,9 @@ createConnection()
         res.setHeader('Access-Control-Allow-Origin', app.get('host'));
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+
+        // Security issue, rectify in future
+        // https://old.reddit.com/r/typescript/comments/bs951p/can_typeorm_be_used_for_enterprise_production_apps/eolsl34/
         const result = await connection.getRepository(Threads).find();
         res.send(result);
       });
@@ -106,6 +109,12 @@ createConnection()
         // req.body.threadContent: string; -> posts.content
         res.send(req.body);
       });
+
+    app.use((req: express.Request, res: express.Response) => {
+      res.type('html');
+      res.sendFile(path.join(__dirname, '..', 'public', 'error.html'));
+      res.status(404);
+    });
 
     const server = http.createServer(app).listen(app.get('port'));
     server.on('error', err => {
