@@ -21,6 +21,8 @@
 import { Component, Vue } from 'vue-property-decorator';
 import BoardThreadListing from '@/components/BoardThreadListing';
 import { props } from '@/utils';
+import { isBefore } from 'date-fns';
+import Threads from '@/db/entities/Threads';
 
 @Component({
   components: {
@@ -28,7 +30,7 @@ import { props } from '@/utils';
   }
 })
 export default class Home extends Vue {
-  threads: object[] | null = null;
+  threads: Threads[] | null = null;
 
   created() {
     fetch(`${props.siteHost}/get-threads`, {
@@ -37,11 +39,24 @@ export default class Home extends Vue {
       }
     })
       .then(res => res.json())
-      .then(json => (this.threads = json))
+      .then((json: Threads[]) => {
+        this.threads = json.sort((thread1, thread2) => {
+          return isBefore(thread1.dateCreated, thread2.dateCreated) ? 1 : 0;
+        });
+      })
       .catch(err => console.log(err));
   }
 }
 </script>
 
 <style lang="scss" scoped>
+#latest-posts-display {
+  max-width: 600px;
+}
+
+@media all and (min-width: 600px) {
+  #latest-posts-display {
+    margin: 0px auto;
+  }
+}
 </style>

@@ -2,13 +2,13 @@
   <main>
     <aside id="side-interface">
       <div id="side-interface-components" @click="handleExpandCollapse">
-        <SiteDashboard />
-        <SiteBoardList :boards="boardList" />
+        <SiteDashboard/>
+        <SiteBoardList :boards="boardList"/>
       </div>
     </aside>
-    <SiteNavigation />
+    <SiteNavigation/>
     <section id="display">
-      <router-view />
+      <router-view/>
     </section>
   </main>
 </template>
@@ -96,7 +96,7 @@ main {
   }
 }
 
-@media all and (min-width: 1200px) {
+@media all and (min-width: 800px) {
   main {
     grid-template-areas:
       'aside topbar'
