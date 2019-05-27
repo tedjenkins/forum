@@ -3,7 +3,7 @@
     <div class="thread-title">
       <a :href="`${this.siteHost}/thread/${this.threadId}`">{{ this.formattedTitle }}</a>
     </div>
-    <div class="thread-datetime">({{ this.formattedDate }})</div>
+    <div class="thread-datetime">{{ this.formattedDate }}</div>
     <div class="thread-posted-by">
       Posted by
       <a :href="`${this.siteHost}/profile/${this.threadAuthorId}`">user</a>
@@ -44,6 +44,10 @@ export default class BoardThreadListing extends Vue {
     'author replies';
   justify-content: space-between;
   padding: 4px;
+
+  &:hover {
+    background-color: #ddd;
+  }
 
   .thread-title {
     font-weight: bold;
