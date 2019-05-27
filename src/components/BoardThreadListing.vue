@@ -33,8 +33,9 @@ export default class BoardThreadListing extends Vue {
 <style lang="scss" scoped>
 .thread-listing-box {
   align-items: center;
-  border: 1px solid black;
+  cursor: pointer;
   display: flex;
+  flex-direction: column;
   justify-content: space-around;
   padding: 4px;
 
