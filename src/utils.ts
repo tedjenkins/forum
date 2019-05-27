@@ -5,6 +5,10 @@
 // Global site title.
 const siteName = 'Site Title';
 
+// Site host (same host in production, localhost in dev).
+const siteHost =
+  process.env.NODE_ENV === 'production' ? '' : 'http://localhost:3010';
+
 // localStorage key for hiding / showing sidebar sections.
 const lsEntry = `${siteName
   .toLowerCase()
@@ -13,6 +17,7 @@ const lsEntry = `${siteName
 
 export const props = {
   siteName,
+  siteHost,
   lsEntry
 };
 

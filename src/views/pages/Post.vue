@@ -34,6 +34,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
+import { props } from '@/utils';
 import BoardThreadListing from '@/components/BoardThreadListing.vue';
 import { format } from 'date-fns';
 
@@ -64,7 +65,7 @@ export default class Post extends Vue {
   ];
 
   created() {
-    fetch(`${Vue.prototype.$siteHost}/get-threads`, {
+    fetch(`${props.siteHost}/get-threads`, {
       headers: {
         'Content-Type': 'application/json'
       }
@@ -122,7 +123,7 @@ export default class Post extends Vue {
 
     const targ = e.target as HTMLFormElement;
 
-    fetch(`${Vue.prototype.$siteHost}/makepost`, {
+    fetch(`${props.siteHost}/makepost`, {
       method: 'POST',
       body: JSON.stringify(this.credentials),
       headers: {

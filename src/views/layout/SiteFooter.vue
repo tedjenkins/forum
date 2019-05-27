@@ -2,7 +2,7 @@
   <footer>
     <u @click="toggleLoggedIn">Toggle logged in</u>
     <div id="site-credits" aria-label="site credits">
-      {{ this.$siteName }} ©
+      {{ this.$store.state.siteName }} ©
       <a href="https://usefulsoftware.xyz">UsefulSoftware.xyz</a> 2019
     </div>
   </footer>

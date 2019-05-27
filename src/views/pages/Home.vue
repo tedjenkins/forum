@@ -6,6 +6,7 @@
         <BoardThreadListing
           v-for="thread of threads"
           :key="thread.id"
+          :threadId="thread.id"
           :threadTitle="thread.title"
           :threadAuthorId="thread.authorId"
           :threadDateCreated="thread.dateCreated"
@@ -19,6 +20,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import BoardThreadListing from '@/components/BoardThreadListing';
+import { props } from '@/utils';
 
 @Component({
   components: {
@@ -29,7 +31,7 @@ export default class Home extends Vue {
   threads: object[] | null = null;
 
   created() {
-    fetch(`${Vue.prototype.$siteHost}/get-threads`, {
+    fetch(`${props.siteHost}/get-threads`, {
       headers: {
         'Content-Type': 'application/json'
       }

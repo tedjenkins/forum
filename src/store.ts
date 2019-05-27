@@ -1,13 +1,11 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
+import { props } from '@/utils';
 
 Vue.use(Vuex);
 
-type StoreState = {
-  [key: string]: boolean;
-};
-
-const state: StoreState = {
+const state = {
+  siteName: props.siteName,
   loggedIn: false
 };
 

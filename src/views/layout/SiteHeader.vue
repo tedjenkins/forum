@@ -1,6 +1,6 @@
 <template>
   <header>
-    <a id="site-title" href="/">{{ this.$siteName }}</a>
+    <a id="site-title" href="/">{{ this.$store.state.siteName }}</a>
   </header>
 </template>
 

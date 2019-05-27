@@ -46,7 +46,7 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import { utils } from '@/utils';
+import { props, utils } from '@/utils';
 
 @Component({})
 export default class SiteDashboard extends Vue {
@@ -67,7 +67,7 @@ export default class SiteDashboard extends Vue {
       }
     });
 
-    fetch(`${Vue.prototype.$siteHost}/login`, {
+    fetch(`${props.siteHost}/login`, {
       method: 'POST',
       body: JSON.stringify(vals),
       headers: {
