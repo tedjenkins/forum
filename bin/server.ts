@@ -30,7 +30,7 @@ createConnection()
     // GET app routes. //
     // =============== //
     app
-      .route('/get-threads')
+      .route('/get-threads/:num')
       .options((req: express.Request, res: express.Response) => {
         res.setHeader('Access-Control-Allow-Origin', app.get('host'));
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
@@ -42,9 +42,10 @@ createConnection()
         res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
         res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
 
-        // Security issue, rectify in future
-        // https://old.reddit.com/r/typescript/comments/bs951p/can_typeorm_be_used_for_enterprise_production_apps/eolsl34/
-        const result = await connection.getRepository(Threads).find();
+        const result = await connection
+          .getRepository(Threads)
+          .find({ take: +req.params.num });
+
         res.send(result);
       });
 
