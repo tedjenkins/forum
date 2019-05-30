@@ -73,7 +73,7 @@ export default class SiteDashboard extends Vue {
       headers: {
         'Content-Type': 'application/json'
       }
-    }).catch(err => console.log(err));
+    });
   }
 }
 </script>
@@ -118,6 +118,10 @@ export default class SiteDashboard extends Vue {
           label {
             font-weight: bold;
             text-align: center;
+            width: 100%;
+          }
+
+          input {
             width: 100%;
           }
         }

@@ -129,25 +129,23 @@ export default class Post extends Vue {
       headers: {
         'Content-Type': 'application/json'
       }
-    })
-      .then(() => {
-        this.autoId++;
+    }).then(() => {
+      this.autoId++;
 
-        // Update display
-        this.threads.unshift({
-          id: this.autoId,
-          title: (targ.querySelector('input') as HTMLInputElement).value,
-          authorId: this.credentials.userId,
-          dateCreated: new Date().toLocaleTimeString(),
-          numReplies: 0
-        });
+      // Update display
+      this.threads.unshift({
+        id: this.autoId,
+        title: (targ.querySelector('input') as HTMLInputElement).value,
+        authorId: this.credentials.userId,
+        dateCreated: new Date().toLocaleTimeString(),
+        numReplies: 0
+      });
 
-        // Clear fields
-        targ
-          .querySelectorAll('input, textarea')
-          .forEach(el => ((el as HTMLInputElement).value = ''));
-      })
-      .catch(err => console.log(err));
+      // Clear fields
+      targ
+        .querySelectorAll('input, textarea')
+        .forEach(el => ((el as HTMLInputElement).value = ''));
+    });
 
     this.regenerateIdsMixin();
   }

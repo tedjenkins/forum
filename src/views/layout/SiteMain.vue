@@ -82,12 +82,12 @@ main {
   }
 }
 
-@media all and (min-width: 800px) {
+@media all and (min-width: 600px) {
   main {
     grid-template-areas:
       'aside topbar'
       'aside view';
-    grid-template-columns: 0.2fr auto;
+    grid-template-columns: 280px auto;
     grid-template-rows: auto 1fr;
 
     #side-interface {
