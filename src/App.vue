@@ -1,7 +1,11 @@
 <template>
   <div id="app" aria-label="app">
     <SiteHeader aria-label="header section"/>
-    <SiteMain aria-label="main section"/>
+    <main
+      id="db-conn-lost"
+      v-if="this.$store.state.dbConnectionLost"
+    >A problem has been encountered during connection to the database.</main>
+    <SiteMain aria-label="main section" v-else/>
     <SiteFooter aria-label="footer section"/>
   </div>
 </template>

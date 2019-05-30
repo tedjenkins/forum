@@ -4,12 +4,27 @@ import { props } from '@/utils';
 
 Vue.use(Vuex);
 
-const state = {
-  siteName: props.siteName,
-  loggedIn: false
+type VueState = {
+  [key: string]: string | boolean;
 };
 
-export const mutations = {};
+const state: VueState = {
+  dbConnectionLost: false,
+  loggedIn: false,
+  siteName: props.siteName // For ability to access within <template> tags.
+};
+
+export const mutations = {
+  /** If connection to database is attempted and fails, set prop to true so conditionals can run. */
+  flagLostDb(st: VueState) {
+    st.dbConnectionLost = true;
+  },
+
+  /** Toggle between 'logged in' and 'not logged in' displays. */
+  toggleLoggedIn(st: VueState) {
+    st.loggedIn = !st.loggedIn;
+  }
+};
 
 export const actions = {};
 

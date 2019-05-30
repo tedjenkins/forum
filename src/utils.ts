@@ -97,7 +97,7 @@ export const utils = {
 
   /**
    * Checks user password to ensure it conforms to rules on length etc.
-   * @param input -- input value to check for validity.
+   * @param {string} input -- input value to check for validity.
    * @returns {boolean} true if valid, false if not.
    */
   passwordIsValid: (input: string) => {

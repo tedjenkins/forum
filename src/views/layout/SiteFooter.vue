@@ -14,7 +14,7 @@ import { Component, Vue } from 'vue-property-decorator';
 @Component({})
 export default class SiteFooter extends Vue {
   toggleLoggedIn() {
-    this.$store.state.loggedIn = !this.$store.state.loggedIn;
+    this.$store.commit('toggleLoggedIn');
   }
 }
 </script>

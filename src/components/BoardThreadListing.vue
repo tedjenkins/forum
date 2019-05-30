@@ -20,7 +20,7 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { props } from '@/utils';
+import { props, utils } from '@/utils';
 import { format, isBefore } from 'date-fns';
 import Threads from '@/db/entities/Threads';
 
@@ -46,7 +46,8 @@ export default class BoardThreadListing extends Vue {
         this.threads = json.sort((thread1, thread2) => {
           return isBefore(thread1.dateCreated, thread2.dateCreated) ? 1 : 0;
         });
-      });
+      })
+      .catch(() => this.$store.commit('flagLostDb'));
   }
 }
 </script>
