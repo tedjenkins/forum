@@ -1,41 +1,58 @@
 <template>
   <div class="thread-listing-box">
-    <div class="thread-title">
-      <a :href="`${this.siteHost}/thread/${this.threadId}`">{{ this.formattedTitle }}</a>
+    <div class="thread-box" v-for="thread in threads" :key="thread.id">
+      <div class="thread-title">
+        <a :href="`${siteHost}/thread/${thread.id}`">
+          {{ thread.title.length > 24
+          ? `${thread.title.substring(0, 24)}...`
+          : thread.title }}
+        </a>
+      </div>
+      <div class="thread-datetime">{{ formattedDate(thread.dateCreated) }}</div>
+      <div class="thread-posted-by">
+        Posted by
+        <a :href="`${siteHost}/profile/${thread.authorId}`">user</a>
+      </div>
+      <div class="thread-num-replies">{{ thread.numReplies }} replies</div>
     </div>
-    <div class="thread-datetime">{{ this.formattedDate }}</div>
-    <div class="thread-posted-by">
-      Posted by
-      <a :href="`${this.siteHost}/profile/${this.threadAuthorId}`">user</a>
-    </div>
-    <div class="thread-num-replies">{{ threadNumberOfReplies }} replies</div>
   </div>
 </template>
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { props } from '@/utils';
-import { format } from 'date-fns';
+import { format, isBefore } from 'date-fns';
+import Threads from '@/db/entities/Threads';
 
 @Component({})
 export default class BoardThreadListing extends Vue {
-  @Prop() threadId!: number;
-  @Prop() threadTitle!: string;
-  @Prop() threadAuthorId!: number;
-  @Prop() threadDateCreated!: string;
-  @Prop() threadNumberOfReplies!: number;
+  @Prop() length!: number;
 
+  threads: Threads[] | null = null;
   siteHost = props.siteHost;
-  formattedTitle =
-    this.threadTitle.length > 24
-      ? `${this.threadTitle.substring(0, 24)}...`
-      : this.threadTitle;
-  formattedDate = format(this.threadDateCreated, "HH:mm DD MMM 'YY");
+
+  formattedDate(date: string) {
+    return format(date, "HH:mm DD MMM 'YY");
+  }
+
+  created() {
+    fetch(`${props.siteHost}/get-threads/${this.length}`, {
+      headers: {
+        'Content-Type': 'application/json'
+      }
+    })
+      .then(res => res.json())
+      .then((json: Threads[]) => {
+        this.threads = json.sort((thread1, thread2) => {
+          return isBefore(thread1.dateCreated, thread2.dateCreated) ? 1 : 0;
+        });
+      });
+  }
 }
 </script>
 
 <style lang="scss" scoped>
-.thread-listing-box {
+.thread-box {
   align-items: center;
   display: grid;
   font-size: 13px;
