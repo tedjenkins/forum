@@ -3,7 +3,7 @@
     <aside id="side-interface">
       <div id="side-interface-components" @click="handleExpandCollapse">
         <SiteDashboard/>
-        <SiteBoardList :boards="boardList"/>
+        <SiteBoardList/>
       </div>
     </aside>
     <SiteNavigation/>
@@ -16,8 +16,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import { formEls } from '@/types';
-import { props, utils } from '@/utils';
-import Boards from '@/db/entities/Boards';
+import { utils } from '@/utils';
 
 import SiteDashboard from '@/views/layout/main/SiteDashboard.vue';
 import SiteBoardList from '@/views/layout/main/SiteBoardList.vue';
@@ -31,8 +30,6 @@ import SiteNavigation from '@/views/layout/main/SiteNavigation.vue';
   }
 })
 export default class SiteMain extends Vue {
-  boardList: Boards[] | null = null;
-
   /**
    * Handle expand / collapse of section.
    * @param {MouseEvent} e -- mouse click event.
@@ -44,11 +41,6 @@ export default class SiteMain extends Vue {
   }
 
   mounted() {
-    // Add boards to boardlist
-    fetch(`${props.siteHost}/get-boards`)
-      .then(res => res.json())
-      .then(json => (this.boardList = json));
-
     // Check for hidden sidebar sections
     Array.from(document.querySelectorAll('.side-interface-box')).forEach(el => {
       if (utils.isSectionHidden(el as HTMLElement)) {

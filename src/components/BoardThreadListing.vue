@@ -36,11 +36,7 @@ export default class BoardThreadListing extends Vue {
   }
 
   created() {
-    fetch(`${props.siteHost}/get-threads/${this.length}`, {
-      headers: {
-        'Content-Type': 'application/json'
-      }
-    })
+    fetch(`${props.siteHost}/get-threads/${this.length}`)
       .then(res => res.json())
       .then((json: Threads[]) => {
         this.threads = json.sort((thread1, thread2) => {

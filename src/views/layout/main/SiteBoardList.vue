@@ -11,11 +11,19 @@
 
 <script lang="ts">
 import { Component, Prop, Vue } from 'vue-property-decorator';
-import { utils } from '@/utils';
+import { props } from '@/utils';
+import Boards from '@/db/entities/Boards';
 
 @Component({})
 export default class SiteBoardList extends Vue {
-  @Prop() boards!: object[];
+  boards: Boards[] | null = null;
+
+  created() {
+    fetch(`${props.siteHost}/get-boards`)
+      .then(res => res.json())
+      .then(json => (this.boards = json))
+      .catch(() => this.$store.commit('flagLostDb'));
+  }
 }
 </script>
 
