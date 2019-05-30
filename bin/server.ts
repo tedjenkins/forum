@@ -2,12 +2,13 @@
 // * File to run with pm2, 'forever' etc for serving files and other server-side operations.
 // * ---------------------------------------------------------------------------------------
 import { createConnection } from 'typeorm';
+import Boards from '../src/db/entities/Boards';
 import Posts from '../src/db/entities/Posts';
 import Threads from '../src/db/entities/Threads';
 import express from 'express';
 import http from 'http';
 import path from 'path';
-import { utils } from '../src/utils';
+import { props, utils } from '../src/utils';
 
 createConnection()
   .then(connection => {
@@ -29,6 +30,24 @@ createConnection()
     // =============== //
     // GET app routes. //
     // =============== //
+    app
+      .route('/get-boards')
+      .options((req: express.Request, res: express.Response) => {
+        res.setHeader('Access-Control-Allow-Origin', app.get('host'));
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.status(200).end();
+      })
+      .get(async (req: express.Request, res: express.Response) => {
+        res.type('application/json');
+        res.setHeader('Access-Control-Allow-Origin', app.get('host'));
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+
+        const result = await connection.getRepository(Boards).find();
+
+        res.send(result);
+      });
+
     app
       .route('/get-threads/:num')
       .options((req: express.Request, res: express.Response) => {

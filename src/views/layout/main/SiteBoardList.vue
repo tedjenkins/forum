@@ -3,7 +3,7 @@
     <h4 class="site-main-header">Board list</h4>
     <div class="side-interface-box" id="board-list-boards">
       <template v-for="(board, index) of boards">
-        <router-link :to="`/board${board.path}`" :key="index">{{ board.title }}</router-link>
+        <router-link :to="`/board/${board.id}`" :key="index">{{ board.name }}</router-link>
       </template>
     </div>
   </section>
