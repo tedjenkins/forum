@@ -1,6 +1,7 @@
 <template>
   <footer>
     <u @click="toggleLoggedIn">Toggle logged in</u>
+    <router-link to="/admin">Navigate to admin page</router-link>
     <div id="site-credits" aria-label="site credits">
       {{ this.$store.state.siteName }} ©
       <a href="https://usefulsoftware.xyz">UsefulSoftware.xyz</a> 2019
@@ -28,6 +29,10 @@ footer {
   u {
     cursor: pointer;
     user-select: none;
+  }
+
+  a {
+    color: inherit;
   }
 
   #site-credits {

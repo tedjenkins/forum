@@ -38,10 +38,10 @@ export default new Router({
         import(/* webpackChunkName: "user" */ './views/pages/dynamic/User.vue')
     },
     {
-      path: '/settings',
-      name: 'settings',
+      path: '/admin',
+      name: 'admin',
       component: () =>
-        import(/* webpackChunkName: "settings" */ './views/pages/Settings.vue')
+        import(/* webpackChunkName: "admin" */ './views/pages/Admin.vue')
     },
     {
       path: '/post',
