@@ -9,7 +9,7 @@ describe('LiveSearchBar component', () => {
     }
   });
 
-  test('it is a text input field, has the "live-search-bar" class and renders correctly', () => {
+  test('it renders correctly and is an input field', () => {
     expect(wrapper.exists()).toBe(true);
     expect(wrapper.contains('input')).toBe(true);
     expect(wrapper.classes()).toContain('live-search-bar');
@@ -19,8 +19,7 @@ describe('LiveSearchBar component', () => {
 
   test('the appropriate event handling method is called on input', () => {
     let flag = false;
-    const stub = () => (flag = true);
-    wrapper.setMethods({ handleInput: stub });
+    wrapper.setMethods({ handleInput: () => (flag = true) });
 
     wrapper.find('input').trigger('input');
     expect(flag).toBe(true);
