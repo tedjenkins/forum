@@ -1,6 +1,6 @@
 <template>
   <div class="thread-listing-box">
-    <div class="thread-box" v-for="thread in threads" :key="thread.id">
+    <div class="thread-box" v-for="thread of threads" :key="thread.id">
       <div class="thread-title">
         <a :href="`${siteHost}/thread/${thread.id}`">
           {{ thread.title.length > 24

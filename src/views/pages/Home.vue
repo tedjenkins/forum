@@ -1,8 +1,12 @@
 <template>
   <div id="home">
     <div id="latest-posts-display">
-      <h3>Latest posts</h3>
+      <h3>Recent posts</h3>
       <BoardThreadListing :length="5"/>
+    </div>
+    <div id="latest-users-display">
+      <h3>Recent users</h3>
+      <UserProfileListing :length="5"/>
     </div>
   </div>
 </template>
@@ -10,10 +14,12 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 import BoardThreadListing from '@/components/BoardThreadListing';
+import UserProfileListing from '@/components/UserProfileListing';
 
 @Component({
   components: {
-    BoardThreadListing
+    BoardThreadListing,
+    UserProfileListing
   }
 })
 export default class Home extends Vue {}

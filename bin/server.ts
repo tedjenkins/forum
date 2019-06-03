@@ -6,6 +6,7 @@ import { createConnection } from 'typeorm';
 import Boards from '../src/db/entities/Boards';
 import Posts from '../src/db/entities/Posts';
 import Threads from '../src/db/entities/Threads';
+import Users from '../src/db/entities/Users';
 import express from 'express';
 import http from 'http';
 import path from 'path';
@@ -64,6 +65,26 @@ createConnection()
 
         const result = await connection
           .getRepository(Threads)
+          .find({ take: +req.params.num });
+
+        res.send(result);
+      });
+
+    app
+      .route('/get-users/:num')
+      .options((req: express.Request, res: express.Response) => {
+        res.setHeader('Access-Control-Allow-Origin', app.get('host'));
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.status(200).end();
+      })
+      .get(async (req: express.Request, res: express.Response) => {
+        res.type('application/json');
+        res.setHeader('Access-Control-Allow-Origin', app.get('host'));
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.setHeader('Access-Control-Allow-Methods', 'GET,OPTIONS');
+
+        const result = await connection
+          .getRepository(Users)
           .find({ take: +req.params.num });
 
         res.send(result);
