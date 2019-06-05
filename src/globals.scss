@@ -20,11 +20,6 @@
 // Variables //
 //========== //
 
-// Structure
-$site-border: 1px solid #444;
-$site-padding: 10px 0px 0px 0px;
-$site-max-width: 1200px;
-
 // Theme-based (light theme)
 $light-site-main-bgcolor: #f0f0f0;
 $light-site-main-fontcolor: #101010;
@@ -66,6 +61,24 @@ h5,
 h6 {
   font-family: 'Montserrat', Helvetica, Arial, sans-serif;
   margin: 0px;
+  padding: 0px;
+  text-align: center;
+}
+
+h1 {
+  font-size: 20px;
+}
+
+h2 {
+  font-size: 18px;
+}
+
+h3 {
+  font-size: 16px;
+}
+
+h4 {
+  font-size: 15px;
 }
 
 // Class added to each section in the side interface on collapse
@@ -73,13 +86,25 @@ h6 {
   display: none;
 }
 
-// Headers of each sub-section in <main>
+// Headers of each sub-section in <main> sidebar
 .site-main-header {
-  font-size: 15px;
   padding: 8px 4px;
-  text-align: center;
+}
 
-  @media all and (min-width: 1200px) {
+@media all and (min-width: 800px) {
+  h1 {
+    font-size: 22px;
+  }
+
+  h2 {
     font-size: 20px;
+  }
+
+  h3 {
+    font-size: 18px;
+  }
+
+  h4 {
+    font-size: 16px;
   }
 }

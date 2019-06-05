@@ -1,7 +1,7 @@
 <template>
   <section id="site-dashboard">
     <div id="user-dashboard-logged-in" v-if="this.$store.state.loggedIn">
-      <h4 class="site-main-header">Dashboard</h4>
+      <h3 class="site-main-header">Dashboard</h3>
       <div class="side-interface-box" id="dashboard-wrapper">
         <div class="dashboard-row">
           Post count:
@@ -22,9 +22,9 @@
       </div>
     </div>
     <div id="user-dashboard-not-logged-in" v-else-if="!this.$store.state.loggedIn">
-      <h4 class="site-main-header">Dashboard (guest)</h4>
+      <h3 class="site-main-header">Please log in</h3>
       <div class="side-interface-box" id="log-in-sign-up-box">
-        You are not currently logged in. Please use the form below to log in or
+        You are not currently logged in. Use the form below to log in or
         <router-link to="/signup">sign up</router-link>.
         <form id="login-form" @submit="handleLoginForm">
           <div class="form-section">

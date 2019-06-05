@@ -1,6 +1,6 @@
 <template>
   <section id="board-list">
-    <h4 class="site-main-header">Board list</h4>
+    <h3 class="site-main-header">Boards</h3>
     <div class="side-interface-box" id="board-list-boards">
       <template v-for="(board, index) of boards">
         <router-link :to="`/board/${board.id}`" :key="index">{{ board.name }}</router-link>
