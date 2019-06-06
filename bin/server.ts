@@ -115,6 +115,22 @@ createConnection()
       });
 
     app
+      .route('/register-user')
+      .options((req: express.Request, res: express.Response) => {
+        res.setHeader('Access-Control-Allow-Origin', app.get('host'));
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.status(200).end();
+      })
+      .post((req: express.Request, res: express.Response) => {
+        res.type('application/json');
+        res.setHeader('Access-Control-Allow-Origin', app.get('host'));
+        res.setHeader('Access-Control-Allow-Headers', 'Content-Type');
+        res.setHeader('Access-Control-Allow-Methods', 'POST');
+
+        // handle registration
+      });
+
+    app
       .route('/makepost')
       .options((req: express.Request, res: express.Response) => {
         res.setHeader('Access-Control-Allow-Origin', app.get('host'));
