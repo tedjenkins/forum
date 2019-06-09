@@ -15,10 +15,17 @@ const lsEntry = `${siteName
   .split(' ')
   .join('-')}-hidden-sections`;
 
+// Global minimum and maximum lengths for inputs.
+const inputLengths = {
+  min: 4,
+  max: 24
+};
+
 export const props = {
   siteName,
   siteHost,
-  lsEntry
+  lsEntry,
+  inputLengths
 };
 
 export const utils = {
@@ -88,24 +95,36 @@ export const utils = {
    * @returns {boolean} true if valid, false if not.
    */
   inputIsValid: (input: string) => {
-    if (!/^.{4,24}$/gi.test(input)) {
-      return false;
+    if (
+      RegExp(
+        `^.{${props.inputLengths.min},${props.inputLengths.max}}$`,
+        'gi'
+      ).test(input)
+    ) {
+      return true;
     }
 
-    return true;
+    return false;
   },
 
   /**
-   * Checks user password to ensure it conforms to rules on length etc.
+   * Checks user password to ensure it conforms to rules on content etc.
    * @param {string} input -- input value to check for validity.
    * @returns {boolean} true if valid, false if not.
    */
   passwordIsValid: (input: string) => {
-    // 4 to 8 character password requiring numbers and both lowercase and uppercase letters
-    if (!/^(?=.*\d)(?=.*[A-Z])(?=.*[a-z]).{4,8}$/g.test(input)) {
-      return false;
+    // Requiring numbers and both lowercase and uppercase letters
+    if (
+      RegExp(
+        `^(?=.*\\d)(?=.*[A-Z])(?=.*[a-z]).{${props.inputLengths.min},${
+          props.inputLengths.max
+        }}$`,
+        'g'
+      ).test(input)
+    ) {
+      return true;
     }
 
-    return true;
+    return false;
   }
 };

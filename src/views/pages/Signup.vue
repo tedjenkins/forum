@@ -5,15 +5,15 @@
       <div id="form-desc">It should only take a few seconds.</div>
       <div class="form-section">
         <label for="form-username">Username:</label>
-        <input type="text" id="form-username" minlength="3" required>
+        <input type="text" id="form-username" :minlength="min" :maxlength="max" required>
       </div>
       <div class="form-section">
         <label for="form-password">Password:</label>
-        <input type="password" id="form-password" minlength="3" required>
+        <input type="password" id="form-password" :minlength="min" :maxlength="max" required>
       </div>
       <div class="form-section">
         <label for="form-email">Email:</label>
-        <input type="text" id="form-email" minlength="3" required>
+        <input type="text" id="form-email" :minlength="min" :maxlength="max" required>
       </div>
       <div id="form-reception">Please enter your information in the form.</div>
       <div class="form-section">
@@ -30,6 +30,8 @@ import { props } from '@/utils';
 
 @Component({})
 export default class Signup extends Vue {
+  min = props.inputLengths.min;
+  max = props.inputLengths.max;
   /**
    * Handle user registration form.
    * @param {Event} e -- submit event.
