@@ -3,19 +3,36 @@
     <section id="admin-boards-box">
       <h1>Boards</h1>
       <ul>
-        <li>Add a board</li>
-        <li>Remove a board</li>
-        <li>Modify an existing board</li>
+        <li>
+          <router-link to="/admin/add-board">Add a board</router-link>
+        </li>
+        <li>
+          <router-link to="/admin/remove-board">Remove a board</router-link>
+        </li>
+        <li>
+          <router-link to="/admin/modify-board">Modify an existing board</router-link>
+        </li>
       </ul>
       <h1>Users</h1>
       <ul>
-        <li>Ban / unban a user</li>
-        <li>View all users</li>
+        <li>
+          <router-link to="/admin/ban-user">Ban / unban a user</router-link>
+        </li>
+        <li>
+          <router-link to="/admin/view-all-users">View all users</router-link>
+        </li>
       </ul>
       <h1>Miscellaneous</h1>
       <ul>
-        <li>Modify blacklisted terms</li>
-        <li>Modify site settings</li>
+        <li>
+          <router-link to="/admin/modify-blacklisted-terms">Modify blacklisted terms</router-link>
+        </li>
+        <li>
+          <router-link to="/admin/modify-site-settings">Modify site settings</router-link>
+        </li>
+        <li>
+          <router-link to="/admin/sandbox">Sandbox page (testing)</router-link>
+        </li>
       </ul>
     </section>
   </div>
@@ -50,7 +67,6 @@ export default class Admin extends Vue {}
   }
 
   li {
-    cursor: pointer;
     user-select: none;
   }
 }
