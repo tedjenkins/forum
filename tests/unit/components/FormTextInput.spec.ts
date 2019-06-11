@@ -17,6 +17,21 @@ describe('FormTextInput component', () => {
     expect(wrapper.isVueInstance()).toBe(true);
   });
 
+  test('it renders correctly when passed different props', () => {
+    const wrapper2 = shallowMount(FormTextInput, {
+      propsData: {
+        type: 'password',
+        id: 'test-form-password',
+        label: 'Password (test)',
+        isRequired: true
+      }
+    });
+
+    expect(wrapper2.isVueInstance()).toBe(true);
+    expect(wrapper2.html().includes('type="password"')).toBe(true);
+    expect(wrapper2.html().includes('required')).toBe(true);
+  });
+
   test('it has a label and input combination which is recognised and is the first element', () => {
     expect(wrapper.html().includes('form-sect-label-input')).toBe(true);
 
