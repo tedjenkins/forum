@@ -9,11 +9,13 @@
         :maxlength="max"
         @focus="handleFocus"
         @blur="handleBlur"
+        @input="handleInput"
         :required="isRequired"
       >
     </div>
     <div
-      class="input-feedback-box input-feedback-box-hidden"
+      class="input-feedback-box"
+      style="display: none"
     >Please enter your information into the input field.</div>
   </div>
 </template>
@@ -38,6 +40,7 @@ export default class FormTextInput extends Vue {
    */
   handleFocus(e: Event) {
     const targ = e.target as HTMLInputElement;
+    this.$el.querySelector('.input-feedback-box')!.removeAttribute('style');
   }
 
   /**
@@ -46,9 +49,65 @@ export default class FormTextInput extends Vue {
    */
   handleBlur(e: Event) {
     const targ = e.target as HTMLInputElement;
+    this.$el
+      .querySelector('.input-feedback-box')!
+      .setAttribute('style', 'display: none');
+  }
+
+  /**
+   * Handle input into fields. Display error message, etc.
+   * @param {KeyboardEvent} e -- input event.
+   */
+  handleInput(e: KeyboardEvent) {
+    const targ = e.target as HTMLInputElement;
+    const receptionBox = this.$el.querySelector('.input-feedback-box')!;
+
+    if (targ.value.length < this.min) {
+      receptionBox.classList.add('bad-feedback');
+    } else if (targ.value.length > this.max) {
+      receptionBox.classList.add('bad-feedback');
+    } else {
+      receptionBox.classList.remove('bad-feedback');
+    }
   }
 }
 </script>
 
 <style lang="scss" scoped>
+.form-text-input {
+  .form-sect-label-input {
+    align-items: center;
+    display: flex;
+    justify-content: space-between;
+
+    & > * {
+      padding: 5px;
+    }
+
+    label {
+      border: 1px solid transparent;
+      flex: 0 1 30%;
+      font-weight: bold;
+      text-align: center;
+    }
+
+    input {
+      background-color: #ccc;
+      border: 1px solid #aaa;
+      flex: 0 1 70%;
+    }
+  }
+
+  .input-feedback-box {
+    margin: 10px 0px;
+    text-align: center;
+  }
+
+  .good-feedback {
+  }
+
+  .bad-feedback {
+    background-color: lightpink;
+  }
+}
 </style>
