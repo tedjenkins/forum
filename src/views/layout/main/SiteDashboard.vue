@@ -48,7 +48,7 @@
 import { Component, Vue } from 'vue-property-decorator';
 import { props, utils } from '@/utils';
 
-@Component({})
+@Component
 export default class SiteDashboard extends Vue {
   /**
    * Handle login form on submit.

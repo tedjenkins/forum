@@ -14,7 +14,7 @@ import { Component, Prop, Vue } from 'vue-property-decorator';
 import { props } from '@/utils';
 import Boards from '@/db/entities/Boards';
 
-@Component({})
+@Component
 export default class SiteBoardList extends Vue {
   boards: Boards[] | null = null;
 

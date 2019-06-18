@@ -24,7 +24,7 @@
 import { Component, Prop, Vue } from 'vue-property-decorator';
 import { props } from '@/utils';
 
-@Component({})
+@Component
 export default class FormTextInput extends Vue {
   @Prop() type?: string;
   @Prop() id!: string;
@@ -104,6 +104,7 @@ export default class FormTextInput extends Vue {
   }
 
   .good-feedback {
+    background-color: lightgreen;
   }
 
   .bad-feedback {

@@ -3,7 +3,7 @@
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
 
-@Component({})
+@Component
 export default class MiscModifySettings extends Vue {}
 </script>
 

@@ -14,7 +14,7 @@ import { props } from '@/utils';
 import { isBefore } from 'date-fns';
 import Users from '@/db/entities/Users';
 
-@Component({})
+@Component
 export default class UserProfileListing extends Vue {
   @Prop() length!: number;
 

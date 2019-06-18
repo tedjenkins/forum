@@ -7,7 +7,7 @@
 <script lang="ts">
 import { Component, Emit, Prop, Vue } from 'vue-property-decorator';
 
-@Component({})
+@Component
 export default class LiveSearchBar extends Vue {
   @Prop() inputId!: string;
   @Prop() placeholder!: string;

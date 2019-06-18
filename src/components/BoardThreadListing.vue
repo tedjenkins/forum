@@ -24,7 +24,7 @@ import { props, utils } from '@/utils';
 import { format, isBefore } from 'date-fns';
 import Threads from '@/db/entities/Threads';
 
-@Component({})
+@Component
 export default class BoardThreadListing extends Vue {
   @Prop() length!: number;
 

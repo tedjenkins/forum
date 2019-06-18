@@ -1,6 +1,6 @@
 import Vue from 'vue';
 import Vuex from 'vuex';
-import { props } from '@/utils';
+import { props } from './utils';
 
 Vue.use(Vuex);
 
@@ -14,7 +14,7 @@ const state: VueState = {
   siteName: props.siteName // For ability to access within <template> tags.
 };
 
-export const mutations = {
+const mutations = {
   /** If connection to database is attempted and fails, set prop to true so conditionals can run. */
   flagLostDb(st: VueState) {
     st.dbConnectionLost = true;
@@ -26,7 +26,7 @@ export const mutations = {
   }
 };
 
-export const actions = {};
+const actions = {};
 
 export default new Vuex.Store({
   state,
