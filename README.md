@@ -1,5 +1,7 @@
 # forum project
 
+[![CodeFactor](https://www.codefactor.io/repository/github/tedjenkins/forum/badge)](https://www.codefactor.io/repository/github/tedjenkins/forum)
+
 As-yet untitled forum (messageboard) project. Work in progress...
 
 #### Includes... (this will serve as a to-do list for now)
