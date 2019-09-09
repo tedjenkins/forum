@@ -13,8 +13,8 @@
 
 <script lang="ts">
 import { Component, Vue } from 'vue-property-decorator';
-import BoardThreadListing from '@/components/BoardThreadListing';
-import UserProfileListing from '@/components/UserProfileListing';
+import BoardThreadListing from '@/components/BoardThreadListing.vue';
+import UserProfileListing from '@/components/UserProfileListing.vue';
 
 @Component({
   components: {
