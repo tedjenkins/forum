@@ -2,10 +2,7 @@
   <footer>
     <u @click="toggleLoggedIn">Toggle logged in</u>
     <router-link to="/admin">Navigate to admin page</router-link>
-    <div id="site-credits" aria-label="site credits">
-      {{ this.$store.state.siteName }} ©
-      <a href="https://usefulsoftware.xyz">UsefulSoftware.xyz</a> 2019
-    </div>
+    <div id="site-credits" aria-label="site credits">{{ this.$store.state.siteName }} © 2019</div>
   </footer>
 </template>
 
