@@ -2,12 +2,12 @@
 
 [![CodeFactor](https://www.codefactor.io/repository/github/tedjenkins/forum/badge)](https://www.codefactor.io/repository/github/tedjenkins/forum)
 
-As-yet untitled forum (messageboard) project. Work in progress...
+Untitled and discontinued forum (messageboard) project.
 
-#### Includes... (this will serve as a to-do list for now)
+#### Includes...
 
-- User registration and sign-in functionality!
-- Boards! Where there are threads, with posts!
+- ~~User registration and sign-in functionality!~~
+- ~~Boards! Where there are threads, with posts!~~
 - An admin panel!
 
 ## Tooling
